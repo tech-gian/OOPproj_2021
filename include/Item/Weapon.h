@@ -16,7 +16,7 @@ class Weapon: public Item {
 
     public:
     // Constructor
-    Weapon(string name, int price, int min, int damage, int hands): Item(name, price, min), damage(damage), hands(hands) {}
+    Weapon(string name, int hands): Item(name, WP_PRICE, WP_MIN_LEVEL), damage(WP_DAMAGE), hands(hands) {}
 
     // Destructor
     ~Weapon() {}
@@ -28,5 +28,7 @@ class Weapon: public Item {
     // Get hands
     int get_hands(void) { return this-> hands; }
 
+    // Print
+    void print(void);
 
 };

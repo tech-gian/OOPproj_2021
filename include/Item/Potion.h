@@ -17,7 +17,7 @@ class Potion: public Item {
 
     public:
     // Constructor
-    Potion(string name, int price, int min, int percent, string stat): Item(name, price, min), percentage(percent), stat(stat), used(false) {}
+    Potion(string name, string stat): Item(name, PT_PRICE, PT_MIN_LEVEL), percentage(PT_PERCENT), stat(stat), used(false) {}
 
     // Destructor
     ~Potion() {}
@@ -31,5 +31,8 @@ class Potion: public Item {
 
     // Get used
     bool get_used(void) { return this->used; }
+
+    // Print
+    void print(void);
 
 };

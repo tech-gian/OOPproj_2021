@@ -31,5 +31,8 @@ class Item {
     // Get min_level
     int get_min_level(void) { return this->min_level; }
 
+    // Print
+    virtual void print(void) = 0;
+
 };
 
