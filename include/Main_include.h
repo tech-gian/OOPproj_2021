@@ -12,16 +12,16 @@
 using namespace std;
 
 
-#include "Item.h"
-#include "Weapon.h"
-#include "Armor.h"
-#include "Potion.h"
+#include "Item/Item.h"
+#include "Item/Weapon.h"
+#include "Item/Armor.h"
+#include "Item/Potion.h"
 
-#include "Grid.h"
-#include "Square.h"
-#include "nonAccesible.h"
-#include "Market.h"
-#include "Common.h"
+#include "Grid/Grid.h"
+#include "Grid/Square.h"
+#include "Grid/nonAccesible.h"
+#include "Grid/Market.h"
+#include "Grid/Common.h"
 
 #include "Living/Living.h"
 
@@ -39,3 +39,5 @@ using namespace std;
 #include "Spell/FireSpell.h"
 #include "Spell/IceSpell.h"
 #include "Spell/LightingSpell.h"
+
+#include "constants.h"

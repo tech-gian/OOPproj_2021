@@ -34,3 +34,22 @@ const int LS_MAX_DAMAGE = 12;
 const int FS_MAGIC_POWER_REQUIRED = 20;
 const int IS_MAGIC_POWER_REQUIRED = 10;
 const int LS_MAGIC_POWER_REQUIRED = 5;
+
+// Market
+const int SIZE_ITEMS = 10;
+const int SIZE_SPELLS = 10;
+
+// Item
+const int WP_PRICE = 10;
+const int AR_PRICE = 9;
+const int PT_PRICE = 8;
+
+const int WP_MIN_LEVEL = 3;
+const int AR_MIN_LEVEL = 2;
+const int PT_MIN_LEVEL = 1;
+
+const int WP_DAMAGE = 20;
+
+const int AR_DAMAGE_PROT = 15;
+
+const int PT_PERCENT = 70;
