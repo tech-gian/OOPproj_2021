@@ -60,3 +60,6 @@ const int NAMES_SIZE = 98;
 const int POTIONS_SIZE = 66;
 const int SPELLS_SIZE = 91;
 const int WEAPONS_SIZE = 119;
+
+// Fight
+const float POSSIBILITY_OF_FIGHT = 0.5;

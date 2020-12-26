@@ -1,0 +1,11 @@
+/////////////////////////////////
+// Implementation of nonAccesible
+/////////////////////////////////
+
+
+
+#pragma once
+
+#include "Main_include.h"
+
+
