@@ -10,12 +10,12 @@ using namespace std;
 
 class Hero : public Living {
     protected:
-        int magicPower;         // ποσό μαγικής ενέργειας
-        int strength;           // τιμή δύναμης
-        int dexterity;          // τιμή επιδεξιότητας
-        int agility;            // τιμή ευκινησίας
-        int money;              // ποσό χρημάτων
-        int experience;         // ποσό εμπειρίας
+        int magicPower;         // Ποσό μαγικής ενέργειας
+        int strength;           // Τιμή δύναμης
+        int dexterity;          // TODO: Τιμή επιδεξιότητας
+        int agility;            // Τιμή ευκινησίας
+        int money;              // Ποσό χρημάτων
+        int experience;         // Ποσό εμπειρίας
 
         list<Item*> inventory;  // Ασπίδες, Φίλτρα, Όπλα
         list<Spell*> spells;    // Ξόρκια
@@ -31,8 +31,8 @@ class Hero : public Living {
         void displayStats();
         void equip(Armor* armor);
         void equip(Weapon* weapon);
-        void attack();
-        void castSpell(Spell* spell);
+        void attack(Monster* monster);
+        void castSpell(Spell* spell, Monster* monster);
         void use(Potion* potion);
         Item** checkInventory();
 
@@ -54,4 +54,9 @@ class Hero : public Living {
 
         // TODO: make money
         void sell_spell(Spell* spell);
+
+        // Αποδοχή ζημιάς από επίθεση αντιπάλου
+        void receiveDamage(int damage);
+
+        int getMagicPower();
 };
