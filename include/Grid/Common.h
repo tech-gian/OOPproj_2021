@@ -11,15 +11,15 @@
 
 // Common
 class Common: public Square {
-    Monster* monsters[3];    // Monsters to fight
+    Monster* monsters[3];   // Monsters to fight
     int possibility;        // Possibility for fight
 
     public:
     // Constructor
-    Common() {}
+    Common();
 
     // Destructor
-    ~Common() {}
+    ~Common();
 
 
     // Fight function
