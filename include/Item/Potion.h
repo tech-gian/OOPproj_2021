@@ -32,6 +32,9 @@ class Potion: public Item {
     // Get used
     bool get_used(void) { return this->used; }
 
+    // Get type
+    char get_type(void) { return 'p'; };
+
     // Print
     void print(void);
 

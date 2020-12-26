@@ -24,6 +24,9 @@ class Armor: public Item {
     // Get damage_protect
     int get_protection(void) { return this->damage_protect; }
 
+    // Get type
+    char get_type(void) { return 'a'; }
+
     // Print
     void print(void);
 
