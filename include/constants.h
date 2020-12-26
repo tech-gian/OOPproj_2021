@@ -53,3 +53,10 @@ const int WP_DAMAGE = 20;
 const int AR_DAMAGE_PROT = 15;
 
 const int PT_PERCENT = 70;
+
+// Samples size
+const int ARMORS_SIZE = 80;
+const int NAMES_SIZE = 98;
+const int POTIONS_SIZE = 66;
+const int SPELLS_SIZE = 91;
+const int WEAPONS_SIZE = 119;
