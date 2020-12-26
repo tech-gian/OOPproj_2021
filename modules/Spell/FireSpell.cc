@@ -1,0 +1,8 @@
+#include "../../include/Spell/FireSpell.h"
+
+#include <stdlib.h>
+
+void FireSpell::use(Monster* monster, float dexterity){
+    monster->receiveDamage(this->min_damage + dexterity * (rand() % (this->max_damage - this->min_damage)));
+    monster->decreaseDefense();
+}
