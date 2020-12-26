@@ -5,6 +5,9 @@
 #include "../Item/Potion.h"
 #include "../Spell/Spell.h"
 
+#include <list>
+using namespace std;
+
 class Hero : public Living {
     protected:
         int magicPower;         // ποσό μαγικής ενέργειας
@@ -14,6 +17,8 @@ class Hero : public Living {
         int money;              // ποσό χρημάτων
         int experience;         // ποσό εμπειρίας
 
+        list<Item*> inventory;
+        list<Spell*> spells;
         Armor* armor;
         Weapon* weapon_left;
         Weapon* weapon_right;
@@ -29,32 +34,24 @@ class Hero : public Living {
         void attack();
         void castSpell(Spell* spell);
         void use(Potion* potion);
-        void checkInventory();
+        Item** checkInventory();
 
-        // TODO (needed in Grid.cc/line 293)
-        void print(void);
-
-        // TODO (needed in Grid.cc/line 295)
-        Item** get_items(void);
-
-        // TODO (needed in Grid.cc/line 296)
+        // No need for this if we use <list>
         int items_size(void);
 
-        // TODO (needed in Grid.cc/line 306)
+        // TODO: Spell** needs delete after usage
         Spell** get_spells(void);
 
-        // TODO (needed in Grid.cc/line 307)
+        // No need for this if we use <list>
         int spells_size(void);
 
-        // TODO (needed in Grid.cc/line 207)
         void add_item(Item* item);
 
-        // TODO (needed in Grid.cc/line 224)
         void add_spell(Spell* spell);
 
-        // TODO (needed in Grid.cc/line 252)
+        // TODO: make money
         void sell_item(Item* item);
 
-        // TODO (needed in Grid.cc/line 266)
+        // TODO: make money
         void sell_spell(Spell* spell);
 };
