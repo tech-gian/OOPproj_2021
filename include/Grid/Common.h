@@ -14,6 +14,9 @@ class Common: public Square {
     Monster* monsters[3];   // Monsters to fight
     int possibility;        // Possibility for fight
 
+    // Function for each round
+    void round(void);
+
     public:
     // Constructor
     Common();
@@ -26,7 +29,7 @@ class Common: public Square {
     void fight();
 
     // Display Stats of heroes and Monsters
-    void displayStats();
+    void displayStats(void);
 
     // Get Functions
     // Get what square
