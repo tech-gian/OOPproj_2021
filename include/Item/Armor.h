@@ -15,7 +15,7 @@ class Armor: public Item {
 
     public:
     // Constructor
-    Armor(string name, int price, int min, int damage_prot): Item(name, price, min), damage_protect(damage_prot) {}
+    Armor(string name): Item(name, AR_PRICE, AR_MIN_LEVEL), damage_protect(AR_DAMAGE_PROT) {}
 
     // Destructor
     ~Armor() {}
@@ -23,5 +23,8 @@ class Armor: public Item {
     // Get Functions
     // Get damage_protect
     int get_protection(void) { return this->damage_protect; }
+
+    // Print
+    void print(void);
 
 };

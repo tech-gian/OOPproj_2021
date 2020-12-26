@@ -19,4 +19,8 @@ class nonAccesible: public Square {
     // Destructor
     ~nonAccesible() {}
 
+    // Get Functions
+    // Get what square
+    char get_sq(void) { return 'n'; }
+
 };

@@ -12,15 +12,42 @@
 class Grid {
     int x;      // Dimensions of
     int y;      // the Grid
-    Square** squares;
+    Square*** squares;
+
+    int posi;
+    int posj;
 
     public:
     // Constructor
-    Grid(int x, int y): x(x), y(y) {}
+    Grid(int x, int y): x(x), y(y), posi(0), posj(0) {
+        // Just initiliaze rand
+        srand(time(NULL));
+        
+        squares = new Square**[x];
+        for (int i=0 ; i<x ; ++i) squares[i] = new Square*[y];
+
+        for (int i=0 ; i<x ; ++i) {
+            for (int j=0 ; j<y ; ++j) {
+                int temp = rand() % 3;
+
+                if (temp == 0) {
+                    squares[i][j] = new nonAccesible();
+                }
+                else if (temp == 1) {
+                    squares[i][j] = new Market();
+                }
+                else {
+                    squares[i][j] = new Common();
+                }
+            }
+        }
+    }
 
     // Destructor
-    ~Grid() {}
+    ~Grid();
 
+    // Move Player
+    void move(void);
 
     // Display Map
     void displayMap();
