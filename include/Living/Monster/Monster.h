@@ -11,4 +11,6 @@ class Monster : public Living {
     public:
         Monster(string name, int min_damage, int max_damage, int defense, float possibilityOfAvoidance) : 
         Living(name), min_damage(min_damage), max_damage(max_damage), defense(defense), possibilityOfAvoidance(possibilityOfAvoidance){}
+        
+        void displayStats();
 };
