@@ -14,3 +14,7 @@ void Spell::print(){
 string Spell::get_name(){
     return this->name;
 }
+
+int Spell::get_price(){
+    return this->price;
+}

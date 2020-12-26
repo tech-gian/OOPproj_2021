@@ -99,10 +99,12 @@ void Hero::add_spell(Spell* spell){
 
 void Hero::sell_item(Item* item){
     this->inventory.remove(item);
+    money += item->get_price() / 2;
 }
 
 void Hero::sell_spell(Spell* spell){
     this->spells.remove(spell);
+    money += spell->get_price() / 2;
 }
 
 void Hero::receiveDamage(int damage){

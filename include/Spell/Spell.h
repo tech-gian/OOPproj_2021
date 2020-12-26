@@ -21,4 +21,6 @@ class Spell{
         string get_name(void);
 
         int getMagicPowerRequired();
+
+        int get_price();
 };
