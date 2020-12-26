@@ -290,10 +290,10 @@ void Market::displayAvailable() {
     cout << "Available Items:" << endl;
 
     for (int i=0 ; i<3 ; ++i) {
-        heroes[i]->print();
+        heroes[i]->displayStats();                              // CHANGE print() to displayStats(). Make sure this is what u need
 
-        Item** hero_items = heroes[i]->get_items();
-        for (int j=0 ; j<heroes[i]->items_size() ; ++j) {
+        Item** hero_items = heroes[i]->checkInventory();        // CHANGE getItems() to checkInventory(). Make sure this is what u need
+        for (int j=0 ; j<heroes[i]->items_size() ; ++j) {       // Maybe we replace 295-298 with heroes[i]->checkInventory() and change checkInventory() implementation
             hero_items[j]->print();
         }
     }
