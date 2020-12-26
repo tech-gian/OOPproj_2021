@@ -26,7 +26,7 @@ class Item {
     string get_name(void) { return this->name; }
 
     // Get price
-    int get_prive(void) { return this->price; }
+    int get_price(void) { return this->price; }
 
     // Get min_level
     int get_min_level(void) { return this->min_level; }
