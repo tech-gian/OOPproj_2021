@@ -19,4 +19,7 @@ class Spell{
         // TODO (virtual, virtual = 0 or whatever. Needed in Grid.cc(line 127))
         // I have something similar for Items
         void print();
+
+        // TODO (needed in Grid.cc/line 206)
+        string get_name(void);
 };
