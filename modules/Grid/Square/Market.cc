@@ -79,6 +79,7 @@ Market::Market() {
     file.close();
 }
 
+
 Market::~Market() {
     for (int i=0 ; i<SIZE_ITEMS ; ++i) {
         delete items[i];
@@ -93,7 +94,7 @@ Market::~Market() {
 void Market::displayMenu(void) {
     // Show money of each Hero
     cout << "You are on a Market Square. For each Hero you have:" << endl;
-    for (int i=0 ; i<3 ; ++i) heroes[i]->print();
+    for (int i=0 ; i<3 ; ++i) heroes[i]->displayStats();
 
     // Show options to buy/sell
     cout << "Below you will see the options to buy or to sell something:" << endl;
@@ -181,8 +182,8 @@ void Market::sell() {
         cout << endl;
 
         for (int i=0 ; i<heroes[num]->items_size() ; ++i) {
-            if (heroes[i]->get_items()[i]->get_name() == name) {
-                heroes[num]->sell_item(heroes[i]->get_items()[i]);
+            if (heroes[i]->checkInventory()[i]->get_name() == name) {
+                heroes[num]->sell_item(heroes[i]->checkInventory()[i]);
                 break;
             }
         }
@@ -223,9 +224,9 @@ void Market::displayAvailable() {
     cout << "Available Items:" << endl;
 
     for (int i=0 ; i<3 ; ++i) {
-        heroes[i]->print();
+        heroes[i]->displayStats();
 
-        Item** hero_items = heroes[i]->get_items();
+        Item** hero_items = heroes[i]->checkInventory();
         for (int j=0 ; j<heroes[i]->items_size() ; ++j) {
             hero_items[j]->print();
         }
@@ -234,7 +235,7 @@ void Market::displayAvailable() {
     cout << "Available Spells:" << endl;
 
     for (int i=0 ; i<3 ; ++i) {
-        heroes[i]->print();
+        heroes[i]->displayStats();
 
         Spell** hero_spells = heroes[i]->get_spells();
         for (int j=0 ; j<heroes[j]->spells_size() ; ++j) {
@@ -242,3 +243,4 @@ void Market::displayAvailable() {
         }
     }
 }
+
