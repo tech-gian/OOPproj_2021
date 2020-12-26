@@ -15,7 +15,4 @@ class Living {
 
         // Αποδοχή ζημιάς που προκλήθηκε από τον αντίπαλο
         virtual void receiveDamage(int damage) = 0;
-
-        // Επίθεση στον αντίπαλο
-        virtual void attack(Living* living) = 0;
 };

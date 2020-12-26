@@ -30,4 +30,7 @@ class Monster : public Living {
 
         // Επίθεση τέρατος σε ήρωα
         void attack(Hero* Hero);
+
+        // TODO
+        void receiveDamage(int damage);
 };

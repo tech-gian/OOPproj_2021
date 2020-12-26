@@ -28,6 +28,9 @@ class Weapon: public Item {
     // Get hands
     int get_hands(void) { return this-> hands; }
 
+    // Get type
+    char get_type(void) { return 'w'; }
+
     // Print
     void print(void);
 
