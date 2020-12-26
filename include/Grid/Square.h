@@ -10,6 +10,8 @@
 
 // Square
 class Square {
+
+    protected:
     Hero* heroes[3];
 
     public:

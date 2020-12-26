@@ -21,6 +21,9 @@ class Market: public Square {
     // Destructor
     ~Market();
 
+    // TODO
+    // Display Menu to get the user to buy/sell
+    void diplayMenu(void);
 
     // Buy Items or Spells
     void buy(void);
