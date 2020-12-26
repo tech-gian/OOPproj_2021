@@ -27,4 +27,6 @@ class Armor: public Item {
     // Print
     void print(void);
 
+    // Μείωση προστασίας ασπίδας κατά την επίθεση
+    void decreaseDamageProtection(int damage) { this->damage_protect -= damage; }
 };

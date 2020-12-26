@@ -26,7 +26,7 @@ class Potion: public Item {
     // Get percentage
     int get_percent(void) { return this->percentage; }
 
-    // Get statistic
+    // returns "health"/"magic power"/"strength"/"dexterity"/"agility"
     string get_stat(void) { return this->stat; }
 
     // Get used
