@@ -31,8 +31,8 @@ class Hero : public Living {
         void displayStats();
         void equip(Armor* armor);
         void equip(Weapon* weapon);
-        void attack();
-        void castSpell(Spell* spell);
+        void attack(Monster* monster);  // TODO
+        void castSpell(Monster* monster, int spell);    // TODO: grid doesn't have Spell* spells of heroes
         void use(Potion* potion);
         Item** checkInventory();
 
