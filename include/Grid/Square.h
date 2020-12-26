@@ -25,10 +25,6 @@ class Square {
     // Get what square
     virtual char get_sq(void) = 0;
 
-    // Buy function for Market
-    virtual void buy(void);
-
-    // Sell function for Market
-    virtual void sell(void);
-
+    // Display Menu to get the user to buy/sell
+    virtual void displayMenu(void);
 };

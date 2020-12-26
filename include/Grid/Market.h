@@ -13,18 +13,7 @@ class Market: public Square {
     Item* items[SIZE_ITEMS];
     Spell* spells[SIZE_SPELLS];
 
-
-    public:
-    // Constructor
-    Market();
-
-    // Destructor
-    ~Market();
-
-    // TODO
-    // Display Menu to get the user to buy/sell
-    void diplayMenu(void);
-
+    // Private Functions
     // Buy Items or Spells
     void buy(void);
 
@@ -34,8 +23,18 @@ class Market: public Square {
     // Display available Items and Spells, to buy or to sell
     void displayAvailable(void);
 
+
+    public:
+    // Constructor
+    Market();
+
+    // Destructor
+    ~Market();
+
+    // Display Menu to get the user to buy/sell
+    void displayMenu(void);
+
     // Get Functions
     // Get what square
     char get_sq(void) { return 'm'; }
-
 };
