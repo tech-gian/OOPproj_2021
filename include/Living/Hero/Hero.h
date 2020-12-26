@@ -17,11 +17,11 @@ class Hero : public Living {
         int money;              // ποσό χρημάτων
         int experience;         // ποσό εμπειρίας
 
-        list<Item*> inventory;
-        list<Spell*> spells;
-        Armor* armor;
-        Weapon* weapon_left;
-        Weapon* weapon_right;
+        list<Item*> inventory;  // Ασπίδες, Φίλτρα, Όπλα
+        list<Spell*> spells;    // Ξόρκια
+        Armor* armor;           // Ασπίδα που χρησιμοποιεί ο παίκτης
+        Weapon* weapon_left;    // Όπλο στο αριστερό χέρι
+        Weapon* weapon_right;   // Όπλο στο δεξί χέρι
 
     public:
         Hero(string name, int strength, int dexterity, int agility)
