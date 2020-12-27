@@ -50,9 +50,6 @@ Common::~Common() {
 
 
 void Common::round(void) {
-    // TODO: get life up, by a percent for heroes and for monsters
-    // TODO: get magic up, by a percent for heroes
-
     // Display Stats or not
     cout << "Type 'y' if you want to display Stats of heroes and monsters or 'n' if you don't want: ";
     char ans;
@@ -97,7 +94,7 @@ void Common::round(void) {
         cout << endl;
 
         // Cast Spell
-        heroes[hero_num]->castSpell(spell, monsters[mon_num]);  // TODO
+        heroes[hero_num]->castSpell(heroes[hero_num]->get_spells()[spell], monsters[mon_num]);
     }
     else if (ans == 'u') {
         cout << "Type the number of hero you want to use it: ";
@@ -126,10 +123,85 @@ void Common::round(void) {
             heroes[hero_num]->use((Potion*) items[item]);
         }
     }
+
+    // Monsters attack
+    srand(time(NULL));
+    for (int i=0 ; i<3 ; ++i) {
+        int temp = rand() % 3;
+
+        monsters[i]->attack(heroes[temp]);
+    }
+}
+
+
+void Common::poss_fight(void) {
+    // Possibility for a fight
+    int poss = (int) (possibility) * 100;
+
+    srand(time(NULL));
+    int temp = rand() % 100;
+    if (temp < poss) {
+        cout << "You got into a fight!" << endl;
+        fight();
+    }
+    else {
+        cout << "You are in a Common square" << endl;
+    }
 }
 
 
 void Common::fight() {
+    bool life_heroes, life_monsters;
+
+    // Loop for a battle
+    // Each loop is a round of fight
+    while (true) {
+        life_heroes = true;
+        life_monsters = true;
+
+        for (int i=0 ; i<3 ; ++i) {
+            if (heroes[i]->get_life() != 0) {
+                life_heroes = false;
+            }
+            if (monsters[i]->get_life() != 0) {
+                life_monsters = false;
+            }
+        }
+
+        // Main condition
+        if (life_heroes || life_monsters) {
+            break;
+        }
+
+        round();
+
+        for (int i=0 ; i<3 ; ++i) {
+            heroes[i]->life_up();
+            monsters[i]->life_up();
+
+            heroes[i]->magic_up();
+        }
+    }
+
+    // If some hero has life == 0, get it to half of original
+    for (int i=0 ; i<3 ; ++i) {
+        if (heroes[i]->get_life() == 0) {
+            heroes[i]->half_life();
+        }
+    }
+
+    // If heroes win
+    if (life_monsters) {
+        for (int i=0 ; i<3 ; ++i) {
+            heroes[i]->win();
+        }
+    }
+    // If monsters win
+    else if (life_heroes) {
+        for (int i=0 ; i<3 ; ++i) {
+            heroes[i]->lose();
+        }
+    }
 
 }
 

@@ -27,4 +27,7 @@ class Square {
 
     // Display Menu to get the user to buy/sell
     virtual void displayMenu(void);
+
+    // Possibility for a fight or not
+    virtual void poss_fight(void);
 };

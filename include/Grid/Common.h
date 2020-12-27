@@ -17,6 +17,10 @@ class Common: public Square {
     // Function for each round
     void round(void);
 
+    // Fight function
+    void fight();
+
+
     public:
     // Constructor
     Common();
@@ -24,9 +28,8 @@ class Common: public Square {
     // Destructor
     ~Common();
 
-
-    // Fight function
-    void fight();
+    // Possibility for fight or not
+    void poss_fight(void);
 
     // Display Stats of heroes and Monsters
     void displayStats(void);
