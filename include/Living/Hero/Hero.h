@@ -5,6 +5,7 @@
 #include "../Item/Potion.h"
 #include "../Spell/Spell.h"
 
+#include <string>
 #include <list>
 using namespace std;
 
@@ -51,6 +52,8 @@ class Hero : public Living {
 
         int getMagicPower();
 
+        /* Αν μετά το πέρας μίας μάχης κάποιος ήρωας έχει απομείνει με ζωτική ενέργεια μηδέν,
+            τότε αυτή επαναϕέρεται στο μισό της κανονικής του ζωτικής ενέργειας. */
         void half_life(void) { this->healthPower = INIT_HEALTH_POWER / 2; }
 
         /* Αν η μάχη τελειώσει επειδή νίκησαν οι ήρωες,

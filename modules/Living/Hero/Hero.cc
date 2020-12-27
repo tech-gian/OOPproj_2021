@@ -1,8 +1,5 @@
 #include "Hero.h"
 #include <iostream>
-#include <string>
-#include <iterator>
-using namespace std;
 
 void Hero::displayStats(){
     cout << "Hero Name: " << this->name << endl;
@@ -60,7 +57,7 @@ void Hero::use(Potion* potion){
     else if(stat == "agility")
         this->agility += this->agility * percentage;
 
-    delete potion; // OR potion->set_used(); ??
+    delete potion; // TODO: OR potion->set_used(); ??
 }
 
 list<Item*> Hero::checkInventory(){

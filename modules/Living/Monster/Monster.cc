@@ -2,7 +2,6 @@
 
 #include <stdlib.h>
 #include <iostream>
-using namespace std;
 
 void Monster::displayStats(){
     cout << "Monster Name: " << this->name << endl;

@@ -1,4 +1,4 @@
-#include "Warrior.h"
+#include "../../../include/Living/Hero/Warrior.h"
 
 void Warrior::levelUp(){
     this->strength += 100;
