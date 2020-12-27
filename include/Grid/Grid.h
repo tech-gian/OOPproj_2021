@@ -19,12 +19,10 @@ class Grid {
 
     public:
     // Constructor
-    Grid(int x, int y): x(x), y(y), posi(0), posj(0) {
+    Grid(Hero** heroes, int x, int y): x(x), y(y), posi(0), posj(0) {
         // Just initiliaze rand
         srand(time(NULL));
 
-        // TODO: Add heroes to (0, 0) Square
-        
         squares = new Square**[x];
         for (int i=0 ; i<x ; ++i) squares[i] = new Square*[y];
 
@@ -32,7 +30,11 @@ class Grid {
             for (int j=0 ; j<y ; ++j) {
                 int temp = rand() % 3;
 
-                if (temp == 0) {
+                // Initial position for heroes
+                if (i == 0 && j == 0) {
+                    squares[i][j] = new nonAccesible(heroes);
+                }
+                else if (temp == 0) {
                     squares[i][j] = new nonAccesible();
                 }
                 else if (temp == 1) {

@@ -23,6 +23,11 @@ Grid::~Grid() {
 
 
 void Grid::move(void) {
+    // Initial position
+    int init_i = posi;
+    int init_j = posj;
+
+    // Temp position
     int i = posi;
     int j = posj;
     bool flag;
@@ -62,12 +67,13 @@ void Grid::move(void) {
     // do whatever each square does
     posi = i;
     posj = j;
-    // TODO: Move heroes when "move"
 
     if (squares[posi][posj]->get_sq() == 'm') {
+        squares[posi][posj]->move_heroes(squares[init_i][init_j]);
         squares[posi][posj]->displayMenu();
     }
     else if (squares[posi][posj]->get_sq() == 'c') {
+        squares[posi][posj]->move_heroes(squares[init_i][init_j]);
         squares[posi][posj]->poss_fight();
     }
 
@@ -76,7 +82,29 @@ void Grid::move(void) {
 
 
 void Grid::displayMap() {
+    // TODO: check again, that prints the correct table
+    for (int i=0 ; i<2*x-1 ; ++i) {
+        for (int j=0 ; j<2*y-1 ; ++j) {
 
+            if (i % 2 == 1) {
+                cout << "____";
+            }
+            else {
+                if (j % 2 == 0) {
+                    if (squares[i][j]->is_hero()) {
+                        cout << " H ";
+                    }
+                    else {
+                        cout << " " << squares[i][j]->get_sq() << " ";
+                    }
+                }
+                else {
+                    cout << "|";
+                }
+            }
+        }
+        cout << endl;
+    }
 }
 
 
