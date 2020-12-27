@@ -5,20 +5,20 @@ using namespace std;
 
 class Living {
     protected:
-        string name;        // όνομα
-        int level;          // επίπεδο
-        int healthPower;    // ποσό ζωτικής ενέργειας
+        string name;        // Όνομα
+        int level;          // Επίπεδο
+        int healthPower;    // Ζωτική ενέργεια
     public:
         Living(string name) : name(name), level(1), healthPower(INIT_HEALTH_POWER){}
         // Σε κάθε γύρο, ο παίκτης μπορεί να εμϕανίσει τα στατιστικά κάθε ήρωα και τέρατος
         virtual void displayStats() = 0;
 
-        // Αποδοχή ζημιάς που προκλήθηκε από τον αντίπαλο
+        // Αποδοχή ζημιάς από επίθεση αντιπάλου
         virtual void receiveDamage(int damage) = 0;
 
         // Get healthPower (αν θες αλλαξε ονομα, οπου το εχω χρησιμοποιησει)
         int get_life(void) { return this->healthPower; }
 
-        // TODO (για καθε γυρο, κατα ενα ποσοστο (constant))
-        void life_up(void);
+        // Οι ήρωες καθώς και τα τέρατα αναγεννούν σε κάθε γύρο κάποιο ποσό της ζωτικής τους ενέργεια
+        virtual void regenerate() = 0;
 };

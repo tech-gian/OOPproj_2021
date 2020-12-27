@@ -34,41 +34,32 @@ class Hero : public Living {
         void attack(Monster* monster);
         void castSpell(Spell* spell, Monster* monster);
         void use(Potion* potion);
-        Item** checkInventory();
+        list<Item*> checkInventory();
 
-        // No need for this if we use <list>
-        int items_size(void);
-
-        // TODO: Spell** needs delete after usage
-        Spell** get_spells(void);
-
-        // No need for this if we use <list>
-        int spells_size(void);
+        list<Spell*> get_spells(void);
 
         void add_item(Item* item);
 
         void add_spell(Spell* spell);
 
-        // TODO: make money
         void sell_item(Item* item);
 
-        // TODO: make money
         void sell_spell(Spell* spell);
 
-        // Αποδοχή ζημιάς από επίθεση αντιπάλου
+        // Αποδοχή ζημιάς από επίθεση τέρατος
         void receiveDamage(int damage);
 
         int getMagicPower();
 
-        // TODO
-        void magic_up(void);
-
-        // TODO: απλα να τσεκαρεις το ονομα
         void half_life(void) { this->healthPower = INIT_HEALTH_POWER / 2; }
 
-        // TODO: οταν κερδιζουν οι heroes, να γινεται η 3η και 4η σειρα προτελευταιας παραγραφου
-        void win(void);
+        /* Αν η μάχη τελειώσει επειδή νίκησαν οι ήρωες,
+        τότε αυτοί λαμβάνουν κάποια χρήματα και ένα ποσό εμπειρίας βάσει του επιπέδου τους και του πλήθους των τεράτων που αντιμετώπισαν.*/
+        void win(int num_of_monsters);
 
-        // TODO: οταν χανουν οι heroes, να γινεται η 5η σειρα προτελευταιας παραγραφου
-        void lose(void);
+        // Αν η μάχη τελειώσει επειδή νίκησαν τα τέρατα, οι ήρωες χάνουν τα μισά χρήματα τους
+        void lose(void) { this->money /= 2; }
+
+        // Οι ήρωες αναγεννούν σε κάθε γύρο κάποιο ποσό της ζωτικής και της μαγικής τους ενέργειας
+        void regenerate();
 };

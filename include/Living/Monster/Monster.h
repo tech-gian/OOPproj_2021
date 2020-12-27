@@ -31,6 +31,9 @@ class Monster : public Living {
         // Επίθεση τέρατος σε ήρωα
         void attack(Hero* Hero);
 
-        // TODO
+        // Αποδοχή ζημιάς από επίθεση ήρωα
         void receiveDamage(int damage);
+
+        // Tα τέρατα αναγεννούν σε κάθε γύρο κάποιο ποσό της ζωτικής τους ενέργειας
+        void regenerate();
 };

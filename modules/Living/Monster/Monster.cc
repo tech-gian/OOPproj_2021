@@ -26,3 +26,20 @@ void Monster::decreasePossibilityOfAvoidance(){
 void Monster::attack(Hero* hero){
     hero->receiveDamage(this->min_damage + rand() % (this->max_damage - this->min_damage));
 }
+
+void Monster::receiveDamage(int damage){
+    if(this->defense){
+        if(damage <= this->defense)
+            this->defense -= damage;
+        else{
+            damage -= this->defense;
+            this->healthPower = this->healthPower > damage ? this->healthPower - damage : 0;
+        }
+    }else{
+        this->healthPower = this->healthPower > damage ? this->healthPower - damage : 0;
+    }
+}
+
+void Monster::regenerate(){
+    this->healthPower *= 1.05;
+}

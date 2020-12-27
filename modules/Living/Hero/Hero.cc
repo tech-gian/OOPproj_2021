@@ -63,30 +63,12 @@ void Hero::use(Potion* potion){
     delete potion; // OR potion->set_used(); ??
 }
 
-Item** Hero::checkInventory(){
-    Item** items = new Item*[this->inventory.size()];
-    int i = 0;
-    for(list<Item*>::iterator it = this->inventory.begin(); it != this->inventory.end(); ++it){
-        items[i++] = *it;
-    }
-    return items;
+list<Item*> Hero::checkInventory(){
+    return this->inventory;
 }
 
-int Hero::items_size(){
-    return this->inventory.size();
-}
-
-Spell** Hero::get_spells(){
-    Spell** spells = new Spell*[this->spells.size()];
-    int i = 0;
-    for(list<Spell*>::iterator it = this->spells.begin(); it != this->spells.end(); ++it){
-        spells[i++] = *it;
-    }
-    return spells;
-}
-
-int Hero::spells_size(){
-    return this->spells.size();
+list<Spell*> Hero::get_spells(){
+    return this->spells;
 }
 
 void Hero::add_item(Item* item){
@@ -124,4 +106,17 @@ void Hero::receiveDamage(int damage){
 
 int Hero::getMagicPower(){
     return this->magicPower;
+}
+
+void Hero::win(int num_of_monsters){
+    // TODO: find appropriate constants
+    this->money += this->level * k + num_of_monsters * l;
+    this->experience += this->level * x + num_of_monsters * y;
+    if(this->experience >= this->level * z)
+        this->levelUp();
+}
+
+void Hero::regenerate(){
+    this->healthPower *= 1.05;
+    this->magicPower *= 1.05;
 }

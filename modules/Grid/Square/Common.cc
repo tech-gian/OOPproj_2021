@@ -181,10 +181,8 @@ void Common::fight() {
         round();
 
         for (int i=0 ; i<3 ; ++i) {
-            heroes[i]->life_up();
-            monsters[i]->life_up();
-
-            heroes[i]->magic_up();
+            heroes[i]->regenerate();
+            monsters[i]->regenerate();
         }
     }
 
@@ -198,7 +196,7 @@ void Common::fight() {
     // If heroes win
     if (life_monsters) {
         for (int i=0 ; i<3 ; ++i) {
-            heroes[i]->win();
+            heroes[i]->win();   // TODO: χρειαζεται ως ορισμα τον αριθμο των τεράτων που πολεμησαν οι ηρωες (1 ή 2 ή 3), από εκφώνηση
         }
     }
     // If monsters win
