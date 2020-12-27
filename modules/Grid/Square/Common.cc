@@ -98,34 +98,51 @@ void Common::round(void) {
         cin >> spell;
         cout << endl;
 
+        // To find the correct spell
+        list<Spell*> spells = heroes[hero_num]->get_spells();
+        list<Spell*>::iterator it;
+        int temp = 0;
+        for (it=spells.begin() ; it!=spells.end() ; ++it) {
+            if (temp == spell) break;
+            ++temp;
+        }
+
         // Cast Spell
-        heroes[hero_num]->castSpell(heroes[hero_num]->get_spells()[spell], monsters[mon_num]);
+        heroes[hero_num]->castSpell((*it), monsters[mon_num]);
     }
     else if (ans == 'u') {
         cout << "Type the number of hero you want to use it: ";
         int hero_num;
         cin >> hero_num;
         cout << endl;
-        Item** items = heroes[hero_num]->checkInventory();
+        list<Item*> items = heroes[hero_num]->checkInventory();
+        list<Item*>::iterator it;
 
-        for (int i=0 ; i<heroes[hero_num]->items_size() ; ++i) {
-            items[i]->print();
-        }
+        for (it=items.begin() ; it!=items.end() ; ++it) {
+            (*it)->print();
+        }   
 
         cout << "Type the number of item you want to use: ";
         int item;
         cin >> item;
         cout << endl;
 
+        // To find the correct item
+        int temp = 0;
+        for (it=items.begin() ; it!=items.end() ; ++it) {
+            if (temp == item) break;
+            ++temp;
+        }
+
         // We "use" the correct Item from Inventory
-        if (items[item]->get_type() == 'a') {
-            heroes[hero_num]->equip((Armor*) items[item]);
+        if ((*it)->get_type() == 'a') {
+            heroes[hero_num]->equip((Armor*) (*it));
         }
-        else if (items[item]->get_type() == 'w') {
-            heroes[hero_num]->equip((Weapon*) items[item]);
+        else if ((*it)->get_type() == 'w') {
+            heroes[hero_num]->equip((Weapon*) (*it));
         }
-        else if (items[item]->get_type() == 'p') {
-            heroes[hero_num]->use((Potion*) items[item]);
+        else if ((*it)->get_type() == 'p') {
+            heroes[hero_num]->use((Potion*) (*it));
         }
     }
 
@@ -157,6 +174,7 @@ void Common::poss_fight(void) {
 
 void Common::fight() {
     bool life_heroes, life_monsters;
+    int monsters_dead = 3;
 
     // Loop for a battle
     // Each loop is a round of fight
@@ -169,6 +187,7 @@ void Common::fight() {
                 life_heroes = false;
             }
             if (monsters[i]->get_life() != 0) {
+                --monsters_dead;
                 life_monsters = false;
             }
         }
@@ -196,7 +215,7 @@ void Common::fight() {
     // If heroes win
     if (life_monsters) {
         for (int i=0 ; i<3 ; ++i) {
-            heroes[i]->win();   // TODO: χρειαζεται ως ορισμα τον αριθμο των τεράτων που πολεμησαν οι ηρωες (1 ή 2 ή 3), από εκφώνηση
+            heroes[i]->win(monsters_dead);
         }
     }
     // If monsters win

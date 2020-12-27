@@ -186,10 +186,11 @@ void Market::sell() {
         cin >> name;
         cout << endl;
 
-        for (int i=0 ; i<heroes[num]->items_size() ; ++i) {
-            if (heroes[i]->checkInventory()[i]->get_name() == name) {
-                heroes[num]->sell_item(heroes[i]->checkInventory()[i]);
-                break;
+        list<Item*> items = heroes[num]->checkInventory();
+        list<Item*>::iterator it;
+        for (it=items.begin() ; it!=items.end() ; ++it) {
+            if ((*it)->get_name() == name) {
+                heroes[num]->sell_item(*it);
             }
         }
     }
@@ -199,10 +200,11 @@ void Market::sell() {
         cin >> name;
         cout << endl;
 
-        for (int i=0 ; i<heroes[num]->spells_size() ; ++i) {
-            if (heroes[i]->get_spells()[i]->get_name() == name) {
-                heroes[num]->sell_spell(heroes[i]->get_spells()[i]);
-                break;
+        list<Spell*> spells = heroes[num]->get_spells();
+        list<Spell*>::iterator it;
+        for (it=spells.begin() ; it!=spells.end() ; ++it) {
+            if ((*it)->get_name() == name) {
+                heroes[num]->sell_spell(*it);
             }
         }
     }
@@ -231,9 +233,10 @@ void Market::displayAvailable() {
     for (int i=0 ; i<3 ; ++i) {
         heroes[i]->displayStats();
 
-        Item** hero_items = heroes[i]->checkInventory();
-        for (int j=0 ; j<heroes[i]->items_size() ; ++j) {
-            hero_items[j]->print();
+        list<Item*> items = heroes[i]->checkInventory();
+        list<Item*>::iterator it;
+        for (it=items.begin() ; it!=items.end() ; ++it) {
+            (*it)->print();
         }
     }
 
@@ -242,9 +245,10 @@ void Market::displayAvailable() {
     for (int i=0 ; i<3 ; ++i) {
         heroes[i]->displayStats();
 
-        Spell** hero_spells = heroes[i]->get_spells();
-        for (int j=0 ; j<heroes[j]->spells_size() ; ++j) {
-            hero_spells[j]->print();
+        list<Spell*> spells = heroes[i]->get_spells();
+        list<Spell*>::iterator it;
+        for (it=spells.begin() ; it!=spells.end() ; ++it) {
+            (*it)->print();
         }
     }
 }
