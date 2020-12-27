@@ -62,12 +62,13 @@ void Grid::move(void) {
     // do whatever each square does
     posi = i;
     posj = j;
+    // TODO: Move heroes when "move"
 
     if (squares[posi][posj]->get_sq() == 'm') {
         squares[posi][posj]->displayMenu();
     }
     else if (squares[posi][posj]->get_sq() == 'c') {
-        // TODO
+        squares[posi][posj]->poss_fight();
     }
 
 

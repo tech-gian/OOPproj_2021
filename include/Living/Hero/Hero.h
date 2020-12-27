@@ -59,4 +59,16 @@ class Hero : public Living {
         void receiveDamage(int damage);
 
         int getMagicPower();
+
+        // TODO
+        void magic_up(void);
+
+        // TODO: απλα να τσεκαρεις το ονομα
+        void half_life(void) { this->healthPower = INIT_HEALTH_POWER / 2; }
+
+        // TODO: οταν κερδιζουν οι heroes, να γινεται η 3η και 4η σειρα προτελευταιας παραγραφου
+        void win(void);
+
+        // TODO: οταν χανουν οι heroes, να γινεται η 5η σειρα προτελευταιας παραγραφου
+        void lose(void);
 };

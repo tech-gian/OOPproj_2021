@@ -15,4 +15,10 @@ class Living {
 
         // Αποδοχή ζημιάς που προκλήθηκε από τον αντίπαλο
         virtual void receiveDamage(int damage) = 0;
+
+        // Get healthPower (αν θες αλλαξε ονομα, οπου το εχω χρησιμοποιησει)
+        int get_life(void) { return this->healthPower; }
+
+        // TODO (για καθε γυρο, κατα ενα ποσοστο (constant))
+        void life_up(void);
 };
