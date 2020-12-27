@@ -14,6 +14,11 @@
 // Common Functions
 
 Common::Common() {
+    // Initialize heroes
+    for (int i=0 ; i<3 ; ++i) {
+        heroes[i] = NULL;
+    }
+
     this->possibility = POSSIBILITY_OF_FIGHT;
 
     srand(time(NULL));

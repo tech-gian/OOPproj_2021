@@ -14,6 +14,11 @@
 // Market Functions
 
 Market::Market() {
+    // Initialize heroes
+    for (int i=0 ; i<3 ; ++i) {
+        heroes[i] = NULL;
+    }
+
     srand(time(NULL));
 
     for (int i=0 ; i<SIZE_ITEMS ; ++i) {
