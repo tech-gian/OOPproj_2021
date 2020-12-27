@@ -22,6 +22,8 @@ class Grid {
     Grid(int x, int y): x(x), y(y), posi(0), posj(0) {
         // Just initiliaze rand
         srand(time(NULL));
+
+        // TODO: Add heroes to (0, 0) Square
         
         squares = new Square**[x];
         for (int i=0 ; i<x ; ++i) squares[i] = new Square*[y];
