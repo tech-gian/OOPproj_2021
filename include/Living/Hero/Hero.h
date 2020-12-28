@@ -1,9 +1,9 @@
 #include "../../constants.h"
 #include "../Living.h"
-#include "../Item/Armor.h"
-#include "../Item/Weapon.h"
-#include "../Item/Potion.h"
-#include "../Spell/Spell.h"
+#include "../../Item/Armor.h"
+#include "../../Item/Weapon.h"
+#include "../../Item/Potion.h"
+#include "../../Spell/Spell.h"
 
 #include <string>
 #include <list>
