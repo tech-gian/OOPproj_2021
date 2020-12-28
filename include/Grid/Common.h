@@ -6,7 +6,8 @@
 
 #pragma once
 
-#include "Main_include.h"
+#include "Square.h"
+#include "../Living/Monster/Monster.h"
 
 
 // Common

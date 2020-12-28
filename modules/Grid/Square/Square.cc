@@ -4,10 +4,7 @@
 
 
 
-#pragma once
-
-#include "Main_include.h"
-
+#include "../../../include/Grid/Square.h"
 
 
 // Square Functions

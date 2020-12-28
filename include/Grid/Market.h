@@ -5,7 +5,9 @@
 
 #pragma once
 
-#include "Main_include.h"
+#include "../Grid/Square.h"
+#include "../Item/Item.h"
+#include "../Spell/Spell.h"
 
 
 // Market

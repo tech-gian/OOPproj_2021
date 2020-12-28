@@ -1,7 +1,5 @@
 #include "../../include/Spell/Spell.h"
 
-#include <iostream>
-
 string Spell::get_name(){
     return this->name;
 }

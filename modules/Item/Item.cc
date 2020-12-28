@@ -3,10 +3,9 @@
 /////////////////////////
 
 
-#pragma once
-
-#include "Main_include.h"
-
+#include "../../include/Item/Item.h"
+#include <iostream>
+using namespace std;
 
 
 // Item Functions

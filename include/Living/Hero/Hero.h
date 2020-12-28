@@ -1,10 +1,15 @@
+#pragma once
+#include "../../Spell/Spell.h"
 #include "../../constants.h"
 #include "../Living.h"
+#include "../../Item/Item.h"
 #include "../../Item/Armor.h"
 #include "../../Item/Weapon.h"
 #include "../../Item/Potion.h"
-#include "../../Spell/Spell.h"
+#include "../../Living/Monster/Monster.h"
 
+
+#include <iostream>
 #include <string>
 #include <list>
 using namespace std;

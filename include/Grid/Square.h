@@ -5,7 +5,7 @@
 
 #pragma once
 
-#include "Main_include.h"
+#include "../Living/Hero/Hero.h"
 
 
 // Square

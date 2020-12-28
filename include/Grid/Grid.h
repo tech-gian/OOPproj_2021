@@ -5,7 +5,11 @@
 
 #pragma once
 
-#include "Main_include.h"
+#include "Square.h"
+#include "nonAccesible.h"
+#include "Market.h"
+#include "Common.h"
+#include "../Living/Hero/Hero.h"
 
 
 // Grid

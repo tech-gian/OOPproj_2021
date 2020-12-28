@@ -1,6 +1,8 @@
+#pragma once
 #include "../Living/Monster/Monster.h"
 
 #include <string>
+#include <iostream>
 using namespace std;
 
 class Spell{

@@ -5,7 +5,8 @@
 
 #pragma once
 
-#include "Main_include.h"
+#include "../Grid/Square.h"
+#include "../Living/Hero/Hero.h"
 
 
 // nonAccesible

@@ -4,10 +4,10 @@
 
 
 
-#pragma once
+#include <iostream>
+using namespace std;
 
-#include "Main_include.h"
-
+#include "../../include/Grid/Grid.h"
 
 // Grid Functions
 

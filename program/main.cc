@@ -5,8 +5,18 @@
 
 #pragma once
 
-#include "Main_include.h"
+#include <time.h>
+#include <stdlib.h>
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
 
+#include "../include/Living/Hero/Hero.h"
+#include "../include/Living/Hero/Paladin.h"
+#include "../include/Living/Hero/Sorcerer.h"
+#include "../include/Living/Hero/Warrior.h"
+#include "../include/Grid/Grid.h"
 
 int main(void) {
 
@@ -21,7 +31,7 @@ int main(void) {
         // Taking random name from names.txt
         ifstream file("../samples/names.txt");
         string name;
-        int temp = rand() % NAMES_SIZE;
+        temp = rand() % NAMES_SIZE;
         for (int j=0 ; j<temp ; ++j) getline(file, name);
         file.close();
 

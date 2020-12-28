@@ -1,5 +1,11 @@
+#pragma once
+
+#include <stdlib.h>
+#include <string>
+using namespace std;
+
 #include "../constants.h"
-#include "./spell.h"
+#include "Spell.h"
 #include "../Living/Monster/Monster.h"
 
 class LightningSpell : public Spell {

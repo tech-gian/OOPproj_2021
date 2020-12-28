@@ -4,12 +4,15 @@
 
 
 
-#pragma once
 
-#include "Main_include.h"
+#include <iostream>
+#include <fstream>
+using namespace std;
 
-
-
+#include "../../../include/Grid/Market.h"
+#include "../../../include/Spell/FireSpell.h"
+#include "../../../include/Spell/IceSpell.h"
+#include "../../../include/Spell/LightingSpell.h"
 
 // Market Functions
 

@@ -5,9 +5,8 @@
 
 #pragma once
 
-#include "Main_include.h"
-
-
+#include "Item.h"
+#include "../../include/constants.h"
 
 // Weapon
 class Weapon: public Item {

@@ -4,10 +4,15 @@
 
 
 
-#pragma once
+#include <fstream>
+#include <iostream>
+#include <string>
+using namespace std;
 
-#include "Main_include.h"
-
+#include "../../../include/Grid/Common.h"
+#include "../../../include/Living/Monster/Dragon.h"
+#include "../../../include/Living/Monster/Exoskeleton.h"
+#include "../../../include/Living/Monster/Spirit.h"
 
 
 

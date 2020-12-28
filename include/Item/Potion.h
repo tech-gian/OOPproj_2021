@@ -4,10 +4,11 @@
 
 
 #pragma once
+#include <string>
+using namespace std;
 
-#include "Main_include.h"
-
-
+#include "Item.h"
+#include "../constants.h"
 
 // Potion
 class Potion: public Item {

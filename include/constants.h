@@ -1,3 +1,4 @@
+#pragma once
 // Living
 const int INIT_HEALTH_POWER = 100;
 

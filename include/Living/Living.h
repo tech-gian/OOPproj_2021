@@ -1,7 +1,9 @@
-#include "../constants.h"
-#include <string>
+#pragma once
 
+#include <string>
 using namespace std;
+
+#include "../constants.h"
 
 class Living {
     protected:

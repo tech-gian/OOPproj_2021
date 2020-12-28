@@ -1,5 +1,4 @@
-#include "Hero.h"
-#include <iostream>
+#include "../../../include/Living/Hero/Hero.h"
 
 void Hero::displayStats(){
     cout << "Hero Name: " << this->name << endl;
@@ -105,13 +104,13 @@ int Hero::getMagicPower(){
     return this->magicPower;
 }
 
-void Hero::win(int num_of_monsters){
-    // TODO: find appropriate constants
-    this->money += this->level * k + num_of_monsters * l;
-    this->experience += this->level * x + num_of_monsters * y;
-    if(this->experience >= this->level * z)
-        this->levelUp();
-}
+// void Hero::win(int num_of_monsters){
+//     // TODO: find appropriate constants
+//     this->money += this->level * k + num_of_monsters * l;
+//     this->experience += this->level * x + num_of_monsters * y;
+//     if(this->experience >= this->level * z)
+//         this->levelUp();
+// }
 
 void Hero::regenerate(){
     this->healthPower *= 1.05;

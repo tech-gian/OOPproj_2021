@@ -4,9 +4,9 @@
 
 
 #pragma once
+#include <string>
 
-#include "Main_include.h"
-
+using namespace std;
 
 // Item
 class Item {
