@@ -20,9 +20,7 @@ class Grid {
     public:
     // Constructor
     Grid(Hero** heroes, int x, int y): x(x), y(y), posi(0), posj(0) {
-        // Just initiliaze rand
-        srand(time(NULL));
-
+        // Just initiliaze
         squares = new Square**[x];
         for (int i=0 ; i<x ; ++i) squares[i] = new Square*[y];
 

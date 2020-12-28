@@ -39,6 +39,9 @@ class Hero : public Living {
 
         list<Spell*> get_spells(void);
 
+        // TODO: Agility top 100 units
+        int get_agility(void) { return this->agility; }
+
         void add_item(Item* item);
 
         void add_spell(Spell* spell);

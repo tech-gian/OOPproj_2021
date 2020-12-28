@@ -21,7 +21,6 @@ Common::Common() {
 
     this->possibility = POSSIBILITY_OF_FIGHT;
 
-    srand(time(NULL));
     // Get random name from file
     ifstream file("../../../samples/names.txt");
     string monster_name;
@@ -147,11 +146,16 @@ void Common::round(void) {
     }
 
     // Monsters attack
-    srand(time(NULL));
     for (int i=0 ; i<3 ; ++i) {
         int temp = rand() % 3;
 
-        monsters[i]->attack(heroes[temp]);
+        // Attack based on hero->agility
+        if (rand() % 100 < heroes[temp]->get_agility()) {
+            monsters[i]->attack(heroes[temp]);
+        }
+        else {
+            cout << "Hero is too fast and avoided monster's attack" << endl;
+        }
     }
 }
 
@@ -160,7 +164,6 @@ void Common::poss_fight(void) {
     // Possibility for a fight
     int poss = (int) (possibility) * 100;
 
-    srand(time(NULL));
     int temp = rand() % 100;
     if (temp < poss) {
         cout << "You got into a fight!" << endl;

@@ -19,7 +19,6 @@ Market::Market() {
         heroes[i] = NULL;
     }
 
-    srand(time(NULL));
 
     for (int i=0 ; i<SIZE_ITEMS ; ++i) {
         int temp = rand() % 3;
