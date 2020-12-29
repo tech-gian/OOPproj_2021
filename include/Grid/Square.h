@@ -26,7 +26,8 @@ class Square {
     Square() {}
 
     // Destructor
-    ~Square() {}
+    // TODO
+    virtual ~Square() {}
 
     // Get Funcions
     // Get what square

@@ -51,12 +51,39 @@ int main(void) {
     Grid* grid = new Grid(heroes, 5, 5);
 
 
-    cout << "Welcome to Main_game. Your heroes are placed in square (0, 0). Enjoy!" << endl;
+    cout << "Welcome to Main_game. Your (3 random created) heroes are placed in square (0, 0). Enjoy!" << endl;
+
+
+    // Loop until player choose to quitGame()
+    while (true) {
+        cout << "You have to move to another position from the one you already are." << endl;
+        cout << "If you want you can now print the Map of the game as it is. If you want to type 'y' or 'n' if you don't: ";
+        char ans;
+        cin >> ans;
+        cout << endl;
+
+        // Display Map if wanted
+        if (ans == 'y') {
+            grid->displayMap();
+        }
+    
+        // Move player's heroes
+        grid->move();
+
+        cout << "If you want to stop playing type 'q' or anything else to continue: ";
+        cin >> ans;
+        cout << endl;
+
+        // If the player wants to quit game
+        if (ans == 'q') {
+            grid->quitGame();
+            break;
+        }
+    }
     
 
-    // TODO: "Menu" for player's options
+    // TODO: Check that everything in main is fine
 
 
     return 0;
 }
-

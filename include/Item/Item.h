@@ -19,7 +19,8 @@ class Item {
     Item(string name, int price, int min): name(name), price(price), min_level(min) {}
 
     // Destructor
-    ~Item() {}
+    // TODO
+    virtual ~Item() {}
 
     // Get Function
     // Get name
