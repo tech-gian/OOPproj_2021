@@ -37,10 +37,6 @@ class Market: public Square {
 
     // Constructor
     Market(Hero** heroes): Square(heroes) {
-        // Initialize heroes
-        for (int i=0 ; i<3 ; ++i) {
-            heroes[i] = NULL;
-        }
 
 
         for (int i=0 ; i<SIZE_ITEMS ; ++i) {
