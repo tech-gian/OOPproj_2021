@@ -17,15 +17,8 @@ class nonAccesible: public Square {
     // Constructor
     nonAccesible(Hero** heroes): Square(heroes) {}
 
-    // Default Constructor
-    nonAccesible() {
-        for (int i=0 ; i<3 ; ++i) {
-            heroes[i] = NULL;
-        }
-    }
-
     // Destructor
-    ~nonAccesible() {}
+    ~nonAccesible();
 
     // Get Functions
     // Get what square

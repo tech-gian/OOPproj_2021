@@ -8,6 +8,14 @@
 
 #include "Square.h"
 #include "../Living/Monster/Monster.h"
+#include "../Living/Monster/Dragon.h"
+#include "../Living/Monster/Exoskeleton.h"
+#include "../Living/Monster/Spirit.h"
+
+#include <fstream>
+#include <iostream>
+#include <string>
+using namespace std;
 
 
 // Common
@@ -23,8 +31,40 @@ class Common: public Square {
 
 
     public:
+
     // Constructor
-    Common();
+    Common(Hero** heroes): Square(heroes) {
+        // Initialize heroes
+        for (int i=0 ; i<3 ; ++i) {
+            heroes[i] = NULL;
+        }
+
+        this->possibility = POSSIBILITY_OF_FIGHT;
+
+        // Get random name from file
+        ifstream file("../../../samples/names.txt");
+        string monster_name;
+
+        for (int i=0 ; i<3 ; ++i) {
+            int temp = rand() % 3;
+
+            // Get the next random line (monster_name)
+            int temp_pos = rand() % (NAMES_SIZE / 3);
+            for (int j=0 ; j<temp_pos ; ++j) getline(file, monster_name);
+
+            if (temp == 0) {
+                monsters[i] = new Dragon(monster_name, 1);
+            }
+            else if (temp == 1) {
+                monsters[i] = new Exoskeleton(monster_name, 1);
+            }
+            else {
+                monsters[i] = new Spirit(monster_name, 1);
+            }
+        }
+
+        file.close();
+    }
 
     // Destructor
     ~Common();

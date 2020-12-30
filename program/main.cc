@@ -79,6 +79,13 @@ int main(void) {
     }
     
 
+    // Deleting
+    for (int i=0 ; i<3 ; ++i) {
+        delete heroes[i];
+    }
+
+    delete grid;
+
     // TODO: Check that everything in main is fine
 
 

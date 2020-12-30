@@ -37,13 +37,13 @@ class Grid {
                     squares[i][j] = new nonAccesible(heroes);
                 }
                 else if (temp == 0) {
-                    squares[i][j] = new nonAccesible();
+                    squares[i][j] = new nonAccesible(NULL);
                 }
                 else if (temp == 1) {
-                    squares[i][j] = new Market();
+                    squares[i][j] = new Market(NULL);
                 }
                 else {
-                    squares[i][j] = new Common();
+                    squares[i][j] = new Common(NULL);
                 }
             }
         }
