@@ -17,8 +17,8 @@ class Monster : public Living {
         float possibilityOfAvoidance;       // Πιθανότητα να αποϕύγει κάποια επίθεση του αντιπάλου του
 
     public:
-        Monster(string name, int min_damage, int max_damage, int defense, float possibilityOfAvoidance) : 
-        Living(name), min_damage(min_damage), max_damage(max_damage), defense(defense), possibilityOfAvoidance(possibilityOfAvoidance){}
+        Monster(string name, int min_damage, int max_damage, int defense, float possibilityOfAvoidance, int level) : 
+        Living(name, level), min_damage(min_damage), max_damage(max_damage), defense(defense), possibilityOfAvoidance(possibilityOfAvoidance){}
 
         virtual ~Monster(){}
 

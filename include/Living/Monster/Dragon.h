@@ -9,5 +9,7 @@ using namespace std;
 class Dragon : public Monster {
     public:
         // Ευνοημένο στο εύρος ζημιάς που μπορεί να προκαλέσει
-        Dragon(string name) : Monster(name, MIN_DAMAGE + 20, MAX_DAMAGE + 20, INIT_DEFENSE, POSSIBILITY_OF_AVOIDANCE){}
+        Dragon(string name, int level) : Monster(name, MIN_DAMAGE + 20, MAX_DAMAGE + 20, INIT_DEFENSE, POSSIBILITY_OF_AVOIDANCE, level){}
+
+        ~Dragon(){}
 };

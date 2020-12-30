@@ -11,7 +11,9 @@ class Living {
         int level;          // Επίπεδο
         int healthPower;    // Ζωτική ενέργεια
     public:
-        Living(string name) : name(name), level(1), healthPower(INIT_HEALTH_POWER){}
+        Living(string name, int level) : name(name), level(level), healthPower(INIT_HEALTH_POWER){}
+
+        virtual ~Living(){}
 
         string getName(){ return this->name; };
 

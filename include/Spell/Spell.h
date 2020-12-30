@@ -22,7 +22,7 @@ class Spell{
             // TODO: if you want anything to add
         }
 
-        virtual ~Spell();
+        virtual ~Spell(){}
 
         string get_name(void);
 

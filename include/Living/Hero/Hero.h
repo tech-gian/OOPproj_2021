@@ -29,8 +29,9 @@ class Hero : public Living {
 
     public:
         Hero(string name, int strength, int dexterity, int agility)
-        : Living(name), magicPower(INIT_MAGIC_POWER), strength(strength), dexterity(dexterity), agility(agility), money(INIT_MONEY), experience(0) {}
+        : Living(name, 1), magicPower(INIT_MAGIC_POWER), strength(strength), dexterity(dexterity), agility(agility), money(INIT_MONEY), experience(0) {}
         
+        virtual ~Hero(){}
 
         int getMagicPower();
         int getStrenth();
