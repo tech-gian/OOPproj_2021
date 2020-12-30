@@ -2,9 +2,6 @@
 // Implementation of main_game function
 ///////////////////////////////////////
 
-
-#pragma once
-
 #include <time.h>
 #include <stdlib.h>
 #include <iostream>
@@ -38,7 +35,7 @@ int main(void) {
         if (temp == 0) {
             heroes[i] = new Paladin(name);
         }
-        else if (temp = 1) {
+        else if (temp == 1) {
             heroes[i] = new Sorcerer(name);
         }
         else {
