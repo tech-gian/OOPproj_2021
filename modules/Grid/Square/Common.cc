@@ -3,53 +3,11 @@
 ///////////////////////////
 
 
-
-#include <fstream>
-#include <iostream>
-#include <string>
-using namespace std;
-
 #include "../../../include/Grid/Common.h"
-#include "../../../include/Living/Monster/Dragon.h"
-#include "../../../include/Living/Monster/Exoskeleton.h"
-#include "../../../include/Living/Monster/Spirit.h"
 
 
 
 // Common Functions
-
-Common::Common() {
-    // Initialize heroes
-    for (int i=0 ; i<3 ; ++i) {
-        heroes[i] = NULL;
-    }
-
-    this->possibility = POSSIBILITY_OF_FIGHT;
-
-    // Get random name from file
-    ifstream file("../../../samples/names.txt");
-    string monster_name;
-
-    for (int i=0 ; i<3 ; ++i) {
-        int temp = rand() % 3;
-
-        // Get the next random line (monster_name)
-        int temp_pos = rand() % (NAMES_SIZE / 3);
-        for (int j=0 ; j<temp_pos ; ++j) getline(file, monster_name);
-
-        if (temp == 0) {
-            monsters[i] = new Dragon(monster_name);
-        }
-        else if (temp == 1) {
-            monsters[i] = new Exoskeleton(monster_name);
-        }
-        else {
-            monsters[i] = new Spirit(monster_name);
-        }
-    }
-
-    file.close();
-}
 
 Common::~Common() {
     for (int i=0 ; i<3 ; ++i) {

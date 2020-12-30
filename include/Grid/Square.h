@@ -17,24 +17,27 @@ class Square {
     public:
     // Constructor
     Square(Hero** heroes) {
-        for (int i=0 ; i<3 ; ++i) {
-            this->heroes[i] = heroes[i];
+        if (heroes == NULL) {
+            for (int i=0 ; i<3 ; ++i) {
+                this->heroes[i] = NULL;
+            }
+        }
+        else {
+            for (int i=0 ; i<3 ; ++i) {
+                this->heroes[i] = heroes[i];
+            }
         }
     }
 
-    // Default Constructor
-    Square() {}
-
-    // Destructor
-    // TODO
-    virtual ~Square() {}
+    // Default Destructor
+    virtual ~Square();
 
     // Ο παίκτης μπορεί ανά πάσα χρονική στιγμή να εμϕανίσει πληροϕορίες για τους ήρωές του
     void displayStats(Hero* hero);
 
     // Get Funcions
     // Get what square
-    virtual char get_sq(void);
+    virtual char get_sq(void) = 0;
 
     // Display Menu to get the user to buy/sell
     virtual void displayMenu(void);

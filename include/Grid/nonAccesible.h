@@ -17,18 +17,17 @@ class nonAccesible: public Square {
     // Constructor
     nonAccesible(Hero** heroes): Square(heroes) {}
 
-    // Default Constructor
-    nonAccesible() {
-        for (int i=0 ; i<3 ; ++i) {
-            heroes[i] = NULL;
-        }
-    }
-
     // Destructor
-    ~nonAccesible() {}
+    ~nonAccesible();
+
+    // Virtual function must be declared
+    void poss_fight(void) { cout << "Enter here by mistake!" << endl; }
 
     // Get Functions
     // Get what square
     char get_sq(void) { return 'n'; }
+
+    // Virtual function must be declared
+    void displayMenu(void) { cout << "Enter here by mistake!" << endl; }
 
 };
