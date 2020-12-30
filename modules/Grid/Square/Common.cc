@@ -9,7 +9,7 @@
 
 // Common Functions
 
-Common::Common() {
+Common::Common() : Square(NULL) {
     // Initialize heroes
     for (int i=0 ; i<3 ; ++i) {
         heroes[i] = NULL;

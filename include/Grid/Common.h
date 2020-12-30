@@ -32,6 +32,8 @@ class Common: public Square {
 
     public:
 
+    Common();
+
     // Constructor
     Common(Hero** heroes): Square(heroes) {
         // Initialize heroes
