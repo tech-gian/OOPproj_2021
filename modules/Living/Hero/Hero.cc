@@ -113,13 +113,13 @@ void Hero::receiveDamage(int damage){
     }
 }
 
-// void Hero::win(int num_of_monsters){
-//     // TODO: find appropriate constants
-//     this->money += this->level * k + num_of_monsters * l;
-//     this->experience += this->level * x + num_of_monsters * y;
-//     if(this->experience >= this->level * z)
-//         this->levelUp();
-// }
+void Hero::win(int num_of_monsters){
+    // TODO: find appropriate constants
+    this->money += this->level * 1 + num_of_monsters * 10;
+    this->experience += this->level * 1 + num_of_monsters * 10;
+    if(this->experience >= this->level * 1)
+        this->levelUp();
+}
 
 void Hero::regenerate(){
     this->healthPower *= 1.05;
