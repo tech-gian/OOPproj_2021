@@ -9,9 +9,6 @@
 
 // Square Functions
 
-Square::~Square() {
-    cout << "Destructor of Square!" << endl;
-}
 
 void Square::move_heroes(Square* square) {
     for (int i=0 ; i<3 ; ++i) {

@@ -6,7 +6,3 @@
 
 // nonAccesible Functions
 
-nonAccesible::~nonAccesible() {
-    cout << "Destructor of nonAccesible!" << endl;
-}
-

@@ -36,8 +36,7 @@ class Market: public Square {
     public:
 
     // Constructor
-    Market(Hero** heroes): Square(heroes) {
-
+    Market(): Square(NULL) {
 
         for (int i=0 ; i<SIZE_ITEMS ; ++i) {
             int temp = rand() % 3;

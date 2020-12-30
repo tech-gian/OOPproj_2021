@@ -18,7 +18,7 @@ class nonAccesible: public Square {
     nonAccesible(Hero** heroes): Square(heroes) {}
 
     // Destructor
-    ~nonAccesible();
+    ~nonAccesible() {}
 
     // Get Functions
     // Get what square

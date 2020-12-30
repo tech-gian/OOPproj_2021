@@ -30,7 +30,7 @@ class Square {
     }
 
     // Default Destructor
-    virtual ~Square();
+    virtual ~Square() {}
 
     // Ο παίκτης μπορεί ανά πάσα χρονική στιγμή να εμϕανίσει πληροϕορίες για τους ήρωές του
     void displayStats(Hero* hero);
