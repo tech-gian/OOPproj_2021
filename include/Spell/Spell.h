@@ -17,7 +17,10 @@ class Spell{
         int magic_power_required;   // Ποσό μαγικής ενέργειας που απαιτεί για να εκτελεστεί
     public:
         Spell(string name, int price, int min_level, int min_damage, int max_damage, int magic_power_required) :
-        name(name), price(price), min_level(min_level), min_damage(min_damage), max_damage(max_damage), magic_power_required(magic_power_required){}
+        name(name), price(price), min_level(min_level), min_damage(min_damage), max_damage(max_damage), magic_power_required(magic_power_required) {
+            cout << "Constructor of Spell!" << endl;
+            // TODO: if you want anything to add
+        }
 
         virtual ~Spell();
 

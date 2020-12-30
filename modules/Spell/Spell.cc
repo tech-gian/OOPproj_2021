@@ -1,5 +1,10 @@
 #include "../../include/Spell/Spell.h"
 
+Spell::~Spell() {
+    cout << "Destructor of Spell!" << endl;
+    // TODO: if you want to add anything
+}
+
 string Spell::get_name(){
     return this->name;
 }

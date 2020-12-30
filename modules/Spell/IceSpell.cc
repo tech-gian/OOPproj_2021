@@ -1,5 +1,10 @@
 #include "../../include/Spell/IceSpell.h"
 
+IceSpell::~IceSpell() {
+    cout << "Destructor of IceSpell!" << endl;
+    // TODO: if you want anything to add
+}
+
 void IceSpell::use(Monster* monster, float dexterity){
     monster->receiveDamage(this->min_damage + dexterity * (rand() % (this->max_damage - this->min_damage)));
     monster->decreaseDamage();
