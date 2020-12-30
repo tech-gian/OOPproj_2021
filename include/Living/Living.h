@@ -13,11 +13,10 @@ class Living {
     public:
         Living(string name) : name(name), level(1), healthPower(INIT_HEALTH_POWER){}
 
+        string getName(){ return this->name; };
+
         // Get healthPower
         int get_life(void) { return this->healthPower; }
-
-        // Σε κάθε γύρο, ο παίκτης μπορεί να εμϕανίσει τα στατιστικά κάθε ήρωα και τέρατος
-        virtual void displayStats() = 0;
 
         // Αποδοχή ζημιάς από επίθεση αντιπάλου
         virtual void receiveDamage(int damage) = 0;

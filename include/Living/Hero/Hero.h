@@ -6,8 +6,6 @@
 #include "../../Item/Armor.h"
 #include "../../Item/Weapon.h"
 #include "../../Item/Potion.h"
-#include "../../Living/Monster/Monster.h"
-
 
 #include <iostream>
 #include <string>
@@ -32,20 +30,28 @@ class Hero : public Living {
     public:
         Hero(string name, int strength, int dexterity, int agility)
         : Living(name), magicPower(INIT_MAGIC_POWER), strength(strength), dexterity(dexterity), agility(agility), money(INIT_MONEY), experience(0) {}
+        
+
+        int getMagicPower();
+        int getStrenth();
+        int getDexterity();
+        int getAgility();
+        int getMoney();
+
+        list<Item*> getInventory();
+        list<Spell*> getSpells();
+        Armor* getArmor();
+        Weapon* getWeapon(char hand);
+        
+        void setWeapon(Weapon* weapon);
+        void setArmor(Armor* armor);
+        void usePotion(Potion* potion);
+
+        void setMagicPower(int magic_power);
+
+
         // Οταν ο ήρωας αποκτήσει αρκετή εμπειρία, ανεβαίνει ένα επίπεδο
         virtual void levelUp() = 0;
-        void displayStats();
-        void equip(Armor* armor);
-        void equip(Weapon* weapon);
-        void attack(Monster* monster);
-        void castSpell(Spell* spell, Monster* monster);
-        void use(Potion* potion);
-        list<Item*> checkInventory();
-
-        list<Spell*> get_spells(void);
-
-        // TODO: Agility top 100 units
-        int get_agility(void) { return this->agility; }
 
         void add_item(Item* item);
 
@@ -58,7 +64,6 @@ class Hero : public Living {
         // Αποδοχή ζημιάς από επίθεση τέρατος
         void receiveDamage(int damage);
 
-        int getMagicPower();
 
         /* Αν μετά το πέρας μίας μάχης κάποιος ήρωας έχει απομείνει με ζωτική ενέργεια μηδέν,
             τότε αυτή επαναϕέρεται στο μισό της κανονικής του ζωτικής ενέργειας. */

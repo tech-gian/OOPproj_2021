@@ -19,6 +19,11 @@ class Monster : public Living {
     public:
         Monster(string name, int min_damage, int max_damage, int defense, float possibilityOfAvoidance) : 
         Living(name), min_damage(min_damage), max_damage(max_damage), defense(defense), possibilityOfAvoidance(possibilityOfAvoidance){}
+
+        virtual ~Monster(){}
+
+        int getMinDamage();
+        int getMaxDamage();
         
         // Εμϕάνιση στατιστικών τέρατος
         void displayStats();
@@ -31,9 +36,6 @@ class Monster : public Living {
 
         // Μείωση πιθανότητας αποφυγής επίθεσης (από ξόρκι)
         void decreasePossibilityOfAvoidance();
-
-        // Επίθεση τέρατος σε ήρωα
-        void attack(Hero* Hero);
 
         // Αποδοχή ζημιάς από επίθεση ήρωα
         void receiveDamage(int damage);

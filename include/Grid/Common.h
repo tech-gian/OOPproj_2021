@@ -29,6 +29,30 @@ class Common: public Square {
     // Destructor
     ~Common();
 
+    // ΄Οταν οι ήρωες δεν αγοράζουν ή πωλούν αντικείμενα και όταν δεν μάχονται
+    // ...μπορούν να ελέγξουν τι αντικείμενα διαθέτουν 
+    void checkInventory(Hero* hero);
+
+    // ...να χρησιμοποιήσουν διαϕορετικά όπλα
+    void equip(Hero* hero, Weapon* weapon);
+
+    // ...να ϕορέσουν άλλη πανοπλία
+    void equip(Hero* hero, Armor* armor);
+
+    // ...να χρησιμοποιήσουν κάποιο ϕίλτρο
+    void use(Hero* hero, Potion* potion);
+
+    // ο παίκτης επιλέγει για κάθε ήρωα αν θα κάνει κανονική επίθεση
+    void attack(Hero* hero, Monster* monster);
+
+    void attack(Monster* monster, Hero* hero);
+
+    // αν θα κάνει επίθεση με κάποιο ξόρκι
+    void castSpell(Hero* hero, Monster* monster, Spell* spell);
+
+    // Σε κάθε γύρο, ο παίκτης μπορεί να εμϕανίσει τα στατιστικά κάθε τέρατος
+    void displayStats(Monster* monster);
+
     // Possibility for fight or not
     void poss_fight(void);
 
