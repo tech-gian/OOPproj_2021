@@ -84,7 +84,7 @@ void Common::round(void) {
         cout << endl;
 
         // Attack
-        heroes[hero_num]->attack(monsters[mon_num]);
+        attack(heroes[hero_num], monsters[mon_num]);
     }
     else if (ans == 'c') {
         cout << "Type the number of hero you want to attack with: ";
@@ -103,7 +103,7 @@ void Common::round(void) {
         cout << endl;
 
         // To find the correct spell
-        list<Spell*> spells = heroes[hero_num]->get_spells();
+        list<Spell*> spells = heroes[hero_num]->getSpells();
         list<Spell*>::iterator it;
         int temp = 0;
         for (it=spells.begin() ; it!=spells.end() ; ++it) {
@@ -112,14 +112,14 @@ void Common::round(void) {
         }
 
         // Cast Spell
-        heroes[hero_num]->castSpell((*it), monsters[mon_num]);
+        castSpell(heroes[hero_num], monsters[mon_num], (*it));
     }
     else if (ans == 'u') {
         cout << "Type the number of hero you want to use it: ";
         int hero_num;
         cin >> hero_num;
         cout << endl;
-        list<Item*> items = heroes[hero_num]->checkInventory();
+        list<Item*> items = heroes[hero_num]->getInventory();
         list<Item*>::iterator it;
 
         for (it=items.begin() ; it!=items.end() ; ++it) {
@@ -140,13 +140,14 @@ void Common::round(void) {
 
         // We "use" the correct Item from Inventory
         if ((*it)->get_type() == 'a') {
-            heroes[hero_num]->equip((Armor*) (*it));
+            equip(heroes[hero_num], (Armor*) (*it));
         }
         else if ((*it)->get_type() == 'w') {
-            heroes[hero_num]->equip((Weapon*) (*it));
+            equip(heroes[hero_num], (Weapon*) (*it));
+
         }
         else if ((*it)->get_type() == 'p') {
-            heroes[hero_num]->use((Potion*) (*it));
+            use(heroes[hero_num], (Potion*) (*it));
         }
     }
 
@@ -155,8 +156,8 @@ void Common::round(void) {
         int temp = rand() % 3;
 
         // Attack based on hero->agility
-        if (rand() % 100 < heroes[temp]->get_agility()) {
-            monsters[i]->attack(heroes[temp]);
+        if (rand() % 100 < heroes[temp]->getAgility()) {
+            attack(monsters[i], heroes[temp]);
         }
         else {
             cout << "Hero is too fast and avoided monster's attack" << endl;
@@ -238,9 +239,35 @@ void Common::fight() {
 
 void Common::displayStats(void) {
     cout << "Below are shown heroes stats:" << endl;
-    for (int i=0 ; i<3 ; ++i) heroes[i]->displayStats();
+    for (int i=0 ; i<3 ; ++i) Square::displayStats(heroes[i]);
 
     cout << "Below are shown monsters stats:" << endl;
-    for (int i=0 ; i<3 ; ++i) monsters[i]->displayStats();
+    for (int i=0 ; i<3 ; ++i) displayStats(monsters[i]);
 }
 
+void Common::attack(Hero* hero, Monster* monster){
+    int damage = hero->getStrenth() + hero->getWeapon('l') ? hero->getWeapon('l')->get_dmg() : 0 + hero->getWeapon('r') ? hero->getWeapon('r')->get_dmg() : 0;
+    monster->receiveDamage(damage);
+}
+
+void Common::attack(Monster* monster, Hero* hero){
+    hero->receiveDamage(monster->getMinDamage() + rand() % (monster->getMaxDamage() - monster->getMinDamage()));
+}
+
+void Common::equip(Hero* hero, Weapon* weapon){
+    hero->setWeapon(weapon);
+}
+
+void Common::equip(Hero* hero, Armor* armor){
+    hero->setArmor(armor);
+}
+
+void Common::use(Hero* hero, Potion* spell){
+    hero->usePotion(spell);
+}
+
+void Common::castSpell(Hero* hero, Monster* monster, Spell* spell){
+    spell->use(monster, hero->getDexterity());
+    hero->setMagicPower(hero->getMagicPower() - spell->getMagicPowerRequired());
+    hero->getSpells().remove(spell);
+}

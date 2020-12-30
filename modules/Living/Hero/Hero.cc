@@ -1,22 +1,39 @@
 #include "../../../include/Living/Hero/Hero.h"
 
-void Hero::displayStats(){
-    cout << "Hero Name: " << this->name << endl;
-    cout << "Magic Power: " << this->magicPower << endl;
-    cout << "Strength: " << this->strength << endl;
-    cout << "Dexterity: " << this->dexterity << endl;
-    cout << "Agility: " << this->agility << endl;
-    cout << "Money: " << this->money;
+
+int Hero::getMagicPower(){
+    return this->magicPower;
 }
 
-void Hero::equip(Armor* armor){
-    if(this->armor)
-        this->inventory.push_back(this->armor);
-    this->armor = armor;
-    this->inventory.remove(armor);
+int Hero::getStrenth(){
+    return this->strength;
 }
 
-void Hero::equip(Weapon* weapon){
+int Hero::getDexterity(){
+    return this->dexterity;
+}
+
+int Hero::getAgility(){
+    return this->agility;
+}
+
+int Hero::getMoney(){
+    return this->money;
+}
+
+list<Spell*> Hero::getSpells(){
+    return this->spells;
+}
+
+Armor* Hero::getArmor(){
+    return this->armor;
+}
+
+Weapon* Hero::getWeapon(char hand){
+    return hand == 'l' ? this->weapon_left : this->weapon_right;
+}
+
+void Hero::setWeapon(Weapon* weapon){
     if(!this->weapon_left || this->weapon_left->get_hands() == 2 || weapon->get_hands() == 2){
         if(this->weapon_left)
             this->inventory.push_back(this->weapon_left);
@@ -30,18 +47,14 @@ void Hero::equip(Weapon* weapon){
     }
 }
 
-void Hero::attack(Monster* monster){
-    int damage = this->strength + this->weapon_left ? this->weapon_left->get_dmg() : 0 + this->weapon_right ? this->weapon_right->get_dmg() : 0;
-    monster->receiveDamage(damage);
+void Hero::setArmor(Armor* armor){
+    if(this->armor)
+        this->inventory.push_back(this->armor);
+    this->armor = armor;
+    this->inventory.remove(armor);
 }
 
-void Hero::castSpell(Spell* spell, Monster* monster){
-    spell->use(monster, this->dexterity);
-    this->magicPower -= spell->getMagicPowerRequired();
-    spells.remove(spell);
-}
-
-void Hero::use(Potion* potion){
+void Hero::usePotion(Potion* potion){
     int percentage = potion->get_percent();
     string stat = potion->get_stat();
 
@@ -59,12 +72,12 @@ void Hero::use(Potion* potion){
     delete potion; // TODO: OR potion->set_used(); ??
 }
 
-list<Item*> Hero::checkInventory(){
-    return this->inventory;
+void Hero::setMagicPower(int magic_power){
+    this->magicPower = magic_power;
 }
 
-list<Spell*> Hero::get_spells(){
-    return this->spells;
+list<Item*> Hero::getInventory(){
+    return this->inventory;
 }
 
 void Hero::add_item(Item* item){
@@ -98,10 +111,6 @@ void Hero::receiveDamage(int damage){
     }else{
         this->healthPower = this->healthPower > damage ? this->healthPower - damage : 0;
     }
-}
-
-int Hero::getMagicPower(){
-    return this->magicPower;
 }
 
 // void Hero::win(int num_of_monsters){

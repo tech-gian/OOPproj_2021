@@ -16,4 +16,11 @@ void Square::move_heroes(Square* square) {
     }    
 }
 
-
+void Square::displayStats(Hero* hero){
+    cout << "Hero Name: " << hero->getName() << endl;
+    cout << "Magic Power: " << hero->getMagicPower() << endl;
+    cout << "Strength: " << hero->getStrenth() << endl;
+    cout << "Dexterity: " << hero->getDexterity() << endl;
+    cout << "Agility: " << hero->getAgility() << endl;
+    cout << "Money: " << hero->getMoney();
+}

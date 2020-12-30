@@ -1,5 +1,13 @@
 #include "../../../include/Living/Monster/Monster.h"
 
+int Monster::getMinDamage(){
+    return this->min_damage;
+}
+
+int Monster:: getMaxDamage(){
+    return this->max_damage;
+}
+
 void Monster::displayStats(){
     cout << "Monster Name: " << this->name << endl;
     cout << "Damage: [" << this->min_damage << " - " << this->max_damage << "]" << endl;
@@ -19,9 +27,6 @@ void Monster::displayStats(){
 //     this->possibilityOfAvoidance -= z; // TODO
 // }
 
-void Monster::attack(Hero* hero){
-    hero->receiveDamage(this->min_damage + rand() % (this->max_damage - this->min_damage));
-}
 
 void Monster::receiveDamage(int damage){
     if(this->defense){
