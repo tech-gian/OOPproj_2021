@@ -19,7 +19,7 @@ class Spell{
         Spell(string name, int price, int min_level, int min_damage, int max_damage, int magic_power_required) :
         name(name), price(price), min_level(min_level), min_damage(min_damage), max_damage(max_damage), magic_power_required(magic_power_required){}
 
-        virtual ~Spell();
+        virtual ~Spell(){}
 
         string get_name(void);
 

@@ -13,6 +13,8 @@ class Living {
     public:
         Living(string name) : name(name), level(1), healthPower(INIT_HEALTH_POWER){}
 
+        virtual ~Living(){}
+
         string getName(){ return this->name; };
 
         // Get healthPower
