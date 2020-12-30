@@ -34,13 +34,7 @@ class Square {
 
     // Get Funcions
     // Get what square
-    virtual char get_sq(void);
-
-    // Display Menu to get the user to buy/sell
-    virtual void displayMenu(void);
-
-    // Possibility for a fight or not
-    virtual void poss_fight(void);
+    virtual char get_sq(void) = 0;
 
     // Move heroes, when player moves
     void move_heroes(Square* square);

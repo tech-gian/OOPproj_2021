@@ -38,13 +38,13 @@ Common::Common() {
         for (int j=0 ; j<temp_pos ; ++j) getline(file, monster_name);
 
         if (temp == 0) {
-            monsters[i] = new Dragon(monster_name);
+            monsters[i] = new Dragon(monster_name, 1);
         }
         else if (temp == 1) {
-            monsters[i] = new Exoskeleton(monster_name);
+            monsters[i] = new Exoskeleton(monster_name, 1);
         }
         else {
-            monsters[i] = new Spirit(monster_name);
+            monsters[i] = new Spirit(monster_name, 1);
         }
     }
 
@@ -243,6 +243,12 @@ void Common::displayStats(void) {
 
     cout << "Below are shown monsters stats:" << endl;
     for (int i=0 ; i<3 ; ++i) displayStats(monsters[i]);
+}
+
+void Common::displayStats(Monster* monster){
+    cout << "Monster Name: " << monster->getName() << endl;
+    cout << "Damage: [" << monster->getMinDamage() << " - " << monster->getMaxDamage() << "]" << endl;
+    cout << "Defense: " << monster->getDefense() << endl;
 }
 
 void Common::attack(Hero* hero, Monster* monster){

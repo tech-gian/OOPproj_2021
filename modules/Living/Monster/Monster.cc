@@ -8,24 +8,22 @@ int Monster:: getMaxDamage(){
     return this->max_damage;
 }
 
-void Monster::displayStats(){
-    cout << "Monster Name: " << this->name << endl;
-    cout << "Damage: [" << this->min_damage << " - " << this->max_damage << "]" << endl;
-    cout << "Defense: " << this->defense << endl;
+int Monster::getDefense(){
+    return this->defense;
 }
 
-// void Monster::decreaseDamage(){
-//     this->min_damage -= x;  // TODO
-//     this->min_damage -= x;
-// }
+void Monster::decreaseDamage(){
+    this->min_damage -= 1;  // TODO
+    this->min_damage -= 1;
+}
 
-// void Monster::decreaseDefense(){
-//     this->defense -= y;     // TODO
-// }
+void Monster::decreaseDefense(){
+    this->defense -= 1;     // TODO
+}
 
-// void Monster::decreasePossibilityOfAvoidance(){
-//     this->possibilityOfAvoidance -= z; // TODO
-// }
+void Monster::decreasePossibilityOfAvoidance(){
+    this->possibilityOfAvoidance -= 1; // TODO
+}
 
 
 void Monster::receiveDamage(int damage){

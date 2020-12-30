@@ -24,9 +24,7 @@ class Monster : public Living {
 
         int getMinDamage();
         int getMaxDamage();
-        
-        // Εμϕάνιση στατιστικών τέρατος
-        void displayStats();
+        int getDefense();
 
         // Μείωση εύρους ζημιάς (από ξόρκι)
         void decreaseDamage();

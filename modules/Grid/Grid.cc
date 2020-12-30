@@ -70,11 +70,11 @@ void Grid::move(void) {
 
     if (squares[posi][posj]->get_sq() == 'm') {
         squares[posi][posj]->move_heroes(squares[init_i][init_j]);
-        squares[posi][posj]->displayMenu();
+        ((Market*)(squares[posi][posj]))->displayMenu();
     }
     else if (squares[posi][posj]->get_sq() == 'c') {
-        squares[posi][posj]->move_heroes(squares[init_i][init_j]);
-        squares[posi][posj]->poss_fight();
+        ((Common*)(squares[posi][posj]))->move_heroes(squares[init_i][init_j]);
+        ((Common*)(squares[posi][posj]))->poss_fight();
     }
 
 
