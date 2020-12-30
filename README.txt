@@ -1,5 +1,5 @@
 TODO!
 
-TODO: Create main_game
-
 TODO: constants!!!
+
+TODO: Check, in a call, main_game

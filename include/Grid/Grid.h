@@ -40,10 +40,10 @@ class Grid {
                     squares[i][j] = new nonAccesible(NULL);
                 }
                 else if (temp == 1) {
-                    squares[i][j] = new Market(NULL);
+                    squares[i][j] = new Market();
                 }
                 else {
-                    squares[i][j] = new Common(NULL);
+                    squares[i][j] = new Common();
                 }
             }
         }

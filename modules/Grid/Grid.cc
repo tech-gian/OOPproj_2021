@@ -87,15 +87,15 @@ void Grid::displayMap() {
         for (int j=0 ; j<2*y-1 ; ++j) {
 
             if (i % 2 == 1) {
-                cout << "____";
+                cout << "__";
             }
             else {
                 if (j % 2 == 0) {
-                    if (squares[i][j]->is_hero()) {
+                    if (squares[i/2][j/2]->is_hero()) {
                         cout << " H ";
                     }
                     else {
-                        cout << " " << squares[i][j]->get_sq() << " ";
+                        cout << " " << squares[i/2][j/2]->get_sq() << " ";
                     }
                 }
                 else {
