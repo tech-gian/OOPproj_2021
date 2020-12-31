@@ -71,8 +71,10 @@ class Market: public Square {
                 for (int j=0 ; j<temp ; ++j) getline(file, potion_name);
                 file.close();
 
-                // TODO: declare which stat and make rand() for it
-                items[i] = new Potion(potion_name, "TODO");
+                // Local array with stats
+                string stats[] = {"health", "magic power", "strength", "dexterity", "agility"};
+                int rand_stat = rand() % 5;
+                items[i] = new Potion(potion_name, stats[rand_stat]);
             }
         }
 

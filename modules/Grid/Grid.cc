@@ -16,9 +16,9 @@ Grid::~Grid() {
         for (int j=0 ; j<y ; ++j) {
             delete squares[i][j];
         }
-        delete squares[i];
+        delete[] squares[i];
     }
-    delete squares;
+    delete[] squares;
 }
 
 
@@ -82,7 +82,6 @@ void Grid::move(void) {
 
 
 void Grid::displayMap() {
-    // TODO: check again, that prints the correct table
     for (int i=0 ; i<2*x-1 ; ++i) {
         for (int j=0 ; j<2*y-1 ; ++j) {
 
@@ -108,6 +107,7 @@ void Grid::displayMap() {
 }
 
 
+// TODO
 void Grid::quitGame() {
 
 }
