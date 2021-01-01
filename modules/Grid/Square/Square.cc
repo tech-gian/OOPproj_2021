@@ -23,5 +23,5 @@ void Square::displayStats(Hero* hero){
     cout << "Strength: " << hero->getStrenth() << endl;
     cout << "Dexterity: " << hero->getDexterity() << endl;
     cout << "Agility: " << hero->getAgility() << endl;
-    cout << "Money: " << hero->getMoney();
+    cout << "Money: " << hero->getMoney() << endl;
 }

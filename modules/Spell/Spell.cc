@@ -19,7 +19,7 @@ int Spell::getMagicPowerRequired(){
 void Spell::print(){
     cout << this->name << endl;
     cout << "Price: " << this->price << endl;
-    cout << "Min. Level: " << this-min_level << endl;
+    cout << "Min. Level: " << this->min_level << endl;
     cout << "Damage: [" << this->min_damage << " - " << this->max_damage << "]" << endl;
     cout << "Magic power required to use: " << this->magic_power_required << endl;
 }
