@@ -13,7 +13,6 @@ using namespace std;
 // Armor Functions
 
 void Armor::print(void) {
-    cout << "Armor with name: ";
-    Item::print();
+    cout << "Armor with name: " << name << ", min_level: " << min_level << ", price: " << price << endl;
 }
 

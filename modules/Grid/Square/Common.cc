@@ -159,10 +159,9 @@ void Common::round(void) {
 
 void Common::poss_fight(void) {
     // Possibility for a fight
-    int poss = (int) (possibility) * 100;
 
     int temp = rand() % 100;
-    if (temp < poss) {
+    if (temp < possibility) {
         cout << "You got into a fight!" << endl;
         fight();
     }

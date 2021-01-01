@@ -36,6 +36,12 @@ class Grid {
                 if (i == 0 && j == 0) {
                     squares[i][j] = new nonAccesible(heroes);
                 }
+                else if (i == 0 && j == 1) {
+                    squares[i][j] = new Common();
+                }
+                else if (i == 1 && j == 0) {
+                    squares[i][j] = new Market();
+                }
                 else if (temp == 0) {
                     squares[i][j] = new nonAccesible(NULL);
                 }

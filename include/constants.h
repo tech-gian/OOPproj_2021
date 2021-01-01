@@ -63,4 +63,4 @@ const int SPELLS_SIZE = 91;
 const int WEAPONS_SIZE = 119;
 
 // Fight
-const float POSSIBILITY_OF_FIGHT = 0.5;
+const int POSSIBILITY_OF_FIGHT = 50;

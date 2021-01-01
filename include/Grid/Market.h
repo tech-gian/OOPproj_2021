@@ -38,38 +38,37 @@ class Market: public Square {
     // Constructor
     Market(): Square(NULL) {
 
+        // Opening all files
+        ifstream file_weapons("../samples/weapons.txt");
+        ifstream file_armors("../samples/armors.txt");
+        ifstream file_potions("../samples/potions.txt");
+
         for (int i=0 ; i<SIZE_ITEMS ; ++i) {
             int temp = rand() % 3;
 
             if (temp == 0) {
                 // Get random name from file
-                ifstream file("../../../samples/weapons.txt");
                 string weapon_name;
-                int temp = rand() % WEAPONS_SIZE;
-                for (int j=0 ; j<temp ; ++j) getline(file, weapon_name);
-                file.close();
+                int temp = rand() % (WEAPONS_SIZE / SIZE_ITEMS);
+                for (int j=0 ; j<temp ; ++j) getline(file_weapons, weapon_name);
 
                 // Create Weapon
                 items[i] = new Weapon(weapon_name, (rand()%2)+1);
             }
             else if (temp == 1) {
                 // Get random name from file
-                ifstream file("../../../samples/armors.txt");
                 string armor_name;
-                int temp = rand() % ARMORS_SIZE;
-                for (int j=0 ; j<temp ; ++j) getline(file, armor_name);
-                file.close();
+                int temp = rand() % (ARMORS_SIZE / SIZE_ITEMS);
+                for (int j=0 ; j<temp ; ++j) getline(file_armors, armor_name);
 
                 // Create Armor
                 items[i] = new Armor(armor_name);
             }
             else {
                 // Get random name from file
-                ifstream file("../../../samples/potions.txt");
                 string potion_name;
-                int temp = rand() % POTIONS_SIZE;
-                for (int j=0 ; j<temp ; ++j) getline(file, potion_name);
-                file.close();
+                int temp = rand() % (POTIONS_SIZE / SIZE_ITEMS);
+                for (int j=0 ; j<temp ; ++j) getline(file_potions, potion_name);
 
                 // Local array with stats
                 string stats[] = {"health", "magic power", "strength", "dexterity", "agility"};
@@ -78,12 +77,17 @@ class Market: public Square {
             }
         }
 
+        // Closing files
+        file_weapons.close();
+        file_armors.close();
+        file_potions.close();
+
         // Get random name from file
-        ifstream file("../../../samples/spells.txt");
-        string spell_name;
+        ifstream file("../samples/spells.txt");
 
         for (int i=0 ; i<SIZE_SPELLS ; ++i) {
             int temp = rand() % 3;
+            string spell_name;
 
             // Get the next random line (spell_name)
             int temp_pos = rand() % (SPELLS_SIZE / SIZE_SPELLS);

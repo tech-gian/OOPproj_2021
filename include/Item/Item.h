@@ -10,6 +10,8 @@ using namespace std;
 
 // Item
 class Item {
+
+    protected:
     string name;        // Name of Item
     int price;          // Price of Item
     int min_level;      // Min level to take it
@@ -35,7 +37,7 @@ class Item {
     virtual char get_type(void) = 0;
 
     // Print
-    virtual void print(void);
+    virtual void print(void) = 0;
     
 
 };

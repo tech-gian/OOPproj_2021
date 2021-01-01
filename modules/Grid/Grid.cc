@@ -42,18 +42,28 @@ void Grid::move(void) {
         cout << endl;
 
         if (p == 'u' || p == 'd' || p == 'r' || p == 'l') {
-            if (p == 'u') --i;
-            else if (p == 'd') ++i;
-            else if (p == 'r') ++j;
-            else if (p == 'l') --j;
 
-            if (i < 0 || i >= x || j < 0 || j >= y) {
+            // Temp i, j
+            int temp_i = i, temp_j = j;
+            if (p == 'u') --temp_i;
+            else if (p == 'd') ++temp_i;
+            else if (p == 'r') ++temp_j;
+            else if (p == 'l') --temp_j;
+
+            if (temp_i < 0 || temp_i >= x || temp_j < 0 || temp_j >= y) {
                 cout << "Out of bounds. Type again." << endl;
                 flag = true;
             }
-            else if (squares[i][j]->get_sq() == 'n') {
+            else if (squares[temp_i][temp_j]->get_sq() == 'n') {
                 cout << "Non Accesible square. Type again." << endl;
                 flag = true;
+            }
+
+            if (!flag) {
+                if (p == 'u') --i;
+                else if (p == 'd') ++i;
+                else if (p == 'r') ++j;
+                else if (p == 'l') --j;
             }
         }
         else {

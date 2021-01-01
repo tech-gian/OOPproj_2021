@@ -22,26 +22,25 @@ int main(void) {
 
     // Create random 3 heroes
     Hero* heroes[3];
+    ifstream file("../samples/names.txt");
     for (int i=0 ; i<3 ; ++i) {
-        int temp = rand() % 3;
 
         // Taking random name from names.txt
-        ifstream file("../samples/names.txt");
         string name;
-        temp = rand() % NAMES_SIZE;
+        int temp = rand() % (NAMES_SIZE / 3);
         for (int j=0 ; j<temp ; ++j) getline(file, name);
-        file.close();
 
-        if (temp == 0) {
+        if (i == 0) {
             heroes[i] = new Paladin(name);
         }
-        else if (temp == 1) {
+        else if (i == 1) {
             heroes[i] = new Sorcerer(name);
         }
         else {
             heroes[i] = new Warrior(name);
         }
     }
+    file.close();
 
 
     // Create Grid
