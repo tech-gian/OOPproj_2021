@@ -6,7 +6,7 @@
 #pragma once
 
 #include "Square.h"
-#include "nonAccesible.h"
+#include "nonAccessible.h"
 #include "Market.h"
 #include "Common.h"
 #include "../Living/Hero/Hero.h"

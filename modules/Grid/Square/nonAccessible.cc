@@ -2,7 +2,7 @@
 // Implementation of nonAccesible
 /////////////////////////////////
 
-#include "../../../include/Grid/nonAccesible.h"
+#include "../../../include/Grid/nonAccessible.h"
 
 // nonAccesible Functions
 
