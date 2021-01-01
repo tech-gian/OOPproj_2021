@@ -19,7 +19,7 @@ EXEC = main_game
 ARGS = 
 
 $(EXEC): $(OBJS)
-	$(CC) $(OBJS) -o $(EXEC)
+	$(CC) $(OBJS) -o $(EXEC) && rm -f $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(EXEC)
