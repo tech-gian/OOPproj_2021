@@ -51,6 +51,8 @@ class Market: public Square {
                 string weapon_name;
                 int temp = rand() % (WEAPONS_SIZE / SIZE_ITEMS);
                 for (int j=0 ; j<temp ; ++j) getline(file_weapons, weapon_name);
+                // If temp == 0, it should take the next line
+                if (temp == 0) getline(file_weapons, weapon_name);
 
                 // Create Weapon
                 items[i] = new Weapon(weapon_name, (rand()%2)+1);
@@ -60,6 +62,8 @@ class Market: public Square {
                 string armor_name;
                 int temp = rand() % (ARMORS_SIZE / SIZE_ITEMS);
                 for (int j=0 ; j<temp ; ++j) getline(file_armors, armor_name);
+                // If temp == 0, it should take the next line
+                if (temp == 0) getline(file_armors, armor_name);
 
                 // Create Armor
                 items[i] = new Armor(armor_name);
@@ -69,6 +73,8 @@ class Market: public Square {
                 string potion_name;
                 int temp = rand() % (POTIONS_SIZE / SIZE_ITEMS);
                 for (int j=0 ; j<temp ; ++j) getline(file_potions, potion_name);
+                // If temp == 0, it should take the next line
+                if (temp == 0) getline(file_potions, potion_name);
 
                 // Local array with stats
                 string stats[] = {"health", "magic power", "strength", "dexterity", "agility"};
