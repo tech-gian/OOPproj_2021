@@ -53,9 +53,13 @@ void Market::buy() {
     cout << endl;
 
     if (ans == 'i') {
-        cout << "Type the name of Item you want: ";
+        cout << "Type the name of Item you want: " << endl;
         string name;
-        cin >> name;
+        cin.ignore();
+        getline(cin, name);
+        std::replace(name.begin(), name.end(), '\r', '\0');
+        std::replace(name.begin(), name.end(), '\n', '\0');
+        name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
         cout << endl;
 
         for (int i=0 ; i<SIZE_ITEMS ; ++i) {

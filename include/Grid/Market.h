@@ -4,6 +4,7 @@
 
 
 #pragma once
+#include <algorithm>
 
 #include "../Grid/Square.h"
 #include "../Item/Item.h"
@@ -37,7 +38,6 @@ class Market: public Square {
 
     // Constructor
     Market(): Square(NULL) {
-
         // Opening all files
         ifstream file_weapons("../samples/weapons.txt");
         ifstream file_armors("../samples/armors.txt");
@@ -53,6 +53,9 @@ class Market: public Square {
                 for (int j=0 ; j<temp ; ++j) getline(file_weapons, weapon_name);
                 // If temp == 0, it should take the next line
                 if (temp == 0) getline(file_weapons, weapon_name);
+                std::replace(weapon_name.begin(), weapon_name.end(), '\r', '\0');
+                std::replace(weapon_name.begin(), weapon_name.end(), '\n', '\0');
+                weapon_name.erase(std::remove(weapon_name.begin(), weapon_name.end(), '\0'), weapon_name.end());
 
                 // Create Weapon
                 items[i] = new Weapon(weapon_name, (rand()%2)+1);
@@ -64,7 +67,9 @@ class Market: public Square {
                 for (int j=0 ; j<temp ; ++j) getline(file_armors, armor_name);
                 // If temp == 0, it should take the next line
                 if (temp == 0) getline(file_armors, armor_name);
-
+                std::replace(armor_name.begin(), armor_name.end(), '\r', '\0');
+                std::replace(armor_name.begin(), armor_name.end(), '\n', '\0');
+                armor_name.erase(std::remove(armor_name.begin(), armor_name.end(), '\0'), armor_name.end());
                 // Create Armor
                 items[i] = new Armor(armor_name);
             }
@@ -75,7 +80,9 @@ class Market: public Square {
                 for (int j=0 ; j<temp ; ++j) getline(file_potions, potion_name);
                 // If temp == 0, it should take the next line
                 if (temp == 0) getline(file_potions, potion_name);
-
+                std::replace(potion_name.begin(), potion_name.end(), '\r', '\0');
+                std::replace(potion_name.begin(), potion_name.end(), '\r', '\0');
+                potion_name.erase(std::remove(potion_name.begin(), potion_name.end(), '\0'), potion_name.end());
                 // Local array with stats
                 string stats[] = {"health", "magic power", "strength", "dexterity", "agility"};
                 int rand_stat = rand() % 5;
