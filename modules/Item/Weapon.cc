@@ -13,6 +13,7 @@ using namespace std;
 // Weapon Functions
 
 void Weapon::print(void) {
-    cout << "Weapon with name: " << name << ", min_level: " << min_level << ", price: " << price << endl;
+    cout << "Weapon with name: " << name << endl;
+    Item::print();
 }
 

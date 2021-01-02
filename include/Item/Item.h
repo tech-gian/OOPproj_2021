@@ -37,7 +37,7 @@ class Item {
     virtual char get_type(void) = 0;
 
     // Print
-    virtual void print(void) = 0;
+    virtual void print(void);
     
 
 };

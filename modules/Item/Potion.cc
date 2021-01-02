@@ -13,6 +13,7 @@ using namespace std;
 // Potion Functions
 
 void Potion::print(void) {
-    cout << "Potion with name: " << name << ", min_level: " << min_level << ", price: " << price << endl;
+    cout << "Potion with name: " << name << endl;
+    Item::print();
 }
 
