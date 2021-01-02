@@ -150,28 +150,34 @@ void Market::displayAvailable() {
 
     // Display every Item and Spell on player
     cout << "Depending on your bag, you can sell:" << endl;
-    cout << "Available Items:" << endl;
 
     for (int i=0 ; i<3 ; ++i) {
         displayStats(heroes[i]);
 
         list<Item*> items = heroes[i]->getInventory();
-        list<Item*>::iterator it;
-        for (it=items.begin() ; it!=items.end() ; ++it) {
-            (*it)->print();
+        if (items.size() == 0) cout << "This hero doesn't have Items" << endl;
+        else {
+            cout << "Available Items:" << endl;
+
+            list<Item*>::iterator it;
+            for (it=items.begin() ; it!=items.end() ; ++it) {
+                (*it)->print();
+            }
         }
     }
-
-    cout << "Available Spells:" << endl;
 
     for (int i=0 ; i<3 ; ++i) {
         displayStats(heroes[i]);
 
         list<Spell*> spells = heroes[i]->getSpells();
-        list<Spell*>::iterator it;
-        for (it=spells.begin() ; it!=spells.end() ; ++it) {
-            (*it)->print();
+        if (spells.size() == 0) cout << "This hero doesn't have Spells" << endl;
+        else {
+            cout << "Available Spells:" << endl;
+        
+            list<Spell*>::iterator it;
+            for (it=spells.begin() ; it!=spells.end() ; ++it) {
+                (*it)->print();
+            }
         }
     }
 }
-
