@@ -29,6 +29,8 @@ int main(void) {
         string name;
         int temp = rand() % (NAMES_SIZE / 3);
         for (int j=0 ; j<temp ; ++j) getline(file, name);
+        // If temp == 0, it take the next name
+        if (temp == 0) getline(file, name);
 
         if (i == 0) {
             heroes[i] = new Paladin(name);

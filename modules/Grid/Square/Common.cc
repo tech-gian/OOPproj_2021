@@ -27,6 +27,8 @@ Common::Common() : Square(NULL) {
         // Get the next random line (monster_name)
         int temp_pos = rand() % (NAMES_SIZE / 3);
         for (int j=0 ; j<temp_pos ; ++j) getline(file, monster_name);
+        // If temp_pos == 0, it takes the next name
+        if (temp_pos == 0) getline(file, monster_name);
 
         if (temp == 0) {
             monsters[i] = new Dragon(monster_name, 1);
