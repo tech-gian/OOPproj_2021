@@ -203,10 +203,10 @@ void Common::fight() {
         round();
 
         for (int i=0 ; i<3 ; ++i) {
-            if(heroes[i]->get_life() < 0.95 * INIT_HEALTH_POWER)
-                heroes[i]->regenerate();
-            if(monsters[i]->get_life() < 0.95 * INIT_HEALTH_POWER)
-                monsters[i]->regenerate();
+            // Check is placed in functions
+            // (If life == 0, then there is no problem)
+            heroes[i]->regenerate();
+            monsters[i]->regenerate();
         }
     }
 

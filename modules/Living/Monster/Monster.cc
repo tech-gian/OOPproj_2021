@@ -40,5 +40,6 @@ void Monster::receiveDamage(int damage){
 }
 
 void Monster::regenerate(){
-    this->healthPower *= 1.05;
+    if (this->healthPower < 0.95 * INIT_HEALTH_POWER)
+        this->healthPower *= 1.05;
 }

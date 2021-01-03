@@ -123,6 +123,9 @@ void Hero::win(int num_of_monsters){
 }
 
 void Hero::regenerate(){
-    this->healthPower *= 1.05;
-    this->magicPower *= 1.05;
+    if (this->healthPower < 0.95 * INIT_HEALTH_POWER)
+        this->healthPower *= 1.05;
+    
+    if (this->magicPower < 0.95 * INIT_MAGIC_POWER)
+        this->magicPower *= 1.05;
 }
