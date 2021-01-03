@@ -4,14 +4,14 @@ const int INIT_HEALTH_POWER = 100;
 
 // Hero
 const int INIT_MAGIC_POWER = 100;
-const int INIT_STRENGTH = 100;
+const int INIT_STRENGTH = 35;
 const int INIT_DEXTERITY = 100;
 const int INIT_AGILITY = 30;
 const int INIT_MONEY = 1000;
 
 // Monster
-const int MIN_DAMAGE = 10;
-const int MAX_DAMAGE = 20;
+const int MIN_DAMAGE = 25;
+const int MAX_DAMAGE = 35;
 const int INIT_DEFENSE = 100;
 const int POSSIBILITY_OF_AVOIDANCE = 30;
 
