@@ -60,22 +60,34 @@ void Common::round(void) {
     
     if (ans == 'y') displayStats();
 
+    ans = 'z';
+
     // Show options to player
-    cout << "Type 'a' to attack, 'c' to cast Spell or 'u' to use some Item: ";
-    cin >> ans;
-    
+    while(ans != 'a' && ans != 'c' && ans != 'u'){
+        cout << "Type 'a' to attack, 'c' to cast Spell or 'u' to use some Item: ";
+        cin >> ans;
+    }
 
     // Depending on the answers, make the correct option
     if (ans == 'a') {
         cout << "Type the number of hero you want to attack with: ";
-        int hero_num;
-        cin >> hero_num;
+        int hero_num = 3;
+        while(hero_num > 2){
+            cin >> hero_num;
+            if(hero_num > 2)
+                cout << "The number of the hero should be 0, 1 or 2: ";
+        }
         
 
         cout << "Type the number of monster you want to attack: ";
-        int mon_num;
-        cin >> mon_num;
-        
+        int mon_num = 3;
+        while(mon_num > 2 || monsters[mon_num]->get_life() == 0){
+            cin >> mon_num;
+            if(mon_num > 2){
+                cout << "The number of the monster should be 0, 1 or 2: ";
+            }else if(monsters[mon_num]->get_life() == 0)
+                cout << monsters[mon_num]->getName() << " is dead. Choose another monster: ";
+        }
 
         // Attack
         attack(heroes[hero_num], monsters[mon_num]);
@@ -116,13 +128,17 @@ void Common::round(void) {
         list<Item*> items = heroes[hero_num]->getInventory();
         list<Item*>::iterator it;
 
-        for (it=items.begin() ; it!=items.end() ; ++it) {
+        int i = 0;
+        for (it=items.begin() ; it!=items.end() ; ++it, ++i) {
+            cout << i << ") ";
             (*it)->print();
-        }   
+        }
 
-        cout << "Type the number of item you want to use: ";
-        int item;
-        cin >> item;
+        int item = i + 1;
+        while(item >= i){
+            cout << "Type the number of item you want to use [0-" << i - 1 << "]: ";
+            cin >> item;
+        }
         
 
         // To find the correct item
@@ -165,21 +181,16 @@ void Common::round(void) {
         while(monsters[temp2]->get_life() == 0)
             temp2 = rand() % 3;
 
-        // Attack based on hero->agility
-        if (rand() % 100 < heroes[temp]->getAgility()) {
-            attack(monsters[temp2], heroes[temp]);
-        }
-        else {
-            cout << "Hero is too fast and avoided monster's attack" << endl;
-        }
+
+        attack(monsters[temp2], heroes[temp]);
 }
 
 
 void Common::poss_fight(void) {
     // Possibility for a fight
 
-    int temp = rand() % 100;
-    if (temp < possibility) {
+    // int temp = rand() % 100;
+    if (true) {                                            // TODO: CHANGE TO temp < possibility on production :P
         cout << "You got into a fight!" << endl;
         fight();
     }
@@ -266,21 +277,31 @@ void Common::displayStats(Monster* monster){
 
 void Common::attack(Hero* hero, Monster* monster){
     cout << hero->getName() << " attacks " << monster->getName() << "!" << endl;
-    int left_damage = 0;
-    int right_damage = 0;
-    if(hero->getWeapon('l') != NULL){
-        left_damage = hero->getWeapon('l')->get_dmg();
+    
+    if((rand() % 100) + 1 > monster->getPossibilityOfAvoidance()){
+        int left_damage = 0;
+        int right_damage = 0;
+        if(hero->getWeapon('l') != NULL){
+            left_damage = hero->getWeapon('l')->get_dmg();
+        }
+        if(hero->getWeapon('r') != NULL){
+            right_damage = hero->getWeapon('r')->get_dmg();
+        }
+        int damage = hero->getStrenth() + left_damage + right_damage;
+        monster->receiveDamage(damage);
+    }else{
+        cout << monster->getName() << " is too fast and avoided " << hero->getName() << "'s attack!" << endl;
     }
-    if(hero->getWeapon('r') != NULL){
-        right_damage = hero->getWeapon('r')->get_dmg();
-    }
-    int damage = hero->getStrenth() + left_damage + right_damage;
-    monster->receiveDamage(damage);
 }
 
 void Common::attack(Monster* monster, Hero* hero){
     cout << monster->getName() << " attacks " << hero->getName() << "!" << endl;
-    hero->receiveDamage(monster->getMinDamage() + rand() % (monster->getMaxDamage() - monster->getMinDamage()));
+
+    if ((rand() % 100) + 1 > hero->getAgility()) {
+        hero->receiveDamage(monster->getMinDamage() + rand() % (monster->getMaxDamage() - monster->getMinDamage()));
+    }else{
+        cout << hero->getName() << " is too fast and avoided " << monster->getName() << "'s attack!" << endl;
+    }
 }
 
 void Common::equip(Hero* hero, Weapon* weapon){

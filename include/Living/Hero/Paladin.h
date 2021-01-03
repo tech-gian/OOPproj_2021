@@ -9,7 +9,7 @@ using namespace std;
 class Paladin : public Hero {
     public:
         // ευνοημένος στον τομέα της δύναμης και της επιδεξιότητας
-        Paladin(string name) : Hero(name, INIT_STRENGTH + 50, INIT_DEXTERITY + 50, INIT_AGILITY){}
+        Paladin(string name) : Hero(name, INIT_STRENGTH + 20, INIT_DEXTERITY + 20, INIT_AGILITY){}
 
         ~Paladin(){}
         

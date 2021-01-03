@@ -14,10 +14,10 @@ class Monster : public Living {
         int min_damage;                     // Εύρος ζημιάς που μπορεί να προκαλέσει
         int max_damage;
         int defense;                        // Ποσό άμυνας το οποίο αϕαιρείται από τη ζημιά που δέχεται σε μια επίθεση του αντιπάλου του
-        float possibilityOfAvoidance;       // Πιθανότητα να αποϕύγει κάποια επίθεση του αντιπάλου του
+        int possibilityOfAvoidance;       // Πιθανότητα να αποϕύγει κάποια επίθεση του αντιπάλου του
 
     public:
-        Monster(string name, int min_damage, int max_damage, int defense, float possibilityOfAvoidance, int level) : 
+        Monster(string name, int min_damage, int max_damage, int defense, int possibilityOfAvoidance, int level) : 
         Living(name, level), min_damage(min_damage), max_damage(max_damage), defense(defense), possibilityOfAvoidance(possibilityOfAvoidance){}
 
         virtual ~Monster(){}
@@ -25,6 +25,7 @@ class Monster : public Living {
         int getMinDamage();
         int getMaxDamage();
         int getDefense();
+        int getPossibilityOfAvoidance();
 
         // Μείωση εύρους ζημιάς (από ξόρκι)
         void decreaseDamage();
