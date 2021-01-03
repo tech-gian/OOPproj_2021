@@ -8,8 +8,4 @@ TODO: decide where functions will be (Hero or Grid)
 
 TODO: eat damage before life in monster
 
-TODO: check for magic power
-
-TODO: money
-
 TODO: check fight using castSpell and use(Item*)

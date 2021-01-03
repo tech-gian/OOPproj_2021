@@ -82,10 +82,12 @@ list<Item*> Hero::getInventory(){
 
 void Hero::add_item(Item* item){
     this->inventory.push_back(item);
+    money -= item->get_price();
 }
 
 void Hero::add_spell(Spell* spell){
     this->spells.push_back(spell);
+    money -= spell->get_price();
 }
 
 void Hero::sell_item(Item* item){
