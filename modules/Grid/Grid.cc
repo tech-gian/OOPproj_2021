@@ -39,7 +39,6 @@ void Grid::move(void) {
         cout << "Type 'u' for up, 'd' for down, 'r' for right and 'l' for left: ";
         char p;
         cin >> p;
-        cout << endl;
 
         if (p == 'u' || p == 'd' || p == 'r' || p == 'l') {
 
@@ -96,7 +95,7 @@ void Grid::displayMap() {
         for (int j=0 ; j<2*y-1 ; ++j) {
 
             if (i % 2 == 1) {
-                cout << "__";
+                cout << "--";
             }
             else {
                 if (j % 2 == 0) {

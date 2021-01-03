@@ -14,7 +14,7 @@ int Monster::getDefense(){
 
 void Monster::decreaseDamage(){
     this->min_damage -= 1;  // TODO
-    this->min_damage -= 1;
+    this->max_damage -= 1;
 }
 
 void Monster::decreaseDefense(){
@@ -32,11 +32,14 @@ void Monster::receiveDamage(int damage){
             this->defense -= damage;
         else{
             damage -= this->defense;
-            this->healthPower = this->healthPower > damage ? this->healthPower - damage : 0;
+            this->defense = 0;
+            this->healthPower = this->healthPower > damage ? (this->healthPower - damage) : 0;
         }
     }else{
-        this->healthPower = this->healthPower > damage ? this->healthPower - damage : 0;
+        this->healthPower = this->healthPower > damage ? (this->healthPower - damage) : 0;
     }
+    if(this->defense == 0 && this->healthPower == 0)
+        cout << this->name << " died." << endl;
 }
 
 void Monster::regenerate(){

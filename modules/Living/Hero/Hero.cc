@@ -113,10 +113,12 @@ void Hero::receiveDamage(int damage){
     }else{
         this->healthPower = this->healthPower > damage ? this->healthPower - damage : 0;
     }
+
+    if(this->armor == NULL && this->healthPower == 0)
+        cout << this->name << " died." << endl;
 }
 
 void Hero::win(int num_of_monsters){
-    cout << "We won!" << endl;
     // TODO: find appropriate constants
     this->money += this->level * 1 + num_of_monsters * 10;
     this->experience += this->level * 1 + num_of_monsters * 10;

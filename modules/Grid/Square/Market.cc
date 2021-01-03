@@ -31,7 +31,7 @@ void Market::displayMenu(void) {
     cout << "Type 'b' to buy something, 's' to sell something or 'n' for nothing: ";
     char ans;
     cin >> ans;
-    cout << endl;
+    
 
     if (ans == 'b') {
         buy();
@@ -50,7 +50,7 @@ void Market::buy() {
     cout << "You selected to buy something. Type 'i' for Item or 's' for Spell: ";
     char ans;
     cin >> ans;
-    cout << endl;
+    
 
     if (ans == 'i') {
         cout << "Type the name of Item you want: " << endl;
@@ -60,14 +60,14 @@ void Market::buy() {
         std::replace(name.begin(), name.end(), '\r', '\0');
         std::replace(name.begin(), name.end(), '\n', '\0');
         name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
-        cout << endl;
+        
 
         for (int i=0 ; i<SIZE_ITEMS ; ++i) {
             if (items[i]->get_name() == name) {
                 cout << "Type the number of hero to add it: ";
                 int num;
                 cin >> num;
-                cout << endl;
+                
 
                 heroes[num]->add_item(items[i]);
                 break;
@@ -88,7 +88,7 @@ void Market::buy() {
                 cout << "Type the number of hero to add it: ";
                 int num;
                 cin >> num;
-                cout << endl;
+                
 
                 heroes[num]->add_spell(spells[i]);
                 break;
@@ -103,12 +103,12 @@ void Market::sell() {
     cout << "You selected to sell something. Type 'i' for Item or 's' for Spell: ";
     char ans;
     cin >> ans;
-    cout << endl;
+    
 
     cout << "Type the number of hero to take it: ";
     int num;
     cin >> num;
-    cout << endl;
+    
 
     if (ans == 'i') {
         cout << "Type the name of Item you want: " << endl;

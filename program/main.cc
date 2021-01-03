@@ -24,13 +24,15 @@ int main(void) {
     Hero* heroes[3];
     ifstream file("../samples/names.txt");
     for (int i=0 ; i<3 ; ++i) {
-
         // Taking random name from names.txt
         string name;
         int temp = rand() % (NAMES_SIZE / 3);
         for (int j=0 ; j<temp ; ++j) getline(file, name);
         // If temp == 0, it take the next name
         if (temp == 0) getline(file, name);
+        std::replace(name.begin(), name.end(), '\r', '\0');
+        std::replace(name.begin(), name.end(), '\n', '\0');
+        name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
 
         if (i == 0) {
             heroes[i] = new Paladin(name);
@@ -58,7 +60,6 @@ int main(void) {
         cout << "If you want you can now print the Map of the game as it is. If you want to type 'y' or 'n' if you don't: ";
         char ans;
         cin >> ans;
-        cout << endl;
 
         // Display Map if wanted
         if (ans == 'y') {
@@ -70,7 +71,6 @@ int main(void) {
 
         cout << "If you want to stop playing type 'q' or anything else to continue: ";
         cin >> ans;
-        cout << endl;
 
         // If the player wants to quit game
         if (ans == 'q') {

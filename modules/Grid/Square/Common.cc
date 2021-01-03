@@ -22,8 +22,6 @@ Common::Common() : Square(NULL) {
     string monster_name;
 
     for (int i=0 ; i<3 ; ++i) {
-        int temp = rand() % 3;
-
         // Get the next random line (monster_name)
         int temp_pos = rand() % (NAMES_SIZE / 3);
         for (int j=0 ; j<temp_pos ; ++j) getline(file, monster_name);
@@ -33,10 +31,10 @@ Common::Common() : Square(NULL) {
         std::replace(monster_name.begin(), monster_name.end(), '\n', '\0');
         monster_name.erase(std::remove(monster_name.begin(), monster_name.end(), '\0'), monster_name.end());
 
-        if (temp == 0) {
+        if (i == 0) {
             monsters[i] = new Dragon(monster_name, 1);
         }
-        else if (temp == 1) {
+        else if (i == 1) {
             monsters[i] = new Exoskeleton(monster_name, 1);
         }
         else {
@@ -59,25 +57,25 @@ void Common::round(void) {
     cout << "Type 'y' if you want to display Stats of heroes and monsters or 'n' if you don't want: ";
     char ans;
     cin >> ans;
-    cout << endl;
+    
     if (ans == 'y') displayStats();
 
     // Show options to player
     cout << "Type 'a' to attack, 'c' to cast Spell or 'u' to use some Item: ";
     cin >> ans;
-    cout << endl;
+    
 
     // Depending on the answers, make the correct option
     if (ans == 'a') {
         cout << "Type the number of hero you want to attack with: ";
         int hero_num;
         cin >> hero_num;
-        cout << endl;
+        
 
         cout << "Type the number of monster you want to attack: ";
         int mon_num;
         cin >> mon_num;
-        cout << endl;
+        
 
         // Attack
         attack(heroes[hero_num], monsters[mon_num]);
@@ -86,17 +84,17 @@ void Common::round(void) {
         cout << "Type the number of hero you want to attack with: ";
         int hero_num;
         cin >> hero_num;
-        cout << endl;
+        
 
         cout << "Type the number of monster you want to attack: ";
         int mon_num;
         cin >> mon_num;
-        cout << endl;
+        
 
         cout << "Type the number of Spell you want to use: ";
         int spell;
         cin >> spell;
-        cout << endl;
+        
 
         // To find the correct spell
         list<Spell*> spells = heroes[hero_num]->getSpells();
@@ -114,7 +112,7 @@ void Common::round(void) {
         cout << "Type the number of hero you want to use it: ";
         int hero_num;
         cin >> hero_num;
-        cout << endl;
+        
         list<Item*> items = heroes[hero_num]->getInventory();
         list<Item*>::iterator it;
 
@@ -125,7 +123,7 @@ void Common::round(void) {
         cout << "Type the number of item you want to use: ";
         int item;
         cin >> item;
-        cout << endl;
+        
 
         // To find the correct item
         int temp = 0;
@@ -147,9 +145,25 @@ void Common::round(void) {
         }
     }
 
-    // Monsters attack
+    // Monsters attack.
+        bool life_monsters = true;
+
+        for (int i=0 ; i<3 ; ++i) {
+            if (monsters[i]->get_life() != 0) {
+                life_monsters = false;
+            }
+        }
+        if (life_monsters)
+            return;
+
+        
         int temp = rand() % 3;
+        while(heroes[temp]->get_life() == 0)
+            temp = rand() % 3;
+
         int temp2 = rand() % 3;
+        while(monsters[temp2]->get_life() == 0)
+            temp2 = rand() % 3;
 
         // Attack based on hero->agility
         if (rand() % 100 < heroes[temp]->getAgility()) {
@@ -219,36 +233,39 @@ void Common::fight() {
 
     // If heroes win
     if (life_monsters) {
+        cout << "You crashed those monsters!" << endl;
         for (int i=0 ; i<3 ; ++i) {
             heroes[i]->win(monsters_dead);
         }
     }
     // If monsters win
     else if (life_heroes) {
+        cout << "You lost :( Better luck next time!" << endl;
         for (int i=0 ; i<3 ; ++i) {
             heroes[i]->lose();
         }
     }
-
 }
 
 
 void Common::displayStats(void) {
-    cout << "Below are shown heroes stats:" << endl;
+    cout << "> Below are shown heroes stats:" << endl;
     for (int i=0 ; i<3 ; ++i) Square::displayStats(heroes[i]);
 
-    cout << "Below are shown monsters stats:" << endl;
+    cout << "> Below are shown monsters stats:" << endl;
     for (int i=0 ; i<3 ; ++i) displayStats(monsters[i]);
 }
 
 void Common::displayStats(Monster* monster){
-    cout << "Monster Life: " << monster->get_life() << endl;
-    cout << "Monster Name: " << monster->getName() << endl;
-    cout << "Damage: [" << monster->getMinDamage() << " - " << monster->getMaxDamage() << "]" << endl;
-    cout << "Defense: " << monster->getDefense() << endl;
+    cout << "\t -------------------------------" << endl;
+    cout << "\t > Monster Name : " << monster->getName() << endl;
+    cout << "\t > Defense      : " << monster->getDefense() << endl;
+    cout << "\t > Monster Life : " << monster->get_life() << endl;
+    cout << "\t > Damage       : [" << monster->getMinDamage() << " - " << monster->getMaxDamage() << "]" << endl;
 }
 
 void Common::attack(Hero* hero, Monster* monster){
+    cout << hero->getName() << " attacks " << monster->getName() << "!" << endl;
     int left_damage = 0;
     int right_damage = 0;
     if(hero->getWeapon('l') != NULL){
@@ -262,6 +279,7 @@ void Common::attack(Hero* hero, Monster* monster){
 }
 
 void Common::attack(Monster* monster, Hero* hero){
+    cout << monster->getName() << " attacks " << hero->getName() << "!" << endl;
     hero->receiveDamage(monster->getMinDamage() + rand() % (monster->getMaxDamage() - monster->getMinDamage()));
 }
 
