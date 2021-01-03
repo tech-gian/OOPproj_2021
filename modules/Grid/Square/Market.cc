@@ -75,9 +75,13 @@ void Market::buy() {
         }
     }
     else {
-        cout << "Type the name of Spell you want: ";
+        cout << "Type the name of Spell you want: " << endl;
         string name;
-        cin >> name;
+        cin.ignore();
+        getline(cin, name);
+        std::replace(name.begin(), name.end(), '\r', '\0');
+        std::replace(name.begin(), name.end(), '\n', '\0');
+        name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
         
         for (int i=0 ; i<SIZE_ITEMS ; ++i) {
             if (spells[i]->get_name() == name) {
@@ -107,10 +111,13 @@ void Market::sell() {
     cout << endl;
 
     if (ans == 'i') {
-        cout << "Type the name of Item you want: ";
+        cout << "Type the name of Item you want: " << endl;
         string name;
-        cin >> name;
-        cout << endl;
+        cin.ignore();
+        getline(cin, name);
+        std::replace(name.begin(), name.end(), '\r', '\0');
+        std::replace(name.begin(), name.end(), '\n', '\0');
+        name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
 
         list<Item*> items = heroes[num]->getInventory();
         list<Item*>::iterator it;
@@ -121,10 +128,13 @@ void Market::sell() {
         }
     }
     else {
-        cout << "Type the name of Spell you want: ";
+        cout << "Type the name of Spell you want: " << endl;
         string name;
-        cin >> name;
-        cout << endl;
+        cin.ignore();
+        getline(cin, name);
+        std::replace(name.begin(), name.end(), '\r', '\0');
+        std::replace(name.begin(), name.end(), '\n', '\0');
+        name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
 
         list<Spell*> spells = heroes[num]->getSpells();
         list<Spell*>::iterator it;

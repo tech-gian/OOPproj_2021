@@ -105,6 +105,10 @@ class Market: public Square {
             // Get the next random line (spell_name)
             int temp_pos = rand() % (SPELLS_SIZE / SIZE_SPELLS);
             for (int j=0 ; j<temp_pos ; ++j) getline(file, spell_name);
+            std::replace(spell_name.begin(), spell_name.end(), '\r', '\0');
+            std::replace(spell_name.begin(), spell_name.end(), '\r', '\0');
+            spell_name.erase(std::remove(spell_name.begin(), spell_name.end(), '\0'), spell_name.end());
+            
 
             if (temp == 0) {
                 spells[i] = new FireSpell(spell_name);

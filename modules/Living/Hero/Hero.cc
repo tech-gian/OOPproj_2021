@@ -114,6 +114,7 @@ void Hero::receiveDamage(int damage){
 }
 
 void Hero::win(int num_of_monsters){
+    cout << "We won!" << endl;
     // TODO: find appropriate constants
     this->money += this->level * 1 + num_of_monsters * 10;
     this->experience += this->level * 1 + num_of_monsters * 10;

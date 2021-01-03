@@ -4,7 +4,7 @@
 
 
 #include "../../../include/Grid/Common.h"
-
+#include <algorithm>
 
 
 // Common Functions
@@ -18,7 +18,7 @@ Common::Common() : Square(NULL) {
     this->possibility = POSSIBILITY_OF_FIGHT;
 
     // Get random name from file
-    ifstream file("../../../samples/names.txt");
+    ifstream file("../samples/names.txt");
     string monster_name;
 
     for (int i=0 ; i<3 ; ++i) {
@@ -29,6 +29,9 @@ Common::Common() : Square(NULL) {
         for (int j=0 ; j<temp_pos ; ++j) getline(file, monster_name);
         // If temp_pos == 0, it takes the next name
         if (temp_pos == 0) getline(file, monster_name);
+        std::replace(monster_name.begin(), monster_name.end(), '\r', '\0');
+        std::replace(monster_name.begin(), monster_name.end(), '\n', '\0');
+        monster_name.erase(std::remove(monster_name.begin(), monster_name.end(), '\0'), monster_name.end());
 
         if (temp == 0) {
             monsters[i] = new Dragon(monster_name, 1);
@@ -145,17 +148,16 @@ void Common::round(void) {
     }
 
     // Monsters attack
-    for (int i=0 ; i<3 ; ++i) {
         int temp = rand() % 3;
+        int temp2 = rand() % 3;
 
         // Attack based on hero->agility
         if (rand() % 100 < heroes[temp]->getAgility()) {
-            attack(monsters[i], heroes[temp]);
+            attack(monsters[temp2], heroes[temp]);
         }
         else {
             cout << "Hero is too fast and avoided monster's attack" << endl;
         }
-    }
 }
 
 
@@ -201,8 +203,10 @@ void Common::fight() {
         round();
 
         for (int i=0 ; i<3 ; ++i) {
-            heroes[i]->regenerate();
-            monsters[i]->regenerate();
+            if(heroes[i]->get_life() < 0.95 * INIT_HEALTH_POWER)
+                heroes[i]->regenerate();
+            if(monsters[i]->get_life() < 0.95 * INIT_HEALTH_POWER)
+                monsters[i]->regenerate();
         }
     }
 
@@ -238,13 +242,22 @@ void Common::displayStats(void) {
 }
 
 void Common::displayStats(Monster* monster){
+    cout << "Monster Life: " << monster->get_life() << endl;
     cout << "Monster Name: " << monster->getName() << endl;
     cout << "Damage: [" << monster->getMinDamage() << " - " << monster->getMaxDamage() << "]" << endl;
     cout << "Defense: " << monster->getDefense() << endl;
 }
 
 void Common::attack(Hero* hero, Monster* monster){
-    int damage = hero->getStrenth() + hero->getWeapon('l') ? hero->getWeapon('l')->get_dmg() : 0 + hero->getWeapon('r') ? hero->getWeapon('r')->get_dmg() : 0;
+    int left_damage = 0;
+    int right_damage = 0;
+    if(hero->getWeapon('l') != NULL){
+        left_damage = hero->getWeapon('l')->get_dmg();
+    }
+    if(hero->getWeapon('r') != NULL){
+        right_damage = hero->getWeapon('r')->get_dmg();
+    }
+    int damage = hero->getStrenth() + left_damage + right_damage;
     monster->receiveDamage(damage);
 }
 
