@@ -59,17 +59,19 @@ void Hero::usePotion(Potion* potion){
     string stat = potion->get_stat();
 
     if(stat == "health")
-        this->healthPower += this->healthPower * percentage;
+        this->healthPower += this->healthPower * (percentage/100.0);
     else if(stat == "magic power")
-        this->magicPower += this->magicPower * percentage;
+        this->magicPower += this->magicPower * (percentage/100.0);
     else if(stat == "strength")
-        this->strength += this->strength * percentage;
+        this->strength += this->strength * (percentage/100.0);
     else if(stat == "dexterity")
-        this->dexterity += this->dexterity * percentage;
+        this->dexterity += this->dexterity * (percentage/100.0);
     else if(stat == "agility")
-        this->agility += this->agility * percentage;
+        this->agility += this->agility * (percentage/100.0);
 
-    delete potion; // TODO: OR potion->set_used(); ??
+    cout << this->name << "'s " << stat << " boosted by " << percentage << "%!" << endl;
+
+    this->inventory.remove(potion); // TODO: OR potion->set_used(); OR delete potion ??
 }
 
 void Hero::setMagicPower(int magic_power){
