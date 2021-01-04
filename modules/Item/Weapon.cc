@@ -14,6 +14,7 @@ using namespace std;
 
 void Weapon::print(void) {
     cout << "Weapon with name: " << name << endl;
+    cout << "It is a " << ((hands == 1) ? "one" : "two") << "-handed weapon and it causes damage up to " << damage << "!" << endl;
     Item::print();
 }
 

@@ -10,7 +10,7 @@ const int INIT_AGILITY = 30;
 const int INIT_MONEY = 1000;
 
 // Monster
-const int MIN_DAMAGE = 25;
+const int MIN_DAMAGE = 30;
 const int MAX_DAMAGE = 35;
 const int INIT_DEFENSE = 100;
 const int POSSIBILITY_OF_AVOIDANCE = 30;
