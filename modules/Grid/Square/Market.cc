@@ -20,8 +20,8 @@ Market::~Market() {
 
 void Market::displayMenu(void) {
     // Show money of each Hero
-    cout << "You are on a Market Square. For each Hero you have:" << endl;
-    for (int i=0 ; i<3 ; ++i) displayStats(heroes[i]);
+    // cout << "You are on a Market Square. For each Hero you have:" << endl;
+    // for (int i=0 ; i<3 ; ++i) displayStats(heroes[i]);
 
     // Show options to buy/sell
     cout << "Below you will see the options to buy or to sell something:" << endl;
@@ -150,15 +150,17 @@ void Market::sell() {
 void Market::displayAvailable() {
     // Display every Item and Spell available on store
     cout << "Depending on your money, you can buy:" << endl;
-    cout << "Available Items:" << endl;
+    cout << "> Available Items:" << endl;
 
     for (int i=0 ; i<SIZE_ITEMS ; ++i) {
+        cout << "-----------------------------" << endl;
         items[i]->print();
     }
 
-    cout << "Available Spells:" << endl;
+    cout << "> Available Spells:" << endl;
 
     for (int i=0 ; i<SIZE_SPELLS ; ++i) {
+        cout << "-----------------------------" << endl;
         spells[i]->print();
     }
 
@@ -167,31 +169,5 @@ void Market::displayAvailable() {
 
     for (int i=0 ; i<3 ; ++i) {
         displayStats(heroes[i]);
-
-        list<Item*> items = heroes[i]->getInventory();
-        if (items.size() == 0) cout << "This hero doesn't have Items" << endl;
-        else {
-            cout << "Available Items:" << endl;
-
-            list<Item*>::iterator it;
-            for (it=items.begin() ; it!=items.end() ; ++it) {
-                (*it)->print();
-            }
-        }
-    }
-
-    for (int i=0 ; i<3 ; ++i) {
-        displayStats(heroes[i]);
-
-        list<Spell*> spells = heroes[i]->getSpells();
-        if (spells.size() == 0) cout << "This hero doesn't have Spells" << endl;
-        else {
-            cout << "Available Spells:" << endl;
-        
-            list<Spell*>::iterator it;
-            for (it=spells.begin() ; it!=spells.end() ; ++it) {
-                (*it)->print();
-            }
-        }
     }
 }
