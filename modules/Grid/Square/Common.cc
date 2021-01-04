@@ -31,6 +31,7 @@ Common::Common() : Square(NULL) {
         std::replace(monster_name.begin(), monster_name.end(), '\n', '\0');
         monster_name.erase(std::remove(monster_name.begin(), monster_name.end(), '\0'), monster_name.end());
 
+        // TODO: adjust monster's level
         if (i == 0) {
             monsters[i] = new Dragon(monster_name, 1);
         }
@@ -70,14 +71,16 @@ void Common::round(void) {
 
     // Get the hero, that player wants to use
     cout << "Type the number of hero you want to make the action with: ";
-    int hero_num = 3;
-    while (hero_num > 2) {
+    int hero_num;
+    while (true) {
         cin >> hero_num;
         if (hero_num > 2 || hero_num < 0)
             cout << "The number of the hero should be 0, 1 or 2: ";
         else {
             if (heroes[hero_num]->get_life() == 0)
                 cout << "This hero is dead. Pick another one: ";
+            else
+                break;
         }
     }
 
@@ -261,6 +264,39 @@ void Common::fight() {
             heroes[i]->lose();
         }
     }
+
+    // Delete previous monsters and create new
+    for (int i=0 ; i<3 ; ++i) {
+        delete monsters[i];
+    }
+
+    // Get random name from file
+    ifstream file("../samples/names.txt");
+    string monster_name;
+
+    for (int i=0 ; i<3 ; ++i) {
+        // Get the next random line (monster_name)
+        int temp_pos = rand() % (NAMES_SIZE / 3);
+        for (int j=0 ; j<temp_pos ; ++j) getline(file, monster_name);
+        // If temp_pos == 0, it takes the next name
+        if (temp_pos == 0) getline(file, monster_name);
+        std::replace(monster_name.begin(), monster_name.end(), '\r', '\0');
+        std::replace(monster_name.begin(), monster_name.end(), '\n', '\0');
+        monster_name.erase(std::remove(monster_name.begin(), monster_name.end(), '\0'), monster_name.end());
+
+        // TODO: adjust monster's level
+        if (i == 0) {
+            monsters[i] = new Dragon(monster_name, 1);
+        }
+        else if (i == 1) {
+            monsters[i] = new Exoskeleton(monster_name, 1);
+        }
+        else {
+            monsters[i] = new Spirit(monster_name, 1);
+        }
+    }
+
+    file.close();
 }
 
 
