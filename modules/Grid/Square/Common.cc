@@ -68,17 +68,22 @@ void Common::round(void) {
         cin >> ans;
     }
 
+    // Get the hero, that player wants to use
+    cout << "Type the number of hero you want to make the action with: ";
+    int hero_num = 3;
+    while (hero_num > 2) {
+        cin >> hero_num;
+        if (hero_num > 2 || hero_num < 0)
+            cout << "The number of the hero should be 0, 1 or 2: ";
+        else {
+            if (heroes[hero_num]->get_life() == 0)
+                cout << "This hero is dead. Pick another one: ";
+        }
+    }
+
     // Depending on the answers, make the correct option
     if (ans == 'a') {
-        cout << "Type the number of hero you want to attack with: ";
-        int hero_num = 3;
-        while(hero_num > 2){
-            cin >> hero_num;
-            if(hero_num > 2)
-                cout << "The number of the hero should be 0, 1 or 2: ";
-        }
-        
-
+        // Get the number of monster to attack
         cout << "Type the number of monster you want to attack: ";
         int mon_num = 3;
         while(mon_num > 2 || monsters[mon_num]->get_life() == 0){
@@ -93,24 +98,27 @@ void Common::round(void) {
         attack(heroes[hero_num], monsters[mon_num]);
     }
     else if (ans == 'c') {
-        cout << "Type the number of hero you want to attack with: ";
-        int hero_num;
-        cin >> hero_num;
-        
+        // Print the Spells of hero
+        list<Spell*> spells = heroes[hero_num]->getSpells();
+        list<Spell*>::iterator it;
+
+        int i = 0;
+        for (it=spells.begin() ; it!=spells.end() ; ++it, ++i) {
+            cout << i << ") ";
+            (*it)->print();
+        }
+
+        int spell = i + 1;
+        while (spell >= i) {
+            cout << "Type the number of Spell you want to use [0-" << i - 1 << "]: ";
+            cin >> spell;
+        }
 
         cout << "Type the number of monster you want to attack: ";
         int mon_num;
         cin >> mon_num;
-        
-
-        cout << "Type the number of Spell you want to use: ";
-        int spell;
-        cin >> spell;
-        
 
         // To find the correct spell
-        list<Spell*> spells = heroes[hero_num]->getSpells();
-        list<Spell*>::iterator it;
         int temp = 0;
         for (it=spells.begin() ; it!=spells.end() ; ++it) {
             if (temp == spell) break;
@@ -121,10 +129,7 @@ void Common::round(void) {
         castSpell(heroes[hero_num], monsters[mon_num], (*it));
     }
     else if (ans == 'u') {
-        cout << "Type the number of hero you want to use it: ";
-        int hero_num;
-        cin >> hero_num;
-        
+        // Print the Items of hero
         list<Item*> items = heroes[hero_num]->getInventory();
         list<Item*>::iterator it;
 
@@ -136,7 +141,7 @@ void Common::round(void) {
 
         int item = i + 1;
         while(item >= i){
-            cout << "Type the number of item you want to use [0-" << i - 1 << "]: ";
+            cout << "Type the number of Item you want to use [0-" << i - 1 << "]: ";
             cin >> item;
         }
         
