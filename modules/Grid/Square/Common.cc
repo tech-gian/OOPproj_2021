@@ -54,6 +54,7 @@ Common::~Common() {
 
 
 void Common::round(void) {
+    bool heroes_attacked = false;
     // Display Stats or not
     cout << "Type 'y' if you want to display Stats of heroes and monsters or 'n' if you don't want: ";
     char ans;
@@ -99,77 +100,89 @@ void Common::round(void) {
 
         // Attack
         attack(heroes[hero_num], monsters[mon_num]);
+        heroes_attacked = true;
     }
     else if (ans == 'c') {
         // Print the Spells of hero
         list<Spell*> spells = heroes[hero_num]->getSpells();
-        list<Spell*>::iterator it;
+        if (spells.size() > 0) {
+            list<Spell*>::iterator it;
 
-        int i = 0;
-        for (it=spells.begin() ; it!=spells.end() ; ++it, ++i) {
-            cout << i << ") ";
-            (*it)->print();
+            int i = 0;
+            for (it=spells.begin() ; it!=spells.end() ; ++it, ++i) {
+                cout << i << ") ";
+                (*it)->print();
+            }
+
+            int spell = i + 1;
+            while (spell >= i) {
+                cout << "Type the number of Spell you want to use [0-" << i - 1 << "]: ";
+                cin >> spell;
+            }
+
+            cout << "Type the number of monster you want to attack: ";
+            int mon_num;
+            cin >> mon_num;
+
+            // To find the correct spell
+            int temp = 0;
+            for (it=spells.begin() ; it!=spells.end() ; ++it) {
+                if (temp == spell) break;
+                ++temp;
+            }
+
+            // Cast Spell
+            castSpell(heroes[hero_num], monsters[mon_num], (*it));
+            heroes_attacked = true;
+        }else{
+            cout << heroes[hero_num]->getName() << " has no Spells. You can buy Spells from the market." << endl;
         }
-
-        int spell = i + 1;
-        while (spell >= i) {
-            cout << "Type the number of Spell you want to use [0-" << i - 1 << "]: ";
-            cin >> spell;
-        }
-
-        cout << "Type the number of monster you want to attack: ";
-        int mon_num;
-        cin >> mon_num;
-
-        // To find the correct spell
-        int temp = 0;
-        for (it=spells.begin() ; it!=spells.end() ; ++it) {
-            if (temp == spell) break;
-            ++temp;
-        }
-
-        // Cast Spell
-        castSpell(heroes[hero_num], monsters[mon_num], (*it));
     }
     else if (ans == 'u') {
         // Print the Items of hero
         list<Item*> items = heroes[hero_num]->getInventory();
-        list<Item*>::iterator it;
+        if (items.size() > 0) {
+            list<Item*>::iterator it;
 
-        int i = 0;
-        for (it=items.begin() ; it!=items.end() ; ++it, ++i) {
-            cout << i << ") ";
-            (*it)->print();
-        }
+            int i = 0;
+            for (it=items.begin() ; it!=items.end() ; ++it, ++i) {
+                cout << i << ") ";
+                (*it)->print();
+            }
 
-        int item = i + 1;
-        while(item >= i){
-            cout << "Type the number of Item you want to use [0-" << i - 1 << "]: ";
-            cin >> item;
-        }
-        
+            int item = i + 1;
+            while(item >= i){
+                cout << "Type the number of Item you want to use [0-" << i - 1 << "]: ";
+                cin >> item;
+            }
+            
 
-        // To find the correct item
-        int temp = 0;
-        for (it=items.begin() ; it!=items.end() ; ++it) {
-            if (temp == item) break;
-            ++temp;
-        }
+            // To find the correct item
+            int temp = 0;
+            for (it=items.begin() ; it!=items.end() ; ++it) {
+                if (temp == item) break;
+                ++temp;
+            }
 
-        // We "use" the correct Item from Inventory
-        if ((*it)->get_type() == 'a') {
-            equip(heroes[hero_num], (Armor*) (*it));
-        }
-        else if ((*it)->get_type() == 'w') {
-            equip(heroes[hero_num], (Weapon*) (*it));
+            // We "use" the correct Item from Inventory
+            if ((*it)->get_type() == 'a') {
+                equip(heroes[hero_num], (Armor*) (*it));
+            }
+            else if ((*it)->get_type() == 'w') {
+                equip(heroes[hero_num], (Weapon*) (*it));
 
-        }
-        else if ((*it)->get_type() == 'p') {
-            use(heroes[hero_num], (Potion*) (*it));
+            }
+            else if ((*it)->get_type() == 'p') {
+                use(heroes[hero_num], (Potion*) (*it));
+            }
+            heroes_attacked = true;
+        } else {
+            cout << heroes[hero_num]->getName() << " has no Items. You can buy Items from the market." << endl;
         }
     }
 
-    // Monsters attack.
+    if(heroes_attacked){
+        // Monsters attack.
         bool life_monsters = true;
 
         for (int i=0 ; i<3 ; ++i) {
@@ -191,6 +204,7 @@ void Common::round(void) {
 
 
         attack(monsters[temp2], heroes[temp]);
+    }
 }
 
 
