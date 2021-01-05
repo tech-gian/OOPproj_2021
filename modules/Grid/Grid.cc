@@ -3,7 +3,6 @@
 /////////////////////////
 
 
-
 #include <iostream>
 using namespace std;
 
@@ -12,6 +11,7 @@ using namespace std;
 // Grid Functions
 
 Grid::~Grid() {
+    // Delete Squares
     for (int i=0 ; i<x ; ++i) {
         for (int j=0 ; j<y ; ++j) {
             delete squares[i][j];
@@ -36,10 +36,12 @@ void Grid::move(void) {
     do {
         flag = false;
 
+        // Get the next position, that player wants to go
         cout << "Type 'u' for up, 'd' for down, 'r' for right and 'l' for left: ";
         char p;
         cin >> p;
 
+        // Necessary checks
         if (p == 'u' || p == 'd' || p == 'r' || p == 'l') {
 
             // Temp i, j
@@ -77,10 +79,12 @@ void Grid::move(void) {
     posi = i;
     posj = j;
 
+    // If Square is a Market
     if (squares[posi][posj]->get_sq() == 'm') {
         squares[posi][posj]->move_heroes(squares[init_i][init_j]);
         ((Market*)(squares[posi][posj]))->displayMenu();
     }
+    // If Square is a Common
     else if (squares[posi][posj]->get_sq() == 'c') {
         ((Common*)(squares[posi][posj]))->move_heroes(squares[init_i][init_j]);
         ((Common*)(squares[posi][posj]))->poss_fight();
@@ -91,6 +95,7 @@ void Grid::move(void) {
 
 
 void Grid::displayMap() {
+    // Display Map to player, when asked
     for (int i=0 ; i<2*x-1 ; ++i) {
         for (int j=0 ; j<2*y-1 ; ++j) {
 
@@ -117,6 +122,7 @@ void Grid::displayMap() {
 
 
 bool Grid::quitGame() {
+    // Get answer, if player wants to quit game
     cout << "If you want to stop playing type 'q' or anything else to continue: ";
     char ans;
     cin >> ans;

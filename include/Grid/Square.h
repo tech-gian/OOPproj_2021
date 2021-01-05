@@ -10,9 +10,10 @@
 
 // Square
 class Square {
+    // No private members
 
     protected:
-    Hero* heroes[3];
+    Hero* heroes[3];    // Heroes in this Square, else NULL
 
     public:
     // Constructor

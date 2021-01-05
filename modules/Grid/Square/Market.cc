@@ -8,6 +8,7 @@
 // Market Functions
 
 Market::~Market() {
+    // Delete Items and Spells created
     for (int i=0 ; i<SIZE_ITEMS ; ++i) {
         delete items[i];
     }
@@ -20,8 +21,6 @@ Market::~Market() {
 
 void Market::displayMenu(void) {
     // Show money of each Hero
-    // cout << "You are on a Market Square. For each Hero you have:" << endl;
-    // for (int i=0 ; i<3 ; ++i) displayStats(heroes[i]);
 
     // Show options to buy/sell
     cout << "Below you will see the options to buy or to sell something:" << endl;
@@ -32,7 +31,7 @@ void Market::displayMenu(void) {
     char ans;
     cin >> ans;
     
-
+    // Choosing depends on answer
     if (ans == 'b') {
         buy();
     }
@@ -51,8 +50,9 @@ void Market::buy() {
     char ans;
     cin >> ans;
     
-
+    // If player wants to buy Item
     if (ans == 'i') {
+        // Get the name of Item
         cout << "Type the name of Item you want: " << endl;
         string name;
         cin.ignore();
@@ -62,19 +62,21 @@ void Market::buy() {
         name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
         
 
+        // Find it and add it to Inventory
         for (int i=0 ; i<SIZE_ITEMS ; ++i) {
             if (items[i]->get_name() == name) {
                 cout << "Type the number of hero to add it: ";
                 int num;
                 cin >> num;
-                
 
                 heroes[num]->add_item(items[i]);
                 break;
             }
         }
     }
+    // If player wants to buy Spell
     else {
+        // Get the name of Spell
         cout << "Type the name of Spell you want: " << endl;
         string name;
         cin.ignore();
@@ -83,12 +85,13 @@ void Market::buy() {
         std::replace(name.begin(), name.end(), '\n', '\0');
         name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
         
+
+        // Find it and add it to Hero's Spells
         for (int i=0 ; i<SIZE_ITEMS ; ++i) {
             if (spells[i]->get_name() == name) {
                 cout << "Type the number of hero to add it: ";
                 int num;
                 cin >> num;
-                
 
                 heroes[num]->add_spell(spells[i]);
                 break;
@@ -104,13 +107,14 @@ void Market::sell() {
     char ans;
     cin >> ans;
     
-
+    // Get the Hero to sell from
     cout << "Type the number of hero to take it: ";
     int num;
     cin >> num;
     
-
+    // If player wants to sell Item
     if (ans == 'i') {
+        // Get the name of Item
         cout << "Type the name of Item you want: " << endl;
         string name;
         cin.ignore();
@@ -119,6 +123,7 @@ void Market::sell() {
         std::replace(name.begin(), name.end(), '\n', '\0');
         name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
 
+        // Find it in the Inventory
         list<Item*> items = heroes[num]->getInventory();
         list<Item*>::iterator it;
         for (it=items.begin() ; it!=items.end() ; ++it) {
@@ -127,7 +132,9 @@ void Market::sell() {
             }
         }
     }
+    // If player want to sell Spell
     else {
+        // Get the name of Spell
         cout << "Type the name of Spell you want: " << endl;
         string name;
         cin.ignore();
@@ -136,6 +143,7 @@ void Market::sell() {
         std::replace(name.begin(), name.end(), '\n', '\0');
         name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
 
+        // Find in Hero's Spell
         list<Spell*> spells = heroes[num]->getSpells();
         list<Spell*>::iterator it;
         for (it=spells.begin() ; it!=spells.end() ; ++it) {
@@ -152,6 +160,7 @@ void Market::displayAvailable() {
     cout << "Depending on your money, you can buy:" << endl;
     cout << "> Available Items:" << endl;
 
+    // Display Items
     for (int i=0 ; i<SIZE_ITEMS ; ++i) {
         cout << "-----------------------------" << endl;
         items[i]->print();
@@ -159,6 +168,7 @@ void Market::displayAvailable() {
 
     cout << "> Available Spells:" << endl;
 
+    // Display Spell
     for (int i=0 ; i<SIZE_SPELLS ; ++i) {
         cout << "-----------------------------" << endl;
         spells[i]->print();

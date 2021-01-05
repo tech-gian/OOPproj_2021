@@ -11,6 +11,7 @@
 
 
 void Square::move_heroes(Square* square) {
+    // Move heroes from another Square
     for (int i=0 ; i<3 ; ++i) {
         this->heroes[i] = square->heroes[i];
         square->heroes[i] = NULL;
@@ -18,6 +19,7 @@ void Square::move_heroes(Square* square) {
 }
 
 void Square::displayStats(Hero* hero){
+    // Display all Hero's Stats
     cout << "\t -----------------------------" << endl;
     cout << "\t > Hero Name   : " << hero->getName() << endl;
     cout << "\t > Hero Life   : " << hero->get_life() << endl;
@@ -27,6 +29,7 @@ void Square::displayStats(Hero* hero){
     cout << "\t > Agility     : " << hero->getAgility() << endl;
     cout << "\t > Money       : " << hero->getMoney() << endl;
 
+    // Display his Weapon(s)
     Weapon* weapon;
     if ((weapon = hero->getWeapon('l')) != NULL) {
         if (weapon->get_hands() == 1)
@@ -40,10 +43,12 @@ void Square::displayStats(Hero* hero){
         weapon->print();
     }
 
+    // Display his Armor
     Armor* armor;
     if ((armor = hero->getArmor()) != NULL)
         armor->print();
 
+    // Display his Items
     list<Item*> items = hero->getInventory();
     if (items.size() > 0) {
         cout << "Available Items:" << endl;
@@ -54,6 +59,7 @@ void Square::displayStats(Hero* hero){
         }
     }
 
+    // Display his Spells
     list<Spell*> spells = hero->getSpells();
     if (spells.size() > 0) {
         cout << "Available Spells:" << endl;

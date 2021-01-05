@@ -11,7 +11,7 @@
 
 // nonAccesible
 class nonAccesible: public Square {
-
+    // No private members
 
     public:
     // Constructor
@@ -23,5 +23,4 @@ class nonAccesible: public Square {
     // Get Functions
     // Get what square
     char get_sq(void) { return 'n'; }
-
 };

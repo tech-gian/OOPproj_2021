@@ -20,8 +20,8 @@ using namespace std;
 
 // Market
 class Market: public Square {
-    Item* items[SIZE_ITEMS];
-    Spell* spells[SIZE_SPELLS];
+    Item* items[SIZE_ITEMS];        // The Items, this Market offers
+    Spell* spells[SIZE_SPELLS];     // The Spells, this Markey offers
 
     // Private Functions
     // Buy Items or Spells
@@ -33,9 +33,7 @@ class Market: public Square {
     // Display available Items and Spells, to buy or to sell
     void displayAvailable(void);
 
-
     public:
-
     // Constructor
     Market(): Square(NULL) {
         // Opening all files
@@ -51,6 +49,7 @@ class Market: public Square {
                 string weapon_name;
                 int temp = rand() % (WEAPONS_SIZE / SIZE_ITEMS);
                 for (int j=0 ; j<temp ; ++j) getline(file_weapons, weapon_name);
+
                 // If temp == 0, it should take the next line
                 if (temp == 0) getline(file_weapons, weapon_name);
                 std::replace(weapon_name.begin(), weapon_name.end(), '\r', '\0');
@@ -65,6 +64,7 @@ class Market: public Square {
                 string armor_name;
                 int temp = rand() % (ARMORS_SIZE / SIZE_ITEMS);
                 for (int j=0 ; j<temp ; ++j) getline(file_armors, armor_name);
+
                 // If temp == 0, it should take the next line
                 if (temp == 0) getline(file_armors, armor_name);
                 std::replace(armor_name.begin(), armor_name.end(), '\r', '\0');
@@ -78,6 +78,7 @@ class Market: public Square {
                 string potion_name;
                 int temp = rand() % (POTIONS_SIZE / SIZE_ITEMS);
                 for (int j=0 ; j<temp ; ++j) getline(file_potions, potion_name);
+
                 // If temp == 0, it should take the next line
                 if (temp == 0) getline(file_potions, potion_name);
                 std::replace(potion_name.begin(), potion_name.end(), '\r', '\0');

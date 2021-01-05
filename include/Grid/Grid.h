@@ -14,12 +14,12 @@
 
 // Grid
 class Grid {
-    int x;      // Dimensions of
-    int y;      // the Grid
-    Square*** squares;
+    int x;              // Dimensions of
+    int y;              // the Grid
+    Square*** squares;  // A 2-dimensional array of Grid (the Squares)
 
-    int posi;
-    int posj;
+    int posi;           // Current position
+    int posj;           // of the Heroes' team
 
     public:
     // Constructor
@@ -36,12 +36,17 @@ class Grid {
                 if (i == 0 && j == 0) {
                     squares[i][j] = new nonAccesible(heroes);
                 }
+
+                // Create 2 Squares in purpose
+                // so player can make at least one move
                 else if (i == 0 && j == 1) {
                     squares[i][j] = new Common();
                 }
                 else if (i == 1 && j == 0) {
                     squares[i][j] = new Market();
                 }
+
+                // The rest create random
                 else if (temp == 0) {
                     squares[i][j] = new nonAccesible(NULL);
                 }
@@ -64,9 +69,6 @@ class Grid {
     // Display Map
     void displayMap();
 
-
     // Quit the game
     bool quitGame();
-
 };
-

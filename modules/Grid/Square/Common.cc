@@ -25,6 +25,7 @@ Common::Common() : Square(NULL) {
         // Get the next random line (monster_name)
         int temp_pos = rand() % (NAMES_SIZE / 3);
         for (int j=0 ; j<temp_pos ; ++j) getline(file, monster_name);
+
         // If temp_pos == 0, it takes the next name
         if (temp_pos == 0) getline(file, monster_name);
         std::replace(monster_name.begin(), monster_name.end(), '\r', '\0');
@@ -47,6 +48,7 @@ Common::Common() : Square(NULL) {
 }
 
 Common::~Common() {
+    // Delete Monsters
     for (int i=0 ; i<3 ; ++i) {
         delete monsters[i];
     }
@@ -114,12 +116,14 @@ void Common::round(void) {
                 (*it)->print();
             }
 
+            // Get the number of Spell to use
             int spell = i + 1;
             while (spell >= i) {
                 cout << "Type the number of Spell you want to use [0-" << i - 1 << "]: ";
                 cin >> spell;
             }
 
+            // Get the number of monster to attack
             cout << "Type the number of monster you want to attack: ";
             int mon_num;
             cin >> mon_num;
@@ -134,7 +138,8 @@ void Common::round(void) {
             // Cast Spell
             castSpell(heroes[hero_num], monsters[mon_num], (*it));
             heroes_attacked = true;
-        }else{
+        }
+        else {
             cout << heroes[hero_num]->getName() << " has no Spells. You can buy Spells from the market." << endl;
         }
     }
@@ -150,6 +155,7 @@ void Common::round(void) {
                 (*it)->print();
             }
 
+            // Get the number of Item to use
             int item = i + 1;
             while(item >= i){
                 cout << "Type the number of Item you want to use [0-" << i - 1 << "]: ";
@@ -176,15 +182,17 @@ void Common::round(void) {
                 use(heroes[hero_num], (Potion*) (*it));
             }
             heroes_attacked = true;
-        } else {
+        }
+        else {
             cout << heroes[hero_num]->getName() << " has no Items. You can buy Items from the market." << endl;
         }
     }
 
-    if(heroes_attacked){
+    if (heroes_attacked) {
         // Monsters attack.
         bool life_monsters = true;
 
+        // If monsters are dead
         for (int i=0 ; i<3 ; ++i) {
             if (monsters[i]->get_life() != 0) {
                 life_monsters = false;
@@ -193,16 +201,16 @@ void Common::round(void) {
         if (life_monsters)
             return;
 
-        
+        // Check if random hero and monster are not dead
         int temp = rand() % 3;
-        while(heroes[temp]->get_life() == 0)
+        while (heroes[temp]->get_life() == 0)
             temp = rand() % 3;
 
         int temp2 = rand() % 3;
-        while(monsters[temp2]->get_life() == 0)
+        while (monsters[temp2]->get_life() == 0)
             temp2 = rand() % 3;
 
-
+        // Make the attack
         attack(monsters[temp2], heroes[temp]);
     }
 }
@@ -211,8 +219,9 @@ void Common::round(void) {
 void Common::poss_fight(void) {
     // Possibility for a fight
 
-    // int temp = rand() % 100;
-    if (true) {                                            // TODO: CHANGE TO temp < possibility on production :P
+    // If temp < possibility, the fight is on
+    int temp = rand() % 100;
+    if (temp < possibility) {
         cout << "You got into a fight!" << endl;
         fight();
     }
@@ -232,6 +241,8 @@ void Common::fight() {
         life_heroes = true;
         life_monsters = true;
 
+        // Check if some of the 2 group (monsters or heroes)
+        // are dead
         for (int i=0 ; i<3 ; ++i) {
             if (heroes[i]->get_life() != 0) {
                 life_heroes = false;
@@ -247,10 +258,11 @@ void Common::fight() {
             break;
         }
 
+        // Take one round
         round();
 
         for (int i=0 ; i<3 ; ++i) {
-            // Check is placed in functions
+            // Checking is placed in functions
             // (If life == 0, then there is no problem)
             heroes[i]->regenerate();
             monsters[i]->regenerate();
@@ -292,6 +304,7 @@ void Common::fight() {
         // Get the next random line (monster_name)
         int temp_pos = rand() % (NAMES_SIZE / 3);
         for (int j=0 ; j<temp_pos ; ++j) getline(file, monster_name);
+
         // If temp_pos == 0, it takes the next name
         if (temp_pos == 0) getline(file, monster_name);
         std::replace(monster_name.begin(), monster_name.end(), '\r', '\0');
@@ -315,9 +328,11 @@ void Common::fight() {
 
 
 void Common::displayStats(void) {
+    // Display Stats of each Hero
     cout << "> Below are shown heroes stats:" << endl;
     for (int i=0 ; i<3 ; ++i) Square::displayStats(heroes[i]);
 
+    // Display Stats of each Monster
     cout << "> Below are shown monsters stats:" << endl;
     for (int i=0 ; i<3 ; ++i) displayStats(monsters[i]);
 }

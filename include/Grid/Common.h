@@ -3,7 +3,6 @@
 ////////////////////////
 
 
-
 #pragma once
 
 #include "Square.h"
@@ -23,12 +22,12 @@ class Common: public Square {
     Monster* monsters[3];   // Monsters to fight
     int possibility;        // Possibility for fight
 
+    // Private Functions
     // Function for each round
     void round(void);
 
     // Fight function
     void fight();
-
 
     public:
     // Constructor
@@ -73,6 +72,4 @@ class Common: public Square {
 
     // Display Menu to get the user to buy/sell
     void displayMenu(void);
-
-
 };
