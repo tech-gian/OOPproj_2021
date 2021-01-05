@@ -22,6 +22,8 @@ class Common: public Square {
     Monster* monsters[3];   // Monsters to fight
     int possibility;        // Possibility for fight
 
+    bool got_fight;         // True if got into a fight
+
     // Private Functions
     // Function for each round
     void round(void);

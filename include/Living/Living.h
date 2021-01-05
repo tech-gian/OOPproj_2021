@@ -20,6 +20,9 @@ class Living {
         // Get healthPower
         int get_life(void) { return this->healthPower; }
 
+        // Get level
+        int get_level(void) { return this->level; }
+
         // Αποδοχή ζημιάς από επίθεση αντιπάλου
         virtual void receiveDamage(int damage) = 0;
 

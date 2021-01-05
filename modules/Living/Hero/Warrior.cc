@@ -1,8 +1,8 @@
 #include "../../../include/Living/Hero/Warrior.h"
 
 void Warrior::levelUp(){
-    this->strength += 100;
-    this->agility += 100;
-    this->dexterity += 50;
+    this->strength *= 1.2;
+    this->agility *= 1.3;
+    this->dexterity *= 1.3;
     this->level++;
 }

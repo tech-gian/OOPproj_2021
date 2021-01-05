@@ -121,10 +121,9 @@ void Hero::receiveDamage(int damage){
 }
 
 void Hero::win(int num_of_monsters){
-    // TODO: find appropriate constants
-    this->money += this->level * 1 + num_of_monsters * 10;
-    this->experience += this->level * 1 + num_of_monsters * 10;
-    if(this->experience >= this->level * 1)
+    this->money += this->level + num_of_monsters * 10;
+    this->experience += this->level + num_of_monsters * 10;
+    if(this->experience >= this->level * 15)
         this->levelUp();
 }
 

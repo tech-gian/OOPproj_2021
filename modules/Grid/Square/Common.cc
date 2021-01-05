@@ -9,48 +9,19 @@
 
 // Common Functions
 
-Common::Common() : Square(NULL) {
+Common::Common() : Square(NULL), possibility(POSSIBILITY_OF_FIGHT), got_fight(false) {
     // Initialize heroes
     for (int i=0 ; i<3 ; ++i) {
         heroes[i] = NULL;
     }
-
-    this->possibility = POSSIBILITY_OF_FIGHT;
-
-    // Get random name from file
-    ifstream file("../samples/names.txt");
-    string monster_name;
-
-    for (int i=0 ; i<3 ; ++i) {
-        // Get the next random line (monster_name)
-        int temp_pos = rand() % (NAMES_SIZE / 3);
-        for (int j=0 ; j<temp_pos ; ++j) getline(file, monster_name);
-
-        // If temp_pos == 0, it takes the next name
-        if (temp_pos == 0) getline(file, monster_name);
-        std::replace(monster_name.begin(), monster_name.end(), '\r', '\0');
-        std::replace(monster_name.begin(), monster_name.end(), '\n', '\0');
-        monster_name.erase(std::remove(monster_name.begin(), monster_name.end(), '\0'), monster_name.end());
-
-        // TODO: adjust monster's level
-        if (i == 0) {
-            monsters[i] = new Dragon(monster_name, 1);
-        }
-        else if (i == 1) {
-            monsters[i] = new Exoskeleton(monster_name, 1);
-        }
-        else {
-            monsters[i] = new Spirit(monster_name, 1);
-        }
-    }
-
-    file.close();
 }
 
 Common::~Common() {
     // Delete Monsters
-    for (int i=0 ; i<3 ; ++i) {
-        delete monsters[i];
+    if (got_fight) {
+        for (int i=0 ; i<3 ; ++i) {
+            delete monsters[i];
+        }
     }
 }
 
@@ -223,7 +194,39 @@ void Common::poss_fight(void) {
     int temp = rand() % 100;
     if (temp < possibility) {
         cout << "You got into a fight!" << endl;
+
+        // Get random name from file
+        ifstream file("../samples/names.txt");
+        string monster_name;
+
+        for (int i=0 ; i<3 ; ++i) {
+            // Get the next random line (monster_name)
+            int temp_pos = rand() % (NAMES_SIZE / 3);
+            for (int j=0 ; j<temp_pos ; ++j) getline(file, monster_name);
+
+            // If temp_pos == 0, it takes the next name
+            if (temp_pos == 0) getline(file, monster_name);
+            std::replace(monster_name.begin(), monster_name.end(), '\r', '\0');
+            std::replace(monster_name.begin(), monster_name.end(), '\n', '\0');
+            monster_name.erase(std::remove(monster_name.begin(), monster_name.end(), '\0'), monster_name.end());
+
+            if (i == 0) {
+                monsters[i] = new Dragon(monster_name, heroes[i]->get_level());
+            }
+            else if (i == 1) {
+                monsters[i] = new Exoskeleton(monster_name, heroes[i]->get_level());
+            }
+            else {
+                monsters[i] = new Spirit(monster_name, heroes[i]->get_level());
+            }
+        }
+
+        file.close();
+
+        // Fight
         fight();
+
+        got_fight = true;
     }
     else {
         cout << "You are in a Common square" << endl;

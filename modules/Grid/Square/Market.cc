@@ -27,19 +27,22 @@ void Market::displayMenu(void) {
     displayAvailable();
 
     // Assume input it correct
-    cout << "Type 'b' to buy something, 's' to sell something or 'n' for nothing: ";
-    char ans;
-    cin >> ans;
-    
-    // Choosing depends on answer
-    if (ans == 'b') {
-        buy();
-    }
-    else if (ans == 's') {
-        sell();
-    }
-    else {
-        cout << "You choose to do nothing" << endl;
+    while (true) {
+        cout << "Type 'b' to buy something, 's' to sell something or 'n' for leaving the market: ";
+        char ans;
+        cin >> ans;
+        
+        // Choosing depends on answer
+        if (ans == 'b') {
+            buy();
+        }
+        else if (ans == 's') {
+            sell();
+        }
+        else {
+            cout << "You are leaving the market" << endl;
+            break;
+        }
     }
 }
 
