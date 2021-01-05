@@ -1,38 +1,5 @@
 #include "../../../include/Living/Hero/Hero.h"
 
-
-int Hero::getMagicPower(){
-    return this->magicPower;
-}
-
-int Hero::getStrenth(){
-    return this->strength;
-}
-
-int Hero::getDexterity(){
-    return this->dexterity;
-}
-
-int Hero::getAgility(){
-    return this->agility;
-}
-
-int Hero::getMoney(){
-    return this->money;
-}
-
-list<Spell*> Hero::getSpells(){
-    return this->spells;
-}
-
-Armor* Hero::getArmor(){
-    return this->armor;
-}
-
-Weapon* Hero::getWeapon(char hand){
-    return hand == 'l' ? this->weapon_left : this->weapon_right;
-}
-
 void Hero::setWeapon(Weapon* weapon){
     if(!this->weapon_left || this->weapon_left->get_hands() == 2 || weapon->get_hands() == 2){
         if(this->weapon_left)
@@ -45,6 +12,12 @@ void Hero::setWeapon(Weapon* weapon){
         this->weapon_right = weapon;
         this->inventory.remove(weapon);
     }
+    cout << "Left ";
+    this->weapon_left->print();
+    if(this->weapon_right != NULL){
+        cout << "Right ";
+        this->weapon_right->print();
+    }
 }
 
 void Hero::setArmor(Armor* armor){
@@ -52,6 +25,7 @@ void Hero::setArmor(Armor* armor){
         this->inventory.push_back(this->armor);
     this->armor = armor;
     this->inventory.remove(armor);
+    cout << this->name << " is equiped with armor: " << armor->get_name() << endl;
 }
 
 void Hero::usePotion(Potion* potion){
@@ -71,15 +45,7 @@ void Hero::usePotion(Potion* potion){
 
     cout << this->name << "'s " << stat << " boosted by " << percentage << "%!" << endl;
 
-    this->inventory.remove(potion); // TODO: OR potion->set_used(); OR delete potion ??
-}
-
-void Hero::setMagicPower(int magic_power){
-    this->magicPower = magic_power;
-}
-
-list<Item*> Hero::getInventory(){
-    return this->inventory;
+    this->inventory.remove(potion);
 }
 
 void Hero::add_item(Item* item){
@@ -133,4 +99,60 @@ void Hero::regenerate(){
     
     if (this->magicPower < 0.95 * INIT_MAGIC_POWER)
         this->magicPower *= 1.05;
+}
+
+void Hero::print(){
+    // Display all Hero's Stats
+    cout << "\t > Hero Life       : " << this->get_life() << endl;
+    cout << "\t > Magic Power     : " << this->getMagicPower() << endl;
+    cout << "\t > Strength        : " << this->getStrenth() << endl;
+    cout << "\t > Dexterity       : " << this->getDexterity() << endl;
+    cout << "\t > Agility         : " << this->getAgility() << endl;
+    cout << "\t > Money           : " << this->getMoney() << endl;
+    cout << "\t > Level           : " << this->get_level() << endl;
+
+    // Display his Weapon(s)
+    Weapon* weapon;
+    if ((weapon = this->getWeapon('l')) != NULL) {
+        if (weapon->get_hands() == 1)
+            cout << "Left weapon: " << endl;
+        weapon->print();
+    }
+
+    if ((weapon = this->getWeapon('r')) != NULL) {
+        if (weapon->get_hands() == 1)
+            cout << "Right weapon: " << endl;
+        weapon->print();
+    }
+
+    // Display his Armor
+    Armor* armor;
+    if ((armor = this->getArmor()) != NULL)
+        armor->print();
+
+    // Display his Items
+    list<Item*> items = this->getInventory();
+    if (items.size() > 0) {
+        cout << "Available Items:" << endl;
+
+        list<Item*>::iterator it;
+        for (it=items.begin() ; it!=items.end() ; ++it) {
+            (*it)->print();
+        }
+    } else {
+        cout << "This hero has no Items." << endl;
+    }
+
+    // Display his Spells
+    list<Spell*> spells = this->getSpells();
+    if (spells.size() > 0) {
+        cout << "Available Spells:" << endl;
+    
+        list<Spell*>::iterator it;
+        for (it=spells.begin() ; it!=spells.end() ; ++it) {
+            (*it)->print();
+        }
+    } else {
+        cout << "This hero has no Spells." << endl;
+    }
 }

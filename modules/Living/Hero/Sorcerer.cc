@@ -6,3 +6,9 @@ void Sorcerer::levelUp(){
     this->dexterity *= 1.3;
     this->level++;
 }
+
+void Sorcerer::print(){
+    cout << "\t -----------------------------" << endl;
+    cout << "\t > Sorcerer Name   : " << this->name << endl;
+    Hero::print();
+}

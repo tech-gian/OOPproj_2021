@@ -12,4 +12,6 @@ class Dragon : public Monster {
         Dragon(string name, int level) : Monster(name, MIN_DAMAGE + 20, MAX_DAMAGE + 20, INIT_DEFENSE, POSSIBILITY_OF_AVOIDANCE, level){}
 
         ~Dragon(){}
+        
+        void print();
 };

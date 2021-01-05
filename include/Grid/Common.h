@@ -59,9 +59,6 @@ class Common: public Square {
     // αν θα κάνει επίθεση με κάποιο ξόρκι
     void castSpell(Hero* hero, Monster* monster, Spell* spell);
 
-    // Σε κάθε γύρο, ο παίκτης μπορεί να εμϕανίσει τα στατιστικά κάθε τέρατος
-    void displayStats(Monster* monster);
-
     // Possibility for fight or not
     void poss_fight(void);
 

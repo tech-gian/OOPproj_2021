@@ -16,7 +16,7 @@ class Hero : public Living {
     protected:
         int magicPower;         // Ποσό μαγικής ενέργειας
         int strength;           // Τιμή δύναμης
-        int dexterity;          // TODO: Τιμή επιδεξιότητας
+        int dexterity;          // Τιμή επιδεξιότητας
         int agility;            // Τιμή ευκινησίας
         int money;              // Ποσό χρημάτων
         int experience;         // Ποσό εμπειρίας
@@ -33,23 +33,31 @@ class Hero : public Living {
         
         virtual ~Hero(){}
 
-        int getMagicPower();
-        int getStrenth();
-        int getDexterity();
-        int getAgility();
-        int getMoney();
+        int getMagicPower(){ return this->magicPower; }
 
-        list<Item*> getInventory();
-        list<Spell*> getSpells();
-        Armor* getArmor();
-        Weapon* getWeapon(char hand);
+        int getStrenth(){ return this->strength; }
+
+        int getDexterity(){ return this->dexterity; }
+
+        int getAgility(){ return this->agility; }
+
+        int getMoney(){ return this->money; }
+
+        list<Spell*> getSpells(){ return this->spells; }
+
+        Armor* getArmor(){ return this->armor; }
+
+        Weapon* getWeapon(char hand){ return hand == 'l' ? this->weapon_left : this->weapon_right; }
+
+        void setMagicPower(int magic_power){ this->magicPower = magic_power; }
+
+        list<Item*> getInventory(){ return this->inventory; }
         
         void setWeapon(Weapon* weapon);
+
         void setArmor(Armor* armor);
+
         void usePotion(Potion* potion);
-
-        void setMagicPower(int magic_power);
-
 
         // Οταν ο ήρωας αποκτήσει αρκετή εμπειρία, ανεβαίνει ένα επίπεδο
         virtual void levelUp() = 0;
@@ -65,7 +73,6 @@ class Hero : public Living {
         // Αποδοχή ζημιάς από επίθεση τέρατος
         void receiveDamage(int damage);
 
-
         /* Αν μετά το πέρας μίας μάχης κάποιος ήρωας έχει απομείνει με ζωτική ενέργεια μηδέν,
             τότε αυτή επαναϕέρεται στο μισό της κανονικής του ζωτικής ενέργειας. */
         void half_life(void) { this->healthPower = INIT_HEALTH_POWER / 2; }
@@ -79,4 +86,6 @@ class Hero : public Living {
 
         // Οι ήρωες αναγεννούν σε κάθε γύρο κάποιο ποσό της ζωτικής και της μαγικής τους ενέργειας
         void regenerate();
+
+        virtual void print();
 };

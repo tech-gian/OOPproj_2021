@@ -15,4 +15,6 @@ class Sorcerer : public Hero {
         
         // όταν ο ήρωας ανεβαίνει επίπεδο, τα στατιστικά αυτά θα επηρεάζονται περισσότερο
         void levelUp();
+
+        void print();
 };

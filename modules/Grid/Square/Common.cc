@@ -107,10 +107,13 @@ void Common::round(void) {
             }
 
             // Cast Spell
-            castSpell(heroes[hero_num], monsters[mon_num], (*it));
-            heroes_attacked = true;
-        }
-        else {
+            if((*it)->getMagicPowerRequired() <= heroes[hero_num]->getMagicPower()){
+                castSpell(heroes[hero_num], monsters[mon_num], (*it));
+                heroes_attacked = true;
+            }else{
+                cout << heroes[hero_num]->getName() << " doesn't have enough magic power to cast " << (*it)->get_name() << endl;
+            }
+        } else {
             cout << heroes[hero_num]->getName() << " has no Spells. You can buy Spells from the market." << endl;
         }
     }
@@ -333,19 +336,11 @@ void Common::fight() {
 void Common::displayStats(void) {
     // Display Stats of each Hero
     cout << "> Below are shown heroes stats:" << endl;
-    for (int i=0 ; i<3 ; ++i) Square::displayStats(heroes[i]);
+    Square::displayStats();
 
     // Display Stats of each Monster
     cout << "> Below are shown monsters stats:" << endl;
-    for (int i=0 ; i<3 ; ++i) displayStats(monsters[i]);
-}
-
-void Common::displayStats(Monster* monster){
-    cout << "\t -------------------------------" << endl;
-    cout << "\t > Monster Name : " << monster->getName() << endl;
-    cout << "\t > Defense      : " << monster->getDefense() << endl;
-    cout << "\t > Monster Life : " << monster->get_life() << endl;
-    cout << "\t > Damage       : [" << monster->getMinDamage() << " - " << monster->getMaxDamage() << "]" << endl;
+    for (int i=0 ; i<3 ; ++i) monsters[i]->print();
 }
 
 void Common::attack(Hero* hero, Monster* monster){
@@ -385,12 +380,13 @@ void Common::equip(Hero* hero, Armor* armor){
     hero->setArmor(armor);
 }
 
-void Common::use(Hero* hero, Potion* spell){
-    hero->usePotion(spell);
+void Common::use(Hero* hero, Potion* potion){
+    hero->usePotion(potion);
 }
 
 void Common::castSpell(Hero* hero, Monster* monster, Spell* spell){
     spell->use(monster, hero->getDexterity());
     hero->setMagicPower(hero->getMagicPower() - spell->getMagicPowerRequired());
     hero->getSpells().remove(spell);
+    cout << hero->getName() << " casted " << spell->get_name() << " on " << monster->getName() << endl;
 }

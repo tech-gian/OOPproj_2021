@@ -17,16 +17,16 @@ int Monster::getPossibilityOfAvoidance(){
 }
 
 void Monster::decreaseDamage(){
-    this->min_damage -= 1;  // TODO
-    this->max_damage -= 1;
+    this->min_damage -= 10;
+    this->max_damage -= 10;
 }
 
 void Monster::decreaseDefense(){
-    this->defense -= 1;     // TODO
+    this->defense -= 10;
 }
 
 void Monster::decreasePossibilityOfAvoidance(){
-    this->possibilityOfAvoidance -= 1; // TODO
+    this->possibilityOfAvoidance -= 10;
 }
 
 
@@ -49,4 +49,10 @@ void Monster::receiveDamage(int damage){
 void Monster::regenerate(){
     if (this->healthPower < 0.95 * INIT_HEALTH_POWER)
         this->healthPower *= 1.05;
+}
+
+void Monster::print(){
+    cout << "\t > Defense           : " << this->defense << endl;
+    cout << "\t > Health power      : " << this->healthPower << endl;
+    cout << "\t > Damage            : [" << this->min_damage << " - " << this->max_damage << "]" << endl;
 }

@@ -20,14 +20,11 @@ Market::~Market() {
 
 
 void Market::displayMenu(void) {
-    // Show money of each Hero
-
-    // Show options to buy/sell
-    cout << "Below you will see the options to buy or to sell something:" << endl;
-    displayAvailable();
-
     // Assume input it correct
     while (true) {
+        // Show options to buy/sell
+        cout << "Below you will see the options to buy or to sell something:" << endl;
+        displayAvailable();
         cout << "Type 'b' to buy something, 's' to sell something or 'n' for leaving the market: ";
         char ans;
         cin >> ans;
@@ -64,7 +61,6 @@ void Market::buy() {
         std::replace(name.begin(), name.end(), '\n', '\0');
         name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
         
-
         // Find it and add it to Inventory
         for (int i=0 ; i<SIZE_ITEMS ; ++i) {
             if (items[i]->get_name() == name) {
@@ -72,7 +68,12 @@ void Market::buy() {
                 int num;
                 cin >> num;
 
-                heroes[num]->add_item(items[i]);
+                if (items[i]->get_price() <= heroes[num]->getMoney()) {
+                    heroes[num]->add_item(items[i]);
+                    cout << heroes[num]->getName() << " bought " << items[i]->get_name() << " for " << items[i]->get_price() << endl;
+                } else {
+                    cout << heroes[num]->getName() << " doesn't have enough money to buy " << items[i]->get_name() << endl;
+                }
                 break;
             }
         }
@@ -87,7 +88,6 @@ void Market::buy() {
         std::replace(name.begin(), name.end(), '\r', '\0');
         std::replace(name.begin(), name.end(), '\n', '\0');
         name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
-        
 
         // Find it and add it to Hero's Spells
         for (int i=0 ; i<SIZE_ITEMS ; ++i) {
@@ -96,7 +96,12 @@ void Market::buy() {
                 int num;
                 cin >> num;
 
-                heroes[num]->add_spell(spells[i]);
+                if (spells[i]->get_price() <= heroes[num]->getMoney()) {
+                    heroes[num]->add_spell(spells[i]);
+                    cout << heroes[num]->getName() << " bought " << items[i]->get_name() << " for " << items[i]->get_price() << endl;
+                } else {
+                    cout << heroes[num]->getName() << " doesn't have enough money to buy " << spells[i]->get_name() << endl;
+                }
                 break;
             }
         }
@@ -132,6 +137,7 @@ void Market::sell() {
         for (it=items.begin() ; it!=items.end() ; ++it) {
             if ((*it)->get_name() == name) {
                 heroes[num]->sell_item(*it);
+                cout << heroes[num]->getName() << " sold " << (*it)->get_name() << " for " << (int) ((*it)->get_price() / 2) << endl;
             }
         }
     }
@@ -152,6 +158,7 @@ void Market::sell() {
         for (it=spells.begin() ; it!=spells.end() ; ++it) {
             if ((*it)->get_name() == name) {
                 heroes[num]->sell_spell(*it);
+                cout << heroes[num]->getName() << " sold " << (*it)->get_name() << " for " << (int) ((*it)->get_price() / 2) << endl;
             }
         }
     }
@@ -160,27 +167,28 @@ void Market::sell() {
 
 void Market::displayAvailable() {
     // Display every Item and Spell available on store
-    cout << "Depending on your money, you can buy:" << endl;
+    cout << "Depending on your level, you can buy:" << endl;
     cout << "> Available Items:" << endl;
 
     // Display Items
     for (int i=0 ; i<SIZE_ITEMS ; ++i) {
-        cout << "-----------------------------" << endl;
-        items[i]->print();
+        if (items[i]->get_min_level() <= heroes[0]->get_level()) {
+            cout << "-----------------------------" << endl;
+            items[i]->print();
+        }
     }
 
     cout << "> Available Spells:" << endl;
 
     // Display Spell
     for (int i=0 ; i<SIZE_SPELLS ; ++i) {
-        cout << "-----------------------------" << endl;
-        spells[i]->print();
+        if (spells[i]->get_min_level() <= heroes[0]->get_level()) {
+            cout << "-----------------------------" << endl;
+            spells[i]->print();
+        }
     }
 
     // Display every Item and Spell on player
     cout << "Depending on your bag, you can sell:" << endl;
-
-    for (int i=0 ; i<3 ; ++i) {
-        displayStats(heroes[i]);
-    }
+    displayStats();
 }

@@ -14,7 +14,7 @@ class Monster : public Living {
         int min_damage;                     // Εύρος ζημιάς που μπορεί να προκαλέσει
         int max_damage;
         int defense;                        // Ποσό άμυνας το οποίο αϕαιρείται από τη ζημιά που δέχεται σε μια επίθεση του αντιπάλου του
-        int possibilityOfAvoidance;       // Πιθανότητα να αποϕύγει κάποια επίθεση του αντιπάλου του
+        int possibilityOfAvoidance;         // Πιθανότητα να αποϕύγει κάποια επίθεση του αντιπάλου του
 
     public:
         Monster(string name, int min_damage, int max_damage, int defense, int possibilityOfAvoidance, int level) : 
@@ -41,4 +41,6 @@ class Monster : public Living {
 
         // Tα τέρατα αναγεννούν σε κάθε γύρο κάποιο ποσό της ζωτικής τους ενέργειας
         void regenerate();
+
+        virtual void print();
 };

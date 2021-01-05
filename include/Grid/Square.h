@@ -34,7 +34,7 @@ class Square {
     virtual ~Square() {}
 
     // Ο παίκτης μπορεί ανά πάσα χρονική στιγμή να εμϕανίσει πληροϕορίες για τους ήρωές του
-    void displayStats(Hero* hero);
+    void displayStats();
 
     // Get Funcions
     // Get what square

@@ -28,4 +28,6 @@ class Living {
 
         // Οι ήρωες καθώς και τα τέρατα αναγεννούν σε κάθε γύρο κάποιο ποσό της ζωτικής τους ενέργεια
         virtual void regenerate() = 0;
+
+        virtual void print() = 0;
 };
