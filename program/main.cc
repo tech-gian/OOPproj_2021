@@ -50,9 +50,7 @@ int main(void) {
     // Create Grid
     Grid* grid = new Grid(heroes, 5, 5);
 
-
     cout << "Welcome to Main_game. Your (3 random created) heroes are placed in square (0, 0). Enjoy!" << endl;
-
 
     // Loop until player choose to quitGame()
     while (grid->quitGame()) {
@@ -68,6 +66,10 @@ int main(void) {
     
         // Move player's heroes
         grid->move();
+
+        // Do everything else
+        // Show options to player
+        grid->do_anything();
     }
     
 
@@ -77,9 +79,6 @@ int main(void) {
     }
 
     delete grid;
-
-    // TODO: Check that everything in main is fine
-
 
     return 0;
 }

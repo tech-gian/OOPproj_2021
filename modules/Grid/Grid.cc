@@ -138,3 +138,203 @@ bool Grid::quitGame() {
 
     return true;
 }
+
+
+void Grid::do_anything(void) {
+    // Loop, if player wants more than one action
+    while (true) {
+        cout << "Type 'c' to checkInventory, 'd' to displayStats, 'w' to use different weapons, 'e' to equip armor, 'u' to use potion, or 'n' to do nothing: ";
+        char ans;
+        cin >> ans;
+        cout << endl;
+
+        // Check all the possibilities
+        if (ans == 'c') {
+            for (int i=0 ; i<3 ; ++i) {
+                // Display Items for each Hero
+                list<Item*> items = heroes[i]->getInventory();
+                if (items.size() > 0) {
+                    cout << "Hero: " << heroes[i]->getName() << " has:" << endl;
+
+                    list<Item*>::iterator it;
+                    for (it=items.begin() ; it!=items.end() ; ++it) {
+                        (*it)->print();
+                    }
+                }
+                else {
+                    cout << "Hero: " << heroes[i]->getName() << " has no Items" << endl;
+                }
+            }
+        }
+        else if (ans == 'd') {
+            for (int i=0 ; i<3 ; ++i) {
+                heroes[i]->print();
+            }
+        }
+        else if (ans == 'w') {
+            for (int i=0 ; i<3 ; ++i) {
+                // Display their Weapon(s)
+                Weapon* weapon;
+                if ((weapon = heroes[i]->getWeapon('l')) != NULL) {
+                    if (weapon->get_hands() == 1)
+                        cout << "Left weapon: " << endl;
+                    weapon->print();
+                }
+
+                if ((weapon = heroes[i]->getWeapon('r')) != NULL) {
+                    if (weapon->get_hands() == 1)
+                        cout << "Right weapon: " << endl;
+                    weapon->print();
+                }
+            }
+
+            // Get the number of Hero. Assume correct input
+            cout << "Type the number of Hero you want to change his Weapon: ";
+            int num;
+            cin >> num;
+            cout << endl;
+
+            // Display his Items
+            list<Item*> items = heroes[num]->getInventory();
+            if (items.size() > 0) {
+                cout << "Available Items:" << endl;
+
+                list<Item*>::iterator it;
+                for (it=items.begin() ; it!=items.end() ; ++it) {
+                    (*it)->print();
+                }
+
+                // Get the Weapon to change
+                cout << "Type the name of Weapon you want to change: ";
+                string name;
+                cin.ignore();
+                getline(cin, name);
+                std::replace(name.begin(), name.end(), '\r', '\0');
+                std::replace(name.begin(), name.end(), '\n', '\0');
+                name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
+                cout << endl;
+
+                // Find the Weapon
+                if (items.size() > 0) {
+                    list<Item*>::iterator it;
+                    for (it=items.begin() ; it!=items.end() ; ++it) {
+                        if ((*it)->get_name() == name) {
+                            if ((*it)->get_type() == 'w') {
+                                heroes[num]->setWeapon((Weapon*)(*it));
+                            }
+                            else {
+                                cout << "This is not a Weapon. Try again" << endl;
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                cout << "No Available Weapons. Try again" << endl;
+            }
+        }
+        else if (ans == 'e') {
+            for (int i=0 ; i<3 ; ++i) {
+                // Display their Armor
+                Armor* armor;
+                if ((armor = heroes[i]->getArmor()) != NULL)
+                    armor->print();
+            }
+
+            // Get the number of Hero. Assume correct input
+            cout << "Type the number of Hero you want to change his Armor: ";
+            int num;
+            cin >> num;
+            cout << endl;
+
+            // Display his Items
+            list<Item*> items = heroes[num]->getInventory();
+            if (items.size() > 0) {
+                cout << "Available Items:" << endl;
+
+                list<Item*>::iterator it;
+                for (it=items.begin() ; it!=items.end() ; ++it) {
+                    (*it)->print();
+                }
+
+                // Get the Armor to equip
+                cout << "Type the name of Armor you want to change: ";
+                string name;
+                cin.ignore();
+                getline(cin, name);
+                std::replace(name.begin(), name.end(), '\r', '\0');
+                std::replace(name.begin(), name.end(), '\n', '\0');
+                name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
+                cout << endl;
+
+                // Find the Armor
+                if (items.size() > 0) {
+                    list<Item*>::iterator it;
+                    for (it=items.begin() ; it!=items.end() ; ++it) {
+                        if ((*it)->get_name() == name) {
+                            if ((*it)->get_type() == 'a') {
+                                heroes[num]->setArmor((Armor*)(*it));
+                            }
+                            else {
+                                cout << "This is not an Armor. Try again" << endl;
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                cout << "No Available Armors. Try again" << endl;
+            }
+        }
+        else if (ans == 'u') {
+            // Get the number of Hero. Assume correct input
+            cout << "Type the number of Hero you want to use a Potion: ";
+            int num;
+            cin >> num;
+            cout << endl;
+
+            // Display his Items
+            list<Item*> items = heroes[num]->getInventory();
+            if (items.size() > 0) {
+                cout << "Available Items:" << endl;
+
+                list<Item*>::iterator it;
+                for (it=items.begin() ; it!=items.end() ; ++it) {
+                    (*it)->print();
+                }
+
+                // Get the Potion to use
+                cout << "Type the name of Potion you want to use: ";
+                string name;
+                cin.ignore();
+                getline(cin, name);
+                std::replace(name.begin(), name.end(), '\r', '\0');
+                std::replace(name.begin(), name.end(), '\n', '\0');
+                name.erase(std::remove(name.begin(), name.end(), '\0'), name.end());
+                cout << endl;
+
+                // Find the Potion
+                if (items.size() > 0) {
+                    list<Item*>::iterator it;
+                    for (it=items.begin() ; it!=items.end() ; ++it) {
+                        if ((*it)->get_name() == name) {
+                            if ((*it)->get_type() == 'p') {
+                                heroes[num]->usePotion((Potion*)(*it));
+                            }
+                            else {
+                                cout << "This is not a Potion. Try again" << endl;
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                cout << "No Available Potions. Try again" << endl;
+            }
+        }
+        else {
+            // Stop the Loop
+            break;   
+        }
+    }
+}

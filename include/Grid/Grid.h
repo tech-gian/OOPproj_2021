@@ -18,12 +18,13 @@ class Grid {
     int y;              // the Grid
     Square*** squares;  // A 2-dimensional array of Grid (the Squares)
 
+    Hero** heroes;      // Heroes playing
     int posi;           // Current position
     int posj;           // of the Heroes' team
 
     public:
     // Constructor
-    Grid(Hero** heroes, int x, int y): x(x), y(y), posi(0), posj(0) {
+    Grid(Hero** heroes, int x, int y): x(x), y(y), heroes(heroes), posi(0), posj(0) {
         // Just initiliaze
         squares = new Square**[x];
         for (int i=0 ; i<x ; ++i) squares[i] = new Square*[y];
@@ -71,4 +72,7 @@ class Grid {
 
     // Quit the game
     bool quitGame();
+
+    // Do anything else, when finished from a Square
+    void do_anything(void);
 };
