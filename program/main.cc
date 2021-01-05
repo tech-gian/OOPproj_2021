@@ -55,7 +55,7 @@ int main(void) {
 
 
     // Loop until player choose to quitGame()
-    while (true) {
+    while (grid->quitGame()) {
         cout << "You have to move to another position from the one you already are." << endl;
         cout << "If you want you can now print the Map of the game as it is. If you want to type 'y' or 'n' if you don't: ";
         char ans;
@@ -68,15 +68,6 @@ int main(void) {
     
         // Move player's heroes
         grid->move();
-
-        cout << "If you want to stop playing type 'q' or anything else to continue: ";
-        cin >> ans;
-
-        // If the player wants to quit game
-        if (ans == 'q') {
-            grid->quitGame();
-            break;
-        }
     }
     
 

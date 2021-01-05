@@ -116,7 +116,19 @@ void Grid::displayMap() {
 }
 
 
-// TODO
-void Grid::quitGame() {
+bool Grid::quitGame() {
+    cout << "If you want to stop playing type 'q' or anything else to continue: ";
+    char ans;
+    cin >> ans;
+    cout << endl;
 
+    // If the player wants to quit the game
+    if (ans == 'q') {
+        cout << "-------------" << endl;
+        cout << "Quit the Game" << endl;
+
+        return false;
+    }
+
+    return true;
 }

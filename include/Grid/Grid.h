@@ -66,7 +66,7 @@ class Grid {
 
 
     // Quit the game
-    void quitGame();
+    bool quitGame();
 
 };
 
