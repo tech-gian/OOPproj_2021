@@ -29,7 +29,7 @@ class Spell{
 
         int getMagicPowerRequired();
 
-        virtual void use(Monster* monster, float dexterity) = 0;
+        virtual void use(Monster* monster, int dexterity) = 0;
 
         virtual void print();
 };
