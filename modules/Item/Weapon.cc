@@ -9,7 +9,6 @@ using namespace std;
 #include "../../include/Item/Weapon.h"
 
 
-
 // Weapon Functions
 
 void Weapon::print(void) {

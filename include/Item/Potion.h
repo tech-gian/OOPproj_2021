@@ -4,11 +4,13 @@
 
 
 #pragma once
+
 #include <string>
 using namespace std;
 
 #include "Item.h"
 #include "../constants.h"
+
 
 // Potion
 class Potion: public Item {
@@ -34,5 +36,4 @@ class Potion: public Item {
 
     // Print
     void print(void);
-
 };

@@ -4,12 +4,14 @@
 
 
 #pragma once
-#include <string>
 
+#include <string>
 using namespace std;
+
 
 // Item
 class Item {
+    // No private members
 
     protected:
     string name;        // Name of Item
@@ -38,7 +40,4 @@ class Item {
 
     // Print
     virtual void print(void);
-    
-
 };
-

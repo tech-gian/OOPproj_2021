@@ -141,6 +141,9 @@ bool Grid::quitGame() {
 
 
 void Grid::do_anything(void) {
+    // Give the player options to do while he goes
+    // from Square to Square
+
     // Loop, if player wants more than one action
     while (true) {
         cout << "Type 'c' to checkInventory, 'd' to displayStats, 'w' to use different weapons, 'e' to equip armor, 'u' to use potion, or 'n' to do nothing: ";
@@ -149,6 +152,8 @@ void Grid::do_anything(void) {
         cout << endl;
 
         // Check all the possibilities
+        
+        // Display each hero's Inventory
         if (ans == 'c') {
             for (int i=0 ; i<3 ; ++i) {
                 // Display Items for each Hero
@@ -166,11 +171,13 @@ void Grid::do_anything(void) {
                 }
             }
         }
+        // Display stats from each hero
         else if (ans == 'd') {
             for (int i=0 ; i<3 ; ++i) {
                 heroes[i]->print();
             }
         }
+        // Change Weapon
         else if (ans == 'w') {
             for (int i=0 ; i<3 ; ++i) {
                 // Display their Weapon(s)
@@ -233,6 +240,7 @@ void Grid::do_anything(void) {
                 cout << "No Available Weapons. Try again" << endl;
             }
         }
+        // Equip different Armor from Inventory
         else if (ans == 'e') {
             for (int i=0 ; i<3 ; ++i) {
                 // Display their Armor
@@ -286,6 +294,7 @@ void Grid::do_anything(void) {
                 cout << "No Available Armors. Try again" << endl;
             }
         }
+        // Use one Potion from Inventory
         else if (ans == 'u') {
             // Get the number of Hero. Assume correct input
             cout << "Type the number of Hero you want to use a Potion: ";
@@ -332,6 +341,7 @@ void Grid::do_anything(void) {
                 cout << "No Available Potions. Try again" << endl;
             }
         }
+        // If player doesn't want to do anything else
         else {
             // Stop the Loop
             break;   

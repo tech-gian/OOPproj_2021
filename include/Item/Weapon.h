@@ -8,6 +8,7 @@
 #include "Item.h"
 #include "../../include/constants.h"
 
+
 // Weapon
 class Weapon: public Item {
     int damage;     // Value of damage dealt
@@ -32,5 +33,4 @@ class Weapon: public Item {
 
     // Print
     void print(void);
-
 };
