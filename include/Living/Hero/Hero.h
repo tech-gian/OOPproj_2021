@@ -1,8 +1,9 @@
 #pragma once
-#include "../../Spell/Spell.h"
+
 #include "../../constants.h"
 #include "../Living.h"
 #include "../../Item/Item.h"
+#include "../../Spell/Spell.h"
 #include "../../Item/Armor.h"
 #include "../../Item/Weapon.h"
 #include "../../Item/Potion.h"
@@ -61,6 +62,8 @@ class Hero : public Living {
 
         // Οταν ο ήρωας αποκτήσει αρκετή εμπειρία, ανεβαίνει ένα επίπεδο
         virtual void levelUp() = 0;
+
+        // Συναρτήσεις διαχείρησης Items/Spells του παίκτη
 
         void add_item(Item* item);
 

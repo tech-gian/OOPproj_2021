@@ -1,19 +1,19 @@
 #pragma once
 
-#include <string>
-using namespace std;
-
 #include "../../constants.h"
 #include "Hero.h"
 
+#include <string>
+using namespace std;
+
 class Sorcerer : public Hero {
     public:
-        // ευνοημένος στον τομέα της επιδεξιότητας και της ευκινησίας
+        // Ευνοημένος στον τομέα της επιδεξιότητας και της ευκινησίας
         Sorcerer(string name) : Hero(name, INIT_STRENGTH, INIT_DEXTERITY + 20, INIT_AGILITY + 20){}
 
         ~Sorcerer(){}
         
-        // όταν ο ήρωας ανεβαίνει επίπεδο, τα στατιστικά αυτά θα επηρεάζονται περισσότερο
+        // Όταν ο ήρωας ανεβαίνει επίπεδο, τα στατιστικά αυτά θα επηρεάζονται περισσότερο
         void levelUp();
 
         void print();

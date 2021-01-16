@@ -1,12 +1,12 @@
 #pragma once
 
-#include <stdlib.h>
-#include <string>
-using namespace std;
-
 #include "../constants.h"
 #include "Spell.h"
 #include "../Living/Monster/Monster.h"
+
+#include <stdlib.h>
+#include <string>
+using namespace std;
 
 class IceSpell : public Spell {
     public:

@@ -4,8 +4,11 @@ void Hero::setWeapon(Weapon* weapon){
     if(!this->weapon_left || this->weapon_left->get_hands() == 2 || weapon->get_hands() == 2){
         if(this->weapon_left)
             this->inventory.push_back(this->weapon_left);
+        if(this->weapon_right)
+            this->inventory.push_back(this->weapon_right);
         this->weapon_left = weapon;
         this->weapon_right = NULL;
+        this->inventory.remove(weapon);
     }else{
         if(this->weapon_right)
             this->inventory.push_back(this->weapon_right);
@@ -14,7 +17,7 @@ void Hero::setWeapon(Weapon* weapon){
     }
     cout << "Left ";
     this->weapon_left->print();
-    if(this->weapon_right != NULL){
+    if(this->weapon_right){
         cout << "Right ";
         this->weapon_right->print();
     }
@@ -50,22 +53,22 @@ void Hero::usePotion(Potion* potion){
 
 void Hero::add_item(Item* item){
     this->inventory.push_back(item);
-    money -= item->get_price();
+    this->money -= item->get_price();
 }
 
 void Hero::add_spell(Spell* spell){
     this->spells.push_back(spell);
-    money -= spell->get_price();
+    this->money -= spell->get_price();
 }
 
 void Hero::sell_item(Item* item){
     this->inventory.remove(item);
-    money += item->get_price() / 2;
+    this->money += item->get_price() / 2;
 }
 
 void Hero::sell_spell(Spell* spell){
     this->spells.remove(spell);
-    money += spell->get_price() / 2;
+    this->money += spell->get_price() / 2;
 }
 
 void Hero::receiveDamage(int damage){
@@ -102,7 +105,6 @@ void Hero::regenerate(){
 }
 
 void Hero::print(){
-    // Display all Hero's Stats
     cout << "\t > Hero Life       : " << this->get_life() << endl;
     cout << "\t > Magic Power     : " << this->getMagicPower() << endl;
     cout << "\t > Strength        : " << this->getStrenth() << endl;
@@ -120,8 +122,7 @@ void Hero::print(){
     }
 
     if ((weapon = this->getWeapon('r')) != NULL) {
-        if (weapon->get_hands() == 1)
-            cout << "Right weapon: " << endl;
+        cout << "Right weapon: " << endl;
         weapon->print();
     }
 
