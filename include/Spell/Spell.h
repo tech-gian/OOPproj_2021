@@ -1,6 +1,5 @@
 #pragma once
 
-
 class Monster;
 
 #include <string>

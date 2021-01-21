@@ -4,7 +4,7 @@ int Monster::getMinDamage(){
     return this->min_damage;
 }
 
-int Monster:: getMaxDamage(){
+int Monster::getMaxDamage(){
     return this->max_damage;
 }
 
@@ -17,16 +17,20 @@ int Monster::getPossibilityOfAvoidance(){
 }
 
 void Monster::decreaseDamage(){
-    this->min_damage -= 10;
-    this->max_damage -= 10;
+    if(this->min_damage >= 10){
+        this->min_damage -= 10;
+        this->max_damage -= 10;
+    }
 }
 
 void Monster::decreaseDefense(){
-    this->defense -= 10;
+    if(this->defense >= 10)
+        this->defense -= 10;
 }
 
 void Monster::decreasePossibilityOfAvoidance(){
-    this->possibilityOfAvoidance -= 10;
+    if(this->possibilityOfAvoidance >= 10)
+        this->possibilityOfAvoidance -= 10;
 }
 
 

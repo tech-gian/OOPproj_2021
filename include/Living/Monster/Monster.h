@@ -1,13 +1,13 @@
 #pragma once
 
+#include "../../constants.h"
+#include "../Hero/Hero.h"
+#include "../Living.h"
+
 #include <stdlib.h>
 #include <string>
 #include <iostream>
 using namespace std;
-
-#include "../../constants.h"
-#include "../Hero/Hero.h"
-#include "../Living.h"
 
 class Monster : public Living {
     protected:

@@ -1,10 +1,10 @@
 #pragma once
 
-#include <string>
-using namespace std;
-
 #include "../../constants.h"
 #include "Monster.h"
+
+#include <string>
+using namespace std;
 
 class Dragon : public Monster {
     public:
