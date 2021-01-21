@@ -5,7 +5,7 @@ void IceSpell::use(Monster* monster, int dexterity){
     monster->decreaseDamage();
 }
 
-void IceSpell::print(){
+void IceSpell::print() const{
     cout << "IceSpell: ";
     Spell::print();
 }

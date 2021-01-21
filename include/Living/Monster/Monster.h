@@ -22,10 +22,10 @@ class Monster : public Living {
 
         virtual ~Monster(){}
 
-        int getMinDamage();
-        int getMaxDamage();
-        int getDefense();
-        int getPossibilityOfAvoidance();
+        int getMinDamage() const;
+        int getMaxDamage() const;
+        int getDefense() const;
+        int getPossibilityOfAvoidance() const;
 
         // Μείωση εύρους ζημιάς (από ξόρκι)
         void decreaseDamage();
@@ -42,5 +42,5 @@ class Monster : public Living {
         // Tα τέρατα αναγεννούν σε κάθε γύρο κάποιο ποσό της ζωτικής τους ενέργειας
         void regenerate();
 
-        virtual void print();
+        virtual void print() const;
 };

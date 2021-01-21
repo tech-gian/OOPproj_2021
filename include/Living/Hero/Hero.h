@@ -34,25 +34,25 @@ class Hero : public Living {
         
         virtual ~Hero(){}
 
-        int getMagicPower(){ return this->magicPower; }
+        int getMagicPower() const { return this->magicPower; }
 
-        int getStrenth(){ return this->strength; }
+        int getStrenth() const { return this->strength; }
 
-        int getDexterity(){ return this->dexterity; }
+        int getDexterity() const { return this->dexterity; }
 
-        int getAgility(){ return this->agility; }
+        int getAgility() const { return this->agility; }
 
-        int getMoney(){ return this->money; }
+        int getMoney() const { return this->money; }
 
-        list<Spell*> getSpells(){ return this->spells; }
+        list<Item*> getInventory() const { return this->inventory; }
+        
+        list<Spell*> getSpells() const { return this->spells; }
 
-        Armor* getArmor(){ return this->armor; }
+        Armor* getArmor() const { return this->armor; }
 
-        Weapon* getWeapon(char hand){ return hand == 'l' ? this->weapon_left : this->weapon_right; }
+        Weapon* getWeapon(char hand) const { return hand == 'l' ? this->weapon_left : this->weapon_right; }
 
         void setMagicPower(int magic_power){ this->magicPower = magic_power; }
-
-        list<Item*> getInventory(){ return this->inventory; }
         
         void setWeapon(Weapon* weapon);
 
@@ -90,5 +90,5 @@ class Hero : public Living {
         // Οι ήρωες αναγεννούν σε κάθε γύρο κάποιο ποσό της ζωτικής και της μαγικής τους ενέργειας
         void regenerate();
 
-        virtual void print();
+        virtual void print() const;
 };

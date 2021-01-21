@@ -15,11 +15,11 @@ class Living {
 
         virtual ~Living(){}
 
-        string getName(){ return this->name; };
+        string getName() const { return this->name; };
 
-        int get_life(void) { return this->healthPower; }
+        int get_life(void) const { return this->healthPower; }
 
-        int get_level(void) { return this->level; }
+        int get_level(void) const { return this->level; }
 
         // Αποδοχή ζημιάς από επίθεση αντιπάλου
         virtual void receiveDamage(int damage) = 0;
@@ -27,5 +27,5 @@ class Living {
         // Οι ήρωες καθώς και τα τέρατα αναγεννούν σε κάθε γύρο κάποιο ποσό της ζωτικής τους ενέργεια
         virtual void regenerate() = 0;
 
-        virtual void print() = 0;
+        virtual void print() const = 0;
 };

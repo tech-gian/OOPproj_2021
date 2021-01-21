@@ -13,5 +13,5 @@ class Spirit : public Monster {
 
         ~Spirit(){}
 
-        void print();
+        void print() const;
 };

@@ -5,7 +5,7 @@ void FireSpell::use(Monster* monster, int dexterity){
     monster->decreaseDefense();
 }
 
-void FireSpell::print(){
+void FireSpell::print() const{
     cout << "FireSpell: ";
     Spell::print();
 }

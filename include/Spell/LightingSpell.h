@@ -17,5 +17,5 @@ class LightningSpell : public Spell {
 
         ~LightningSpell(){};
 
-        void print();
+        void print() const;
 };

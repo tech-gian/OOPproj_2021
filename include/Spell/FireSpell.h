@@ -16,5 +16,5 @@ class FireSpell : public Spell {
 
         ~FireSpell() {}
 
-        void print();
+        void print() const;
 };

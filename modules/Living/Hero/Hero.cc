@@ -104,7 +104,7 @@ void Hero::regenerate(){
         this->magicPower *= 1.05;
 }
 
-void Hero::print(){
+void Hero::print() const{
     cout << "\t > Hero Life       : " << this->get_life() << endl;
     cout << "\t > Magic Power     : " << this->getMagicPower() << endl;
     cout << "\t > Strength        : " << this->getStrenth() << endl;

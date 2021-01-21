@@ -7,7 +7,7 @@ void Sorcerer::levelUp(){
     this->level++;
 }
 
-void Sorcerer::print(){
+void Sorcerer::print() const{
     cout << "\t -----------------------------" << endl;
     cout << "\t > Sorcerer Name   : " << this->name << endl;
     Hero::print();

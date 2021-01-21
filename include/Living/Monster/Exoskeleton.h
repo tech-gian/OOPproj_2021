@@ -13,5 +13,5 @@ class Exoskeleton : public Monster {
 
         ~Exoskeleton(){}
 
-        void print();
+        void print() const;
 };

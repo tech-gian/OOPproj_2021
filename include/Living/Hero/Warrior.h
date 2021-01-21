@@ -16,5 +16,5 @@ class Warrior : public Hero {
         // Όταν ο ήρωας ανεβαίνει επίπεδο, τα στατιστικά αυτά θα επηρεάζονται περισσότερο
         void levelUp();
 
-        void print();
+        void print() const;
 };

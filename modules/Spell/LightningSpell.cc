@@ -5,7 +5,7 @@ void LightningSpell::use(Monster* monster, int dexterity){
     monster->decreasePossibilityOfAvoidance();
 }
 
-void LightningSpell::print(){
+void LightningSpell::print() const{
     cout << "LightningSpell: ";
     Spell::print();
 }

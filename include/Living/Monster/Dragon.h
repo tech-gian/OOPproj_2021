@@ -13,5 +13,5 @@ class Dragon : public Monster {
 
         ~Dragon(){}
         
-        void print();
+        void print() const;
 };

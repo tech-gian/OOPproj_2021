@@ -1,18 +1,18 @@
 #include "../../../include/Living/Monster/Monster.h"
 
-int Monster::getMinDamage(){
+int Monster::getMinDamage() const{
     return this->min_damage;
 }
 
-int Monster::getMaxDamage(){
+int Monster::getMaxDamage() const{
     return this->max_damage;
 }
 
-int Monster::getDefense(){
+int Monster::getDefense() const{
     return this->defense;
 }
 
-int Monster::getPossibilityOfAvoidance(){
+int Monster::getPossibilityOfAvoidance() const{
     return this->possibilityOfAvoidance;
 }
 
@@ -55,7 +55,7 @@ void Monster::regenerate(){
         this->healthPower *= 1.05;
 }
 
-void Monster::print(){
+void Monster::print() const{
     cout << "\t > Defense           : " << this->defense << endl;
     cout << "\t > Health power      : " << this->healthPower << endl;
     cout << "\t > Damage            : [" << this->min_damage << " - " << this->max_damage << "]" << endl;

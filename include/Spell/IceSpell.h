@@ -16,5 +16,5 @@ class IceSpell : public Spell {
 
         ~IceSpell(){};
 
-        void print();
+        void print() const;
 };

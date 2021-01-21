@@ -20,15 +20,15 @@ class Spell{
 
         virtual ~Spell(){}
 
-        string get_name(void);
+        string get_name(void) const;
 
-        int get_price();
+        int get_price() const;
 
-        int get_min_level();
+        int get_min_level() const;
 
-        int getMagicPowerRequired();
+        int getMagicPowerRequired() const;
 
         virtual void use(Monster* monster, int dexterity) = 0;
 
-        virtual void print();
+        virtual void print() const;
 };
