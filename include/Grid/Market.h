@@ -133,5 +133,5 @@ class Market: public Square {
 
     // Get Functions
     // Get what square
-    char get_sq(void) { return 'm'; }
+    char get_sq(void) const { return 'm'; }
 };

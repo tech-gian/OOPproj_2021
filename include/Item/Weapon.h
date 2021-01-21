@@ -23,14 +23,14 @@ class Weapon: public Item {
 
     // Get Functions
     // Get damage
-    int get_dmg(void) { return this->damage; }
+    int get_dmg(void) const { return this->damage; }
 
     // Get hands
-    int get_hands(void) { return this-> hands; }
+    int get_hands(void) const { return this-> hands; }
 
     // Get type
-    char get_type(void) { return 'w'; }
+    char get_type(void) const { return 'w'; }
 
     // Print
-    void print(void);
+    void print(void) const;
 };

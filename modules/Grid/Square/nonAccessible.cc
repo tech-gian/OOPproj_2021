@@ -5,4 +5,3 @@
 #include "../../../include/Grid/nonAccessible.h"
 
 // nonAccesible Functions
-

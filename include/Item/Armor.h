@@ -25,13 +25,13 @@ class Armor: public Item {
 
     // Get Functions
     // Get damage_protect
-    int get_protection(void) { return this->damage_protect; }
+    int get_protection(void) const { return this->damage_protect; }
 
     // Get type
-    char get_type(void) { return 'a'; }
+    char get_type(void) const { return 'a'; }
 
     // Print
-    void print(void);
+    void print(void) const;
 
     // Μείωση προστασίας ασπίδας κατά την επίθεση
     void decreaseDamageProtection(int damage) { this->damage_protect -= damage; }

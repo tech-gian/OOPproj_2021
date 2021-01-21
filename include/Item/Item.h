@@ -27,17 +27,17 @@ class Item {
 
     // Get Function
     // Get name
-    string get_name(void) { return this->name; }
+    string get_name(void) const { return this->name; }
 
     // Get price
-    int get_price(void) { return this->price; }
+    int get_price(void) const { return this->price; }
 
     // Get min_level
-    int get_min_level(void) { return this->min_level; }
+    int get_min_level(void) const { return this->min_level; }
 
     // Get type of item
-    virtual char get_type(void) = 0;
+    virtual char get_type(void) const = 0;
 
     // Print
-    virtual void print(void);
+    virtual void print(void) const;
 };

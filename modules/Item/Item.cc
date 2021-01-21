@@ -11,7 +11,7 @@ using namespace std;
 
 // Item Functions
 
-void Item::print(void) {
+void Item::print(void) const {
     // General print function for all types of Items
     cout << "Min level: " << min_level << ", price: " << price << endl;
 }

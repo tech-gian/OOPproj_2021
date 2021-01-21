@@ -11,10 +11,9 @@ using namespace std;
 
 // Armor Functions
 
-void Armor::print(void) {
+void Armor::print(void) const {
     // Specific print function for Armor
     cout << "Armor with name: " << name << endl;
     cout << "It protects from damage up to " << damage_protect << "." << endl;
     Item::print();
 }
-

@@ -26,14 +26,14 @@ class Potion: public Item {
 
     // Get Functions
     // Get percentage
-    int get_percent(void) { return this->percentage; }
+    int get_percent(void) const { return this->percentage; }
 
     // returns "health"/"magic power"/"strength"/"dexterity"/"agility"
-    string get_stat(void) { return this->stat; }
+    string get_stat(void) const { return this->stat; }
 
     // Get type
-    char get_type(void) { return 'p'; };
+    char get_type(void) const { return 'p'; };
 
     // Print
-    void print(void);
+    void print(void) const;
 };

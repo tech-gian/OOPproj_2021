@@ -11,9 +11,8 @@ using namespace std;
 
 // Weapon Functions
 
-void Weapon::print(void) {
+void Weapon::print(void) const {
     cout << "Weapon with name: " << name << endl;
     cout << "It is a " << ((hands == 1) ? "one" : "two") << "-handed weapon and it causes damage up to " << damage << "!" << endl;
     Item::print();
 }
-

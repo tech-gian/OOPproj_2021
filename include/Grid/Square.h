@@ -38,11 +38,11 @@ class Square {
 
     // Get Funcions
     // Get what square
-    virtual char get_sq(void) = 0;
+    virtual char get_sq(void) const = 0;
 
     // Move heroes, when player moves
     void move_heroes(Square* square);
 
     // Get if there are heroes
-    bool is_hero(void) { return (heroes[0] == NULL) ? false : true; }
+    bool is_hero(void) const { return (heroes[0] == NULL) ? false : true; }
 };

@@ -67,7 +67,7 @@ class Common: public Square {
 
     // Get Functions
     // Get what square
-    char get_sq(void) { return 'c'; }
+    char get_sq(void) const { return 'c'; }
 
     // Display Menu to get the user to buy/sell
     void displayMenu(void);

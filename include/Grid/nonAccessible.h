@@ -22,5 +22,5 @@ class nonAccesible: public Square {
 
     // Get Functions
     // Get what square
-    char get_sq(void) { return 'n'; }
+    char get_sq(void) const { return 'n'; }
 };
