@@ -317,15 +317,14 @@ void Common::fight() {
         std::replace(monster_name.begin(), monster_name.end(), '\n', '\0');
         monster_name.erase(std::remove(monster_name.begin(), monster_name.end(), '\0'), monster_name.end());
 
-        // TODO: adjust monster's level
         if (i == 0) {
-            monsters[i] = new Dragon(monster_name, 1);
+            monsters[i] = new Dragon(monster_name, heroes[i]->get_level());
         }
         else if (i == 1) {
-            monsters[i] = new Exoskeleton(monster_name, 1);
+            monsters[i] = new Exoskeleton(monster_name, heroes[i]->get_level());
         }
         else {
-            monsters[i] = new Spirit(monster_name, 1);
+            monsters[i] = new Spirit(monster_name, heroes[i]->get_level());
         }
     }
 
